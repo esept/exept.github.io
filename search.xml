@@ -14,11 +14,6 @@
       </tags>
   </entry>
   <entry>
-    <title>photos</title>
-    <url>/2020/05/10/photos-1/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>他是诗人</title>
     <url>/2020/05/08/doc/</url>
     <content><![CDATA[<p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
@@ -59,7 +54,7 @@
   </entry>
   <entry>
     <title>photos</title>
-    <url>/2020/05/10/photos/</url>
+    <url>/2020/05/10/photos-1/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -75,5 +70,10 @@
       <tags>
         <tag>采集忘却</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>photos</title>
+    <url>/2020/05/10/photos/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>

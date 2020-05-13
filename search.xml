@@ -58,20 +58,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如果我想你</title>
-    <url>/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/</url>
-    <content><![CDATA[<p>愿你能从他身上听到你想听的话<br>单调却挂念的话<br>有没有一些<br>来自我这个人渣</p>
-<a id="more"></a>
-<p>记忆的沙 霜冻的画<br>故乡的花已经发芽<br>牵着希望的手悄然滑下<br>我还是怀念我残破的家<br>音乐盒的主人公默念牵挂<br>没有你的口信<br>我不敢安家<br>你还留着我寄存的味道吗<br>书写下的话 让天空散漫着花<br>那景象是我从未见过的<br>我想问你可知爱字如何落下<br>却无法否认那是我从未见过的回答</p>
-]]></content>
-      <categories>
-        <category>思考与遐想</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>爬虫</title>
     <url>/2020/05/13/%E7%88%AC%E8%99%AB/</url>
     <content><![CDATA[<h1 id="模拟请求头与代理IP"><a href="#模拟请求头与代理IP" class="headerlink" title="模拟请求头与代理IP"></a>模拟请求头与代理IP</h1><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><ol>
@@ -108,5 +94,19 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要倒入包</span></span><br><span class="line"><span class="keyword">import</span> urllib.request <span class="keyword">as</span> ur <span class="comment"># 使用ur.urlopen</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(self, request, spider)</span>:</span></span><br><span class="line">        request.meta[<span class="string">'proxy'</span>] = <span class="string">'http://'</span> + ur.urlopen(<span class="string">'代理IP地址'</span>).read().decode(<span class="string">'utf-8'</span>).strip() <span class="comment"># 设置代理</span></span><br></pre></td></tr></table></figure>
 <p>.strip（）去掉首位换行符</p>
 <h1 id="页面中的数据过滤提取"><a href="#页面中的数据过滤提取" class="headerlink" title="页面中的数据过滤提取"></a>页面中的数据过滤提取</h1>]]></content>
+  </entry>
+  <entry>
+    <title>如果我想你</title>
+    <url>/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/</url>
+    <content><![CDATA[<p>愿你能从他身上听到你想听的话<br>单调却挂念的话<br>有没有一些<br>来自我这个人渣</p>
+<a id="more"></a>
+<p>记忆的沙 霜冻的画<br>故乡的花已经发芽<br>牵着希望的手悄然滑下<br>我还是怀念我残破的家<br>音乐盒的主人公默念牵挂<br>没有你的口信<br>我不敢安家<br>你还留着我寄存的味道吗<br>书写下的话 让天空散漫着花<br>那景象是我从未见过的<br>我想问你可知爱字如何落下<br>却无法否认那是我从未见过的回答</p>
+]]></content>
+      <categories>
+        <category>思考与遐想</category>
+      </categories>
+      <tags>
+        <tag>采集忘却</tag>
+      </tags>
   </entry>
 </search>

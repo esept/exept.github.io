@@ -173,4 +173,29 @@
         <tag>个人项目</tag>
       </tags>
   </entry>
+  <entry>
+    <title>scrapy-redis</title>
+    <url>/2020/05/14/scrapy-redis/</url>
+    <content><![CDATA[<h2 id="Redis-的数据库结构"><a href="#Redis-的数据库结构" class="headerlink" title="Redis 的数据库结构"></a>Redis 的数据库结构</h2><ol>
+<li>Redis中有16个数据库db(0) ~ db(15)<br>开启Redis后默认使用db(0)<br>非关系型数据库，所有数据都堆积在一起</li>
+<li>切换数据库：<br>select 【index】<br>例如：切换到db1 </li>
+</ol>
+<blockquote>
+<p>select 1<br>3. 终端里<br>$ redis-cli<br>显示端口号：‘27.0.0.1:6379&gt; ’<br>select 1<br>select 0</p>
+</blockquote>
+<h2 id="Redis的数据类型"><a href="#Redis的数据类型" class="headerlink" title="Redis的数据类型"></a>Redis的数据类型</h2><h2 id="pycharm-配置"><a href="#pycharm-配置" class="headerlink" title="pycharm 配置"></a>pycharm 配置</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line">redis_conn = redis.StrictRedis(</span><br><span class="line">    host = <span class="string">'localhost'</span>,</span><br><span class="line">    port = <span class="number">6379</span>,</span><br><span class="line">    password=<span class="string">''</span>,</span><br><span class="line">    decode_responses = <span class="literal">True</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="运行redis命令"><a href="#运行redis命令" class="headerlink" title="运行redis命令"></a>运行redis命令</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">ret = redis_conn.execute_command(<span class="string">'keys *'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(type(ret))</span><br><span class="line">redis_conn.execute_command(<span class="string">'set k1 v1'</span>)</span><br><span class="line">print(ret)</span><br><span class="line"><span class="comment">######################################</span></span><br><span class="line">[<span class="string">'k3'</span>, <span class="string">'k1'</span>, <span class="string">'k5'</span>, <span class="string">'k2'</span>]</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt;</span></span><br><span class="line">['k3', 'k1', 'k5', 'k2']</span><br></pre></td></tr></table></figure>
+
+<h1 id="Scrapy-redis"><a href="#Scrapy-redis" class="headerlink" title="Scrapy-redis"></a>Scrapy-redis</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>pip install scrapy-redis</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>多个爬虫项目爬取一个网站<br>多台计算机配合爬取一个网站</p>
+<p>scrapy-redis 组建实现分布式爬虫<br>不是一种框架，是一个拓展使scrapy可以完成分布式爬虫</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
 </search>

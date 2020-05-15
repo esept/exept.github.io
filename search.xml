@@ -72,7 +72,7 @@
       </tags>
   </entry>
   <entry>
-    <title>爬虫</title>
+    <title>Scrapy爬虫</title>
     <url>/2020/05/13/%E7%88%AC%E8%99%AB/</url>
     <content><![CDATA[<p>python-scrapy学习中所做的爬取某一招标网站的内容</p>
 <a id="more"></a>
@@ -174,7 +174,7 @@
       </tags>
   </entry>
   <entry>
-    <title>scrapy-redis</title>
+    <title>Scrapy-Redis分布式爬虫</title>
     <url>/2020/05/14/scrapy-redis/</url>
     <content><![CDATA[<h2 id="Redis-的数据库结构"><a href="#Redis-的数据库结构" class="headerlink" title="Redis 的数据库结构"></a>Redis 的数据库结构</h2><ol>
 <li>Redis中有16个数据库db(0) ~ db(15)<br>开启Redis后默认使用db(0)<br>非关系型数据库，所有数据都堆积在一起</li>
@@ -183,13 +183,31 @@
 <blockquote>
 <p>select 1<br>3. 终端里<br>$ redis-cli<br>显示端口号：‘27.0.0.1:6379&gt; ’<br>select 1<br>select 0</p>
 </blockquote>
-<h2 id="Redis的数据类型"><a href="#Redis的数据类型" class="headerlink" title="Redis的数据类型"></a>Redis的数据类型</h2><h2 id="pycharm-配置"><a href="#pycharm-配置" class="headerlink" title="pycharm 配置"></a>pycharm 配置</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line">redis_conn = redis.StrictRedis(</span><br><span class="line">    host = <span class="string">'localhost'</span>,</span><br><span class="line">    port = <span class="number">6379</span>,</span><br><span class="line">    password=<span class="string">''</span>,</span><br><span class="line">    decode_responses = <span class="literal">True</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="Redis的数据类型"><a href="#Redis的数据类型" class="headerlink" title="Redis的数据类型"></a>Redis的数据类型</h2><p>后续上传文件</p>
+<h2 id="pycharm-配置"><a href="#pycharm-配置" class="headerlink" title="pycharm 配置"></a>pycharm 配置</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line">redis_conn = redis.StrictRedis(</span><br><span class="line">    host = <span class="string">'localhost'</span>,</span><br><span class="line">    port = <span class="number">6379</span>,</span><br><span class="line">    password=<span class="string">''</span>,</span><br><span class="line">    decode_responses = <span class="literal">True</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <h2 id="运行redis命令"><a href="#运行redis命令" class="headerlink" title="运行redis命令"></a>运行redis命令</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">ret = redis_conn.execute_command(<span class="string">'keys *'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(type(ret))</span><br><span class="line">redis_conn.execute_command(<span class="string">'set k1 v1'</span>)</span><br><span class="line">print(ret)</span><br><span class="line"><span class="comment">######################################</span></span><br><span class="line">[<span class="string">'k3'</span>, <span class="string">'k1'</span>, <span class="string">'k5'</span>, <span class="string">'k2'</span>]</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt;</span></span><br><span class="line">['k3', 'k1', 'k5', 'k2']</span><br></pre></td></tr></table></figure>
 
 <h1 id="Scrapy-redis"><a href="#Scrapy-redis" class="headerlink" title="Scrapy-redis"></a>Scrapy-redis</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>pip install scrapy-redis</p>
 <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>多个爬虫项目爬取一个网站<br>多台计算机配合爬取一个网站</p>
 <p>scrapy-redis 组建实现分布式爬虫<br>不是一种框架，是一个拓展使scrapy可以完成分布式爬虫</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2>]]></content>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在scrapy项目中的settings加入下列代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动Scrapy-Redis去重过滤器，取消Scrapy的去重功能</span></span><br><span class="line">DUPEFILTER_CLASS = <span class="string">"scrapy_redis.dupefilter.RFPDupeFilter"</span></span><br><span class="line"><span class="comment"># 启用Scrapy-Redis的调度器，取消Scrapy的调度器</span></span><br><span class="line">SCHEDULER = <span class="string">"scrapy_redis.scheduler.Scheduler"</span></span><br><span class="line"><span class="comment"># Scrapy-Redis断点续爬</span></span><br><span class="line">SCHEDULER_PERSIST = <span class="literal">True</span></span><br><span class="line"><span class="comment"># 配置Redis数据库的连接</span></span><br><span class="line">REDIS_URL = <span class="string">'redis://127.0.0.1:6379'</span></span><br></pre></td></tr></table></figure>
+<p>在这行代码中，需要不断访问代理IP</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">request.meta[<span class="string">'proxy'</span>] = <span class="string">'http://'</span> + ur.urlopen(<span class="string">'http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=3'</span>).read().decode(<span class="string">'utf-8'</span>).strip() <span class="comment"># 设置代理</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="proxypool-py"><a href="#proxypool-py" class="headerlink" title="proxypool.py"></a>proxypool.py</h2><p>在项目文件夹（非spider）下建立proxypool.py</p>
+<ol>
+<li>倒入模块<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"><span class="keyword">import</span> urllib.request <span class="keyword">as</span> ur</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure></li>
+<li>定义Proxypool类并定义两个方法<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyPool</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.redis_conn = redis.StrictRedis(</span><br><span class="line">            host=<span class="string">'localhost'</span>,</span><br><span class="line">            port = <span class="number">6379</span>,</span><br><span class="line">            decode_responses=<span class="literal">True</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">    	proxy_new = ur.urlopen(<span class="string">'http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=4'</span>).read().decode(<span class="string">'utf-8'</span>).strip().split(<span class="string">' '</span>)</span><br><span class="line">    	print(proxy)</span><br><span class="line">        <span class="comment"># while True:# 不断循环获取链接</span></span><br><span class="line">        <span class="comment">#     proxy_new = ur.urlopen('http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=4').read().decode('utf-8').strip().split(' ')# strip：去掉首位空格，split：用空格隔开</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">     	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    ProxyPool().set_proxy()</span><br></pre></td></tr></table></figure>
+<p>此时运行main，会获取到两个被打印的代理IP</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">proxy_odd = <span class="literal">None</span> <span class="comment"># 旧的代理IP地址</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    proxy_new = ur.urlopen(<span class="string">'http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=4'</span>).read().decode(<span class="string">'utf-8'</span>).strip().split(<span class="string">' '</span>) <span class="comment"># 获取的新的代理IP地址</span></span><br><span class="line">    <span class="keyword">if</span> proxy_new != proxy_odd: <span class="comment"># 如果心就的代理IP不同</span></span><br><span class="line">    	proxy_odd = proxy_new <span class="comment"># 将新的代理IP赋值给旧的代理IP</span></span><br><span class="line">        self.redis_conn.delete(<span class="string">'proxy'</span>) <span class="comment"># 删除链接对象里‘proxy’这个键的值</span></span><br><span class="line">        self.redis_conn.sadd(<span class="string">'proxy'</span>,*proxy_new) <span class="comment"># 向‘proxy’这个键中添加两个代理IP地址（刚刚获取到的），这里相当于执行了两次添加</span></span><br><span class="line">        time.sleep(<span class="number">2</span>) <span class="comment"># 睡眠</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
       <categories>
         <category>python</category>
       </categories>

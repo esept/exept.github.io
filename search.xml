@@ -236,7 +236,8 @@
   <entry>
     <title>Jupyter notebook 基础</title>
     <url>/2020/05/15/jupyternotebook/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>数据科学原理与数据处理第一节<br>Jupyter Notebook的基础使用</p>
+<a id="more"></a>
 <h1 id="Jupyter-环境安装与运行"><a href="#Jupyter-环境安装与运行" class="headerlink" title="Jupyter 环境安装与运行"></a>Jupyter 环境安装与运行</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>pip install jupyter</p>
 <h2 id="打开Jupyter"><a href="#打开Jupyter" class="headerlink" title="打开Jupyter"></a>打开Jupyter</h2><p>cd ‘想建立jupyter文件的地址’</p>
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>在添加好地址后输入 ‘juputer notebook’ 即可</p>

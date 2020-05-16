@@ -227,4 +227,44 @@
         <tag>redis</tag>
       </tags>
   </entry>
+  <entry>
+    <title>1</title>
+    <url>/2020/05/15/1/</url>
+    <content><![CDATA[<p>我想给博客上加上一点自己的东西，比如电影的介绍和推荐，</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>jupyternotebook</title>
+    <url>/2020/05/15/jupyternotebook/</url>
+    <content><![CDATA[<a id="more"></a>
+<h1 id="Jupyter-环境安装与运行"><a href="#Jupyter-环境安装与运行" class="headerlink" title="Jupyter 环境安装与运行"></a>Jupyter 环境安装与运行</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>pip install jupyter</p>
+<h2 id="打开Jupyter"><a href="#打开Jupyter" class="headerlink" title="打开Jupyter"></a>打开Jupyter</h2><p>cd ‘想建立jupyter文件的地址’</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>在添加好地址后输入 ‘juputer notebook’ 即可</p>
+<h2 id="运行Jupyter里的代码"><a href="#运行Jupyter里的代码" class="headerlink" title="运行Jupyter里的代码"></a>运行Jupyter里的代码</h2><p>在所在代码行点击shift+enter</p>
+<h1 id="Jupyter-魔法命令"><a href="#Jupyter-魔法命令" class="headerlink" title="Jupyter 魔法命令"></a>Jupyter 魔法命令</h1><h2 id="run-文件名"><a href="#run-文件名" class="headerlink" title="%run ./文件名"></a>%run ./文件名</h2><p>运行文件夹下的文件</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&gt; my_test.py</span><br><span class="line">print(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%run ./my_test.py</span><br><span class="line"><span class="comment">#################</span></span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+<h2 id="load-加载一个函数"><a href="#load-加载一个函数" class="headerlink" title="%load 加载一个函数"></a>%load 加载一个函数</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&gt; my_test.py</span><br><span class="line">print(<span class="string">'hello world'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_print</span><span class="params">(x)</span>:</span></span><br><span class="line">	print(x)</span><br></pre></td></tr></table></figure>
+<p>再重新执行生成语句，如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># %load ./my_test.py</span></span><br><span class="line">print(<span class="string">'hello world'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_print</span><span class="params">(x)</span>:</span></span><br><span class="line">	print(x)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_print(<span class="number">1</span>)</span><br><span class="line"><span class="comment">###########</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>倒入文件的另一种方式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> my_test <span class="keyword">import</span> my_print</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>notebook 只会针对同一文件导入一次，如果在倒入后又重新更改，需要用%run来从新加载一遍，以便达到更新的作用</p>
+</blockquote>
+<h2 id="timeit-amp-time-查看代码执行时间"><a href="#timeit-amp-time-查看代码执行时间" class="headerlink" title="%timeit &amp; %time 查看代码执行时间"></a>%timeit &amp; %time 查看代码执行时间</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列表生成式</span></span><br><span class="line">%timeit li = [i **<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 228 µs ± 4.31 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each) 运行1000次的平均值</span></span><br><span class="line"></span><br><span class="line">%timeit li = [i **<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000000</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 246 ms ± 2.91 ms per loop (mean ± std. dev. of 7 runs, 1 loop each) 一次的值</span></span><br></pre></td></tr></table></figure>
+
+<p>%timeit 只能测试一行代码，如果想测试代码块，则运用 <b>%%timeit</b></p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>数据分析与数据挖掘</tag>
+        <tag>Jupyter Notebook</tag>
+      </tags>
+  </entry>
 </search>

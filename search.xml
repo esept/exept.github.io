@@ -7,49 +7,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Diary-05-2020</title>
-    <url>/2020/05/10/diary/</url>
-    <content><![CDATA[<p>这里曾经，依旧是我的五月<br>岁月漫长，但是值得等待<br> <a id="more"></a></p>
-<h2 id="2020-05"><a href="#2020-05" class="headerlink" title="2020-05"></a>2020-05</h2><p>自己剖析自己是一件挺可怕的事情，因为有的时候一旦发现自己做那件事的原因竟然是因为这样的一个理由，如果这样的原因是一个不愿被自己接受的结果，那面对自己都会有一点不情愿<br>对于爬虫这个东西真的是麻烦，做个项目竟然还要自己购买代理</p>
-<p>今天不知道是第几次试图创建图片流失败了<br>我基本上已经要放弃尝试了，现在前端的东西一点也不会，完全就是按照网上的教程来进行自己的操作<br>然后嘞，我发现现在这样子的一个环境还是很适合自己的<br>因为很有感觉<br>然后发现自己创建更新内容和前端，访问量轻轻松松上百</p>
-<p>Emmm。。。</p>
-<p>想回国的时候去北京吃一堆想吃的东西</p>
-<p>今天先这样子吧</p>
-<p>喜欢下雨天。</p>
-]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>他是诗人</title>
-    <url>/2020/05/08/doc/</url>
-    <content><![CDATA[<p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
-<p>让岁月抚平忧伤<br>年华换成怅惘<br>星空月夜伴随凄凉<br>独自扼杀希望</p>
-<p>谁说诗人习惯独自流浪<br>只不过从未找到过家的方向<br>他在尝试抚平心灵创伤<br>用诗来抒发梦想</p>
-<p>他也曾尝过爱情<br>决绝 苦涩 需要勇气<br>他不许任何人亵渎这经历<br>就像他人亵渎自己</p>
-<p>他早迷失在混乱世界<br>等待爱人将他救起<br>他却说我是诗人<br>悲伤才是对的记忆</p>
-<p>他在等人帮他抹去泪水<br>等人填补空洞心伤<br>诗人强撑着精神病体<br>说着自由 理应继续彷徨</p>
-<p>现在的我向往自由与孤独<br>现在的我甘愿流浪<br>诗人不停地大声吟唱<br>天空的雨滴浸透出点点荒凉</p>
-<p>诗人的梦里有他想要的一切<br>却不知从何记起<br>他在夜里悲伤的哭泣<br>谁又见过他的无助模样</p>
-<p>他还在用低沉的声音吟唱<br>唱出对世界无尽的失望<br>海阔天空和万丈悬崖其实一样<br>都会抛下久违的梦想</p>
-<p>诗人披着月光<br>低吟清唱着他的忧伤<br>他说坚强一点<br>就像月光不惧朝阳</p>
-<p>他在慢慢游荡<br>渐渐走向陌生的远方<br>他也不想背井离乡<br>只因这里过分凄凉</p>
-<p>其实诗人早就死亡<br>只剩他的躯体被迫流浪<br>他的灵魂灰飞烟灭<br>却无人惋惜他的坚强</p>
-<p>你是否曾望见过诗人的孤寂背影<br>就像月光才是最柔美的光芒<br>人们不知是否该去祭奠<br>来安抚孤魂的游荡带来的离殇</p>
-<p>固执的他 说 我是诗人<br>怎敢以流泪缓解悲伤<br>他说我喜欢孤身一人 只身迎接<br>坎坷路途上的天堂</p>
-]]></content>
-      <categories>
-        <category>思考与遐想</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Jupyter notebook 基础</title>
     <url>/2020/05/15/jupyternotebook/</url>
     <content><![CDATA[<p>数据科学原理与数据处理第一节<br>Jupyter Notebook的基础使用</p>
@@ -158,6 +115,64 @@
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.count() <span class="comment"># 数据个数</span></span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line">a    <span class="number">4</span></span><br><span class="line">b    <span class="number">3</span></span><br><span class="line">dtype: int64</span><br><span class="line"></span><br><span class="line">df.mean() </span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line">a    <span class="number">4.0</span></span><br><span class="line">b    <span class="number">6.0</span></span><br><span class="line">dtype: float64</span><br><span class="line"></span><br><span class="line">df.sum()</span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line">a    <span class="number">16.0</span></span><br><span class="line">b    <span class="number">18.0</span></span><br><span class="line">dtype: float64</span><br><span class="line"></span><br><span class="line">df.sum(axis = <span class="number">1</span>) <span class="comment">#横向求和</span></span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line"><span class="number">0</span>     <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>     <span class="number">9.0</span></span><br><span class="line"><span class="number">2</span>     <span class="number">0.0</span></span><br><span class="line"><span class="number">3</span>    <span class="number">17.0</span></span><br><span class="line"><span class="number">4</span>     <span class="number">7.0</span></span><br><span class="line">dtype: float64</span><br><span class="line"></span><br><span class="line">df.a <span class="comment"># </span></span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line"><span class="number">0</span>    <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>    <span class="number">4.0</span></span><br><span class="line"><span class="number">2</span>    NaN</span><br><span class="line"><span class="number">3</span>    <span class="number">8.0</span></span><br><span class="line"><span class="number">4</span>    <span class="number">3.0</span></span><br><span class="line">Name: a, dtype: float64</span><br><span class="line"></span><br><span class="line">df.a.sum() <span class="comment"># 对某一列求和</span></span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line"><span class="number">16.0</span></span><br><span class="line"></span><br><span class="line">df.var() <span class="comment"># 方差 -&gt; 开根号-&gt; 标准差</span></span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line">a    <span class="number">8.666667</span></span><br><span class="line">b    <span class="number">7.000000</span></span><br><span class="line">dtype: float64</span><br><span class="line"></span><br><span class="line">df.std() <span class="comment"># 标准差</span></span><br><span class="line"><span class="comment"># -&gt;</span></span><br><span class="line">a    <span class="number">2.943920</span></span><br><span class="line">b    <span class="number">2.645751</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
 <h3 id="pandas合并排序与时间序列"><a href="#pandas合并排序与时间序列" class="headerlink" title="pandas合并排序与时间序列"></a>pandas合并排序与时间序列</h3>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>数据分析与数据挖掘</tag>
+        <tag>Jupyter Notebook</tag>
+        <tag>numpy</tag>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>他是诗人</title>
+    <url>/2020/05/08/doc/</url>
+    <content><![CDATA[<p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
+<p>让岁月抚平忧伤<br>年华换成怅惘<br>星空月夜伴随凄凉<br>独自扼杀希望</p>
+<p>谁说诗人习惯独自流浪<br>只不过从未找到过家的方向<br>他在尝试抚平心灵创伤<br>用诗来抒发梦想</p>
+<p>他也曾尝过爱情<br>决绝 苦涩 需要勇气<br>他不许任何人亵渎这经历<br>就像他人亵渎自己</p>
+<p>他早迷失在混乱世界<br>等待爱人将他救起<br>他却说我是诗人<br>悲伤才是对的记忆</p>
+<p>他在等人帮他抹去泪水<br>等人填补空洞心伤<br>诗人强撑着精神病体<br>说着自由 理应继续彷徨</p>
+<p>现在的我向往自由与孤独<br>现在的我甘愿流浪<br>诗人不停地大声吟唱<br>天空的雨滴浸透出点点荒凉</p>
+<p>诗人的梦里有他想要的一切<br>却不知从何记起<br>他在夜里悲伤的哭泣<br>谁又见过他的无助模样</p>
+<p>他还在用低沉的声音吟唱<br>唱出对世界无尽的失望<br>海阔天空和万丈悬崖其实一样<br>都会抛下久违的梦想</p>
+<p>诗人披着月光<br>低吟清唱着他的忧伤<br>他说坚强一点<br>就像月光不惧朝阳</p>
+<p>他在慢慢游荡<br>渐渐走向陌生的远方<br>他也不想背井离乡<br>只因这里过分凄凉</p>
+<p>其实诗人早就死亡<br>只剩他的躯体被迫流浪<br>他的灵魂灰飞烟灭<br>却无人惋惜他的坚强</p>
+<p>你是否曾望见过诗人的孤寂背影<br>就像月光才是最柔美的光芒<br>人们不知是否该去祭奠<br>来安抚孤魂的游荡带来的离殇</p>
+<p>固执的他 说 我是诗人<br>怎敢以流泪缓解悲伤<br>他说我喜欢孤身一人 只身迎接<br>坎坷路途上的天堂</p>
+]]></content>
+      <categories>
+        <category>思考与遐想</category>
+      </categories>
+      <tags>
+        <tag>采集忘却</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Diary-05-2020</title>
+    <url>/2020/05/10/diary/</url>
+    <content><![CDATA[<p>这里曾经，依旧是我的五月<br>岁月漫长，但是值得等待<br> <a id="more"></a></p>
+<h2 id="2020-05"><a href="#2020-05" class="headerlink" title="2020-05"></a>2020-05</h2><p>自己剖析自己是一件挺可怕的事情，因为有的时候一旦发现自己做那件事的原因竟然是因为这样的一个理由，如果这样的原因是一个不愿被自己接受的结果，那面对自己都会有一点不情愿<br>对于爬虫这个东西真的是麻烦，做个项目竟然还要自己购买代理</p>
+<p>今天不知道是第几次试图创建图片流失败了<br>我基本上已经要放弃尝试了，现在前端的东西一点也不会，完全就是按照网上的教程来进行自己的操作<br>然后嘞，我发现现在这样子的一个环境还是很适合自己的<br>因为很有感觉<br>然后发现自己创建更新内容和前端，访问量轻轻松松上百</p>
+<p>Emmm。。。</p>
+<p>想回国的时候去北京吃一堆想吃的东西</p>
+<p>今天先这样子吧</p>
+<p>喜欢下雨天。</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>采集忘却</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>matplotlib</title>
+    <url>/2020/05/19/matplotlib/</url>
+    <content><![CDATA[<h1 id="Matplotlib-安装"><a href="#Matplotlib-安装" class="headerlink" title="Matplotlib 安装"></a>Matplotlib 安装</h1><h1 id="Matplotlib-绘制散点图"><a href="#Matplotlib-绘制散点图" class="headerlink" title="Matplotlib 绘制散点图"></a>Matplotlib 绘制散点图</h1><h1 id="Matplotlib-绘制折线图"><a href="#Matplotlib-绘制折线图" class="headerlink" title="Matplotlib 绘制折线图"></a>Matplotlib 绘制折线图</h1><h1 id="Matplotlib-绘制柱状图和饼状图"><a href="#Matplotlib-绘制柱状图和饼状图" class="headerlink" title="Matplotlib 绘制柱状图和饼状图"></a>Matplotlib 绘制柱状图和饼状图</h1><h1 id="Matplotlib-绘制直方图和箱线图"><a href="#Matplotlib-绘制直方图和箱线图" class="headerlink" title="Matplotlib 绘制直方图和箱线图"></a>Matplotlib 绘制直方图和箱线图</h1><h1 id="Matplotlib-绘制子图"><a href="#Matplotlib-绘制子图" class="headerlink" title="Matplotlib 绘制子图"></a>Matplotlib 绘制子图</h1><h1 id="pandas中绘制图表"><a href="#pandas中绘制图表" class="headerlink" title="pandas中绘制图表"></a>pandas中绘制图表</h1>]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -281,48 +296,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如果我想你</title>
-    <url>/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/</url>
-    <content><![CDATA[<p>愿你能从他身上听到你想听的话<br>单调却挂念的话<br>有没有一些<br>来自我这个人渣</p>
-<a id="more"></a>
-<p>记忆的沙 霜冻的画<br>故乡的花已经发芽<br>牵着希望的手悄然滑下<br>我还是怀念我残破的家<br>音乐盒的主人公默念牵挂<br>没有你的口信<br>我不敢安家<br>你还留着我寄存的味道吗<br>书写下的话 让天空散漫着花<br>那景象是我从未见过的<br>我想问你可知爱字如何落下<br>却无法否认那是我从未见过的回答</p>
-]]></content>
-      <categories>
-        <category>思考与遐想</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爬虫项目1</title>
-    <url>/2020/05/13/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE1/</url>
-    <content><![CDATA[<p>通过在老师带领下操作了爬虫项目爬取csdn的热门博客，希望自己可以试着去爬取bilibili上某一up主的视频题目</p>
-<a id="more"></a>
-
-<h1 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h1><h2 id="获取网页内容"><a href="#获取网页内容" class="headerlink" title="获取网页内容"></a>获取网页内容</h2><p>首先，由于是直接找某一up的视频，所以网站解析页可以为他的主页</p>
-<blockquote>
-<p>https: //space.bilibili.com/</p>
-</blockquote>
-<p>在主页中，选择选项中的“视频”，可以获得一个新的网址</p>
-<blockquote>
-<p>https: //space.bilibili.com/99157282/video</p>
-</blockquote>
-<p>为了寻找到不同页数时所使用的不同网址，因此点击第二、三页得到另一个网址</p>
-<blockquote>
-<p>https: //space.bilibili.com/99157282/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate<br>https: //space.bilibili.com/99157282/video?tid=0&amp;page=3&amp;keyword=&amp;order=pubdate<br>通过对比可以发现在不同页面只有【page=2】更改，因此可以了解到不同页面的区别只是需要更改page的数字即可</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>爬虫</tag>
-        <tag>个人项目</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Scrapy爬虫</title>
     <url>/2020/05/13/%E7%88%AC%E8%99%AB/</url>
     <content><![CDATA[<p>python-scrapy学习中所做的爬取某一招标网站的内容<br>【scrapy】-【爬虫】-【pyhton】</p>
@@ -397,18 +370,45 @@
       </tags>
   </entry>
   <entry>
-    <title>matplotlib</title>
-    <url>/2020/05/19/matplotlib/</url>
-    <content><![CDATA[<h1 id="Matplotlib-安装"><a href="#Matplotlib-安装" class="headerlink" title="Matplotlib 安装"></a>Matplotlib 安装</h1><h1 id="Matplotlib-绘制散点图"><a href="#Matplotlib-绘制散点图" class="headerlink" title="Matplotlib 绘制散点图"></a>Matplotlib 绘制散点图</h1><h1 id="Matplotlib-绘制折线图"><a href="#Matplotlib-绘制折线图" class="headerlink" title="Matplotlib 绘制折线图"></a>Matplotlib 绘制折线图</h1><h1 id="Matplotlib-绘制柱状图和饼状图"><a href="#Matplotlib-绘制柱状图和饼状图" class="headerlink" title="Matplotlib 绘制柱状图和饼状图"></a>Matplotlib 绘制柱状图和饼状图</h1><h1 id="Matplotlib-绘制直方图和箱线图"><a href="#Matplotlib-绘制直方图和箱线图" class="headerlink" title="Matplotlib 绘制直方图和箱线图"></a>Matplotlib 绘制直方图和箱线图</h1><h1 id="Matplotlib-绘制子图"><a href="#Matplotlib-绘制子图" class="headerlink" title="Matplotlib 绘制子图"></a>Matplotlib 绘制子图</h1><h1 id="pandas中绘制图表"><a href="#pandas中绘制图表" class="headerlink" title="pandas中绘制图表"></a>pandas中绘制图表</h1>]]></content>
+    <title>如果我想你</title>
+    <url>/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/</url>
+    <content><![CDATA[<p>愿你能从他身上听到你想听的话<br>单调却挂念的话<br>有没有一些<br>来自我这个人渣</p>
+<a id="more"></a>
+<p>记忆的沙 霜冻的画<br>故乡的花已经发芽<br>牵着希望的手悄然滑下<br>我还是怀念我残破的家<br>音乐盒的主人公默念牵挂<br>没有你的口信<br>我不敢安家<br>你还留着我寄存的味道吗<br>书写下的话 让天空散漫着花<br>那景象是我从未见过的<br>我想问你可知爱字如何落下<br>却无法否认那是我从未见过的回答</p>
+]]></content>
+      <categories>
+        <category>思考与遐想</category>
+      </categories>
+      <tags>
+        <tag>采集忘却</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爬虫项目1</title>
+    <url>/2020/05/13/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE1/</url>
+    <content><![CDATA[<p>通过在老师带领下操作了爬虫项目爬取csdn的热门博客，希望自己可以试着去爬取bilibili上某一up主的视频题目</p>
+<a id="more"></a>
+
+<h1 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h1><h2 id="获取网页内容"><a href="#获取网页内容" class="headerlink" title="获取网页内容"></a>获取网页内容</h2><p>首先，由于是直接找某一up的视频，所以网站解析页可以为他的主页</p>
+<blockquote>
+<p>https: //space.bilibili.com/</p>
+</blockquote>
+<p>在主页中，选择选项中的“视频”，可以获得一个新的网址</p>
+<blockquote>
+<p>https: //space.bilibili.com/99157282/video</p>
+</blockquote>
+<p>为了寻找到不同页数时所使用的不同网址，因此点击第二、三页得到另一个网址</p>
+<blockquote>
+<p>https: //space.bilibili.com/99157282/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate<br>https: //space.bilibili.com/99157282/video?tid=0&amp;page=3&amp;keyword=&amp;order=pubdate<br>通过对比可以发现在不同页面只有【page=2】更改，因此可以了解到不同页面的区别只是需要更改page的数字即可</p>
+</blockquote>
+]]></content>
       <categories>
         <category>python</category>
       </categories>
       <tags>
         <tag>python</tag>
-        <tag>数据分析与数据挖掘</tag>
-        <tag>Jupyter Notebook</tag>
-        <tag>numpy</tag>
-        <tag>Pandas</tag>
+        <tag>爬虫</tag>
+        <tag>个人项目</tag>
       </tags>
   </entry>
 </search>

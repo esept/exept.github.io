@@ -121,7 +121,7 @@
 
 
 
-  <meta name="keywords" content="采集忘却," />
+  <meta name="keywords" content="python,scrapy," />
 
 
 
@@ -132,17 +132,18 @@
 
 
 
-<meta name="description" content="他曾说 我爱你就像叶爱飘零 风爱游荡他曾禁锢在个人世界无人读懂 欢喜惆怅">
+<meta name="description" content="原理scrapy engine 核心 ##spiders 文件-爬虫文件对下载器传回的响应response进行处理，-spider middleware 基本不会用到 scheduler 调度器所有的request都会交给调度器，调度器统一分配后交给下载器，然后指纹去重 去掉重复的url请求 item pipeline进行io存储的包 在spider的到响应后将html文件写入本地 downloa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="他是诗人">
-<meta property="og:url" content="https://github.com/esept/esept.github.io/2020/05/08/doc/index.html">
+<meta property="og:title" content="Scrapy原理及个人项目">
+<meta property="og:url" content="https://github.com/esept/esept.github.io/2020/06/13/douban/index.html">
 <meta property="og:site_name" content="Undefined">
-<meta property="og:description" content="他曾说 我爱你就像叶爱飘零 风爱游荡他曾禁锢在个人世界无人读懂 欢喜惆怅">
+<meta property="og:description" content="原理scrapy engine 核心 ##spiders 文件-爬虫文件对下载器传回的响应response进行处理，-spider middleware 基本不会用到 scheduler 调度器所有的request都会交给调度器，调度器统一分配后交给下载器，然后指纹去重 去掉重复的url请求 item pipeline进行io存储的包 在spider的到响应后将html文件写入本地 downloa">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-08T04:03:57.000Z">
-<meta property="article:modified_time" content="2020-05-08T04:03:57.000Z">
+<meta property="article:published_time" content="2020-06-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T16:00:00.000Z">
 <meta property="article:author" content="Sa_Tsuki">
-<meta property="article:tag" content="采集忘却">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="scrapy">
 <meta name="twitter:card" content="summary">
 
 
@@ -173,13 +174,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/esept/esept.github.io/2020/05/08/doc/"/>
+  <link rel="canonical" href="https://github.com/esept/esept.github.io/2020/06/13/douban/"/>
 
 
 
 
 
-  <title>他是诗人 | Undefined</title>
+  <title>Scrapy原理及个人项目 | Undefined</title>
   
 
 
@@ -348,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/esept/esept.github.io/2020/05/08/doc/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/esept/esept.github.io/2020/06/13/douban/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sa_Tsuki">
@@ -365,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">他是诗人</h1>
+          <h1 class="post-title" itemprop="name headline">Scrapy原理及个人项目</h1>
         
 
         <div class="post-meta">
@@ -377,8 +378,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-08T06:03:57+02:00">
-                2020-05-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-13T18:00:00+02:00">
+                2020-06-14
               </time>
             
 
@@ -400,8 +401,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%9D%E8%80%83%E4%B8%8E%E9%81%90%E6%83%B3/" itemprop="url" rel="index">
-                    <span itemprop="name">思考与遐想</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -437,20 +438,31 @@
       
 
       
-        <p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
-<p>让岁月抚平忧伤<br>年华换成怅惘<br>星空月夜伴随凄凉<br>独自扼杀希望</p>
-<p>谁说诗人习惯独自流浪<br>只不过从未找到过家的方向<br>他在尝试抚平心灵创伤<br>用诗来抒发梦想</p>
-<p>他也曾尝过爱情<br>决绝 苦涩 需要勇气<br>他不许任何人亵渎这经历<br>就像他人亵渎自己</p>
-<p>他早迷失在混乱世界<br>等待爱人将他救起<br>他却说我是诗人<br>悲伤才是对的记忆</p>
-<p>他在等人帮他抹去泪水<br>等人填补空洞心伤<br>诗人强撑着精神病体<br>说着自由 理应继续彷徨</p>
-<p>现在的我向往自由与孤独<br>现在的我甘愿流浪<br>诗人不停地大声吟唱<br>天空的雨滴浸透出点点荒凉</p>
-<p>诗人的梦里有他想要的一切<br>却不知从何记起<br>他在夜里悲伤的哭泣<br>谁又见过他的无助模样</p>
-<p>他还在用低沉的声音吟唱<br>唱出对世界无尽的失望<br>海阔天空和万丈悬崖其实一样<br>都会抛下久违的梦想</p>
-<p>诗人披着月光<br>低吟清唱着他的忧伤<br>他说坚强一点<br>就像月光不惧朝阳</p>
-<p>他在慢慢游荡<br>渐渐走向陌生的远方<br>他也不想背井离乡<br>只因这里过分凄凉</p>
-<p>其实诗人早就死亡<br>只剩他的躯体被迫流浪<br>他的灵魂灰飞烟灭<br>却无人惋惜他的坚强</p>
-<p>你是否曾望见过诗人的孤寂背影<br>就像月光才是最柔美的光芒<br>人们不知是否该去祭奠<br>来安抚孤魂的游荡带来的离殇</p>
-<p>固执的他 说 我是诗人<br>怎敢以流泪缓解悲伤<br>他说我喜欢孤身一人 只身迎接<br>坎坷路途上的天堂</p>
+        <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>scrapy engine 核心</p>
+<p>##spiders 文件-爬虫文件<br>对下载器传回的响应response进行处理，<br>-spider middleware 基本不会用到</p>
+<h2 id="scheduler-调度器"><a href="#scheduler-调度器" class="headerlink" title="scheduler 调度器"></a>scheduler 调度器</h2><p>所有的request都会交给调度器，调度器统一分配后交给下载器，然后<br>指纹去重 去掉重复的url请求</p>
+<h2 id="item-pipeline"><a href="#item-pipeline" class="headerlink" title="item pipeline"></a>item pipeline</h2><p>进行io存储的包 在spider的到响应后将html文件写入本地</p>
+<h2 id="downloader"><a href="#downloader" class="headerlink" title="downloader"></a>downloader</h2><p>从调度器得到请求后，下载器向服务器发送请求，得到响应 （整合URL队列），下载器的得到响应之后再交给spider<br>–downloader middleware比较常用  对request进行封装，再交给downloader 或 对response进行封装，再交给spider<br>可以在其中加入user-agent、代理IP</p>
+<h1 id="项目名称："><a href="#项目名称：" class="headerlink" title="项目名称："></a>项目名称：</h1><h2 id="scrapy-爬取-豆瓣-TOP250-并存入-execl"><a href="#scrapy-爬取-豆瓣-TOP250-并存入-execl" class="headerlink" title="scrapy 爬取 豆瓣 TOP250 并存入 execl"></a>scrapy 爬取 豆瓣 TOP250 并存入 execl</h2><h3 id="spider-py"><a href="#spider-py" class="headerlink" title="spider.py"></a>spider.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubanSpiderSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'douban_spider'</span></span><br><span class="line">    allowed_domains = [<span class="string">'douban.com'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">250</span>,<span class="number">25</span>):</span><br><span class="line">            print(page)</span><br><span class="line">            url = <span class="string">'https://movie.douban.com/top250?start=%s&amp;filter='</span> % (page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url,</span><br><span class="line">                callback=self.parse2</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse2</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        href_s = response.xpath(<span class="string">'//div[@class="article"]/ol/li/div/div[@class="info"]/div/a/@href'</span>).extract()</span><br><span class="line">        <span class="keyword">for</span> href <span class="keyword">in</span> href_s:</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = href,</span><br><span class="line">                callback=self.parse</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        classment = response.xpath(<span class="string">'//div[@id="wrapper"]/div[1]/div/span[1]/text()'</span>).extract()</span><br><span class="line">        comment = response.xpath(<span class="string">'//div[@class="comment"]/p/span[1]/text()'</span>).extract()</span><br><span class="line">        print(response.xpath(<span class="string">'//div[@id="wrapper"]/div/h1/span/text()'</span>).extract())</span><br><span class="line">        item = dict(</span><br><span class="line">            title =response.xpath(<span class="string">'//div[@id="wrapper"]/div/h1/span/text()'</span>).extract(),</span><br><span class="line">            score = response.xpath(<span class="string">'//strong[@class="ll rating_num"]/text()'</span>).extract(),</span><br><span class="line">            classment = classment,</span><br><span class="line">            comment = comment</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">yield</span> item</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define your item pipelines here</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Don't forget to add your pipeline to the ITEM_PIPELINES setting</span></span><br><span class="line"><span class="comment"># See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook <span class="comment"># 写入excel</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubanPipeline</span>:</span></span><br><span class="line">    wb = Workbook()</span><br><span class="line">    ws = wb.active</span><br><span class="line">    ws.append([<span class="string">'classment'</span>,<span class="string">'title'</span>,<span class="string">'score'</span>,<span class="string">'comment'</span>])</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self,item,spider)</span>:</span></span><br><span class="line">        line = [item[<span class="string">'classment'</span>][<span class="number">0</span>],item[<span class="string">'title'</span>][<span class="number">0</span>],item[<span class="string">'score'</span>][<span class="number">0</span>],item[<span class="string">'comment'</span>][<span class="number">0</span>]]</span><br><span class="line">        self.ws.append(line)</span><br><span class="line">        self.wb.save(<span class="string">'douban.xlsx'</span>)</span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="item"><a href="#item" class="headerlink" title="item"></a>item</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define here the models for your scraped items</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># See documentation in:</span></span><br><span class="line"><span class="comment"># https://docs.scrapy.org/en/latest/topics/items.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubanItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    score = scrapy.Field()</span><br><span class="line">    classment = scrapy.Field()</span><br><span class="line">    comment = scrapy.Field()</span><br></pre></td></tr></table></figure>
+
+<h1 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h1><h2 id="51job的爬取"><a href="#51job的爬取" class="headerlink" title="51job的爬取"></a>51job的爬取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> copy <span class="keyword">as</span> deepcopy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A51jobSpider</span><span class="params">(CrawlSpider)</span>:</span></span><br><span class="line">    name = <span class="string">'51job'</span></span><br><span class="line">    allowed_domains = [<span class="string">'search.51job.com'</span>]</span><br><span class="line">    key_word = <span class="string">'java'</span></span><br><span class="line">    <span class="comment"># start_urls = ['http://51job.com/']</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># for page in pages:</span></span><br><span class="line">        url = <span class="string">'https://search.51job.com/list/070300,000000,0000,00,9,99,%s'</span> \</span><br><span class="line">              <span class="string">',2,1.html?lang=c&amp;postchannel=0000&amp;workyear=99&amp;cotype=99&amp;degreefrom=99&amp;jobterm=99&amp;companysize=99&amp;ord_field=0&amp;dibiaoid=0&amp;line=&amp;welfare='</span>%(self.key_word)</span><br><span class="line">        <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">            url = url,</span><br><span class="line">            callback=self.parse</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        pages =response.xpath(<span class="string">'//div[@class="p_in"]/input/@value'</span>).extract_first()</span><br><span class="line">        print(pages)</span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,int(pages)+<span class="number">1</span>):</span><br><span class="line">            url = <span class="string">'https://search.51job.com/list/070300,000000,0000,00,9,99,%s,2,%s.html?lang=c&amp;postchannel=0000&amp;workyear=99&amp;cotype=99&amp;degreefrom=99&amp;jobterm=99&amp;companysize=99&amp;ord_field=0&amp;dibiaoid=0&amp;line=&amp;welfare='</span> % (self.key_word,page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url=url,</span><br><span class="line">                callback=self.parse_page1</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_page1</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        content_list_x_s = response.xpath(<span class="string">'//div[@class ="dw_table"]/div[@class="el"]'</span>)</span><br><span class="line">        <span class="keyword">for</span> content_list_x <span class="keyword">in</span> content_list_x_s:</span><br><span class="line">            job_name = content_list_x.xpath(<span class="string">'normalize-space(./p/span[1]/a/text())'</span>).extract_first()</span><br><span class="line">            entre_name = content_list_x.xpath(<span class="string">'./span[@class="t2"]/a/text()'</span>).extract_first()</span><br><span class="line">            location = content_list_x.xpath(<span class="string">'./span[@class="t3"]/text()'</span>).extract_first()</span><br><span class="line">            salarie = content_list_x.xpath(<span class="string">'./span[@class="t4"]/text()'</span>).extract_first()</span><br><span class="line">            date = content_list_x.xpath(<span class="string">'./span[@class="t5"]/text()'</span>).extract_first()</span><br><span class="line">            print(job_name,entre_name,location,salarie,date)</span><br><span class="line">            item = dict(</span><br><span class="line">                job_name = job_name,</span><br><span class="line">                entre_name = entre_name,</span><br><span class="line">                location = location,</span><br><span class="line">                salarie = salarie,</span><br><span class="line">                date = date</span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">yield</span> item</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define here the models for your scraped items</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># See documentation in:</span></span><br><span class="line"><span class="comment"># https://docs.scrapy.org/en/latest/topics/items.html</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JobItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    job_name = scrapy.Field()</span><br><span class="line">    entre_name =scrapy.Field()</span><br><span class="line">    location = scrapy.Field()</span><br><span class="line">    salarie = scrapy.Field()</span><br><span class="line">    date = scrapy.Field()</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define your item pipelines here</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Don't forget to add your pipeline to the ITEM_PIPELINES setting</span></span><br><span class="line"><span class="comment"># See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html</span></span><br><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JobPipeline</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.mysql_conn = pymysql.Connection(</span><br><span class="line">            host= <span class="string">'localhost'</span>,</span><br><span class="line">            port = <span class="number">3306</span>,</span><br><span class="line">            user = <span class="string">'root'</span>,</span><br><span class="line">            password = <span class="string">'126511'</span>,</span><br><span class="line">            database = <span class="string">'51job'</span>,</span><br><span class="line">            charset = <span class="string">'utf8'</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self,item,spider)</span>:</span></span><br><span class="line">        cs = self.mysql_conn.cursor()</span><br><span class="line"></span><br><span class="line">        sql_column = <span class="string">','</span>.join([key <span class="keyword">for</span> key <span class="keyword">in</span> item.keys()])</span><br><span class="line">        sql_value = <span class="string">','</span>.join([<span class="string">'"%s"'</span>% item[key] <span class="keyword">for</span> key <span class="keyword">in</span> item.keys()])</span><br><span class="line"></span><br><span class="line">        sql_str = <span class="string">'insert into t_job (%s) value (%s);'</span> %(sql_column,sql_value)</span><br><span class="line">        <span class="comment"># print(sql_str)</span></span><br><span class="line">        cs.execute(sql_str)</span><br><span class="line">        self.mysql_conn.commit()</span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
       
     </div>
@@ -468,7 +480,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E9%87%87%E9%9B%86%E5%BF%98%E5%8D%B4/" rel="tag"><i class="fa fa-tag"></i> 采集忘却</a>
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/scrapy/" rel="tag"><i class="fa fa-tag"></i> scrapy</a>
           
         </div>
       
@@ -481,8 +495,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/06/%E5%A4%A7%E5%A4%9A%E6%95%B0%E7%9A%84%E6%88%91/" rel="next" title="大多数的我">
-                <i class="fa fa-chevron-left"></i> 大多数的我
+              <a href="/2020/05/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" rel="next" title="特征工程">
+                <i class="fa fa-chevron-left"></i> 特征工程
               </a>
             
           </div>
@@ -490,10 +504,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/" rel="prev" title="如果我想你">
-                如果我想你 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -554,8 +564,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -619,6 +638,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scheduler-调度器"><span class="nav-number">1.1.</span> <span class="nav-text">scheduler 调度器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#item-pipeline"><span class="nav-number">1.2.</span> <span class="nav-text">item pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#downloader"><span class="nav-number">1.3.</span> <span class="nav-text">downloader</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目名称："><span class="nav-number">2.</span> <span class="nav-text">项目名称：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scrapy-爬取-豆瓣-TOP250-并存入-execl"><span class="nav-number">2.1.</span> <span class="nav-text">scrapy 爬取 豆瓣 TOP250 并存入 execl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spider-py"><span class="nav-number">2.1.1.</span> <span class="nav-text">spider.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pipeline"><span class="nav-number">2.1.2.</span> <span class="nav-text">pipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#item"><span class="nav-number">2.1.3.</span> <span class="nav-text">item</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目名称"><span class="nav-number">3.</span> <span class="nav-text">项目名称</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#51job的爬取"><span class="nav-number">3.1.</span> <span class="nav-text">51job的爬取</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

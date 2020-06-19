@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Righteous:300,300italic,400,400italic,700,700italic|ZCOOL XiaoWei:300,300italic,400,400italic,700,700italic|Special Elite:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,数据分析与数据挖掘,Jupyter Notebook,numpy,Pandas,sklearn," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Minist数据集sorcket 数据集介绍手写的七万个数字图片机器学习领域的hello world新的分类算法都会在minist上练习ubyte 二进制文件 压缩的二进制文件.mat 文件二者各自的解压方式不同 在minist里有两个训练的压缩包images 和 labels分别是图片和标签 数据介绍Minist在解压之后是二进制文件，需要再进行解包才能获得数据需要知道解包格式第一行：offse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Minist数据集">
+<meta property="og:url" content="https://github.com/esept/esept.github.io/2020/06/19/Minist%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
+<meta property="og:site_name" content="Undefined">
+<meta property="og:description" content="Minist数据集sorcket 数据集介绍手写的七万个数字图片机器学习领域的hello world新的分类算法都会在minist上练习ubyte 二进制文件 压缩的二进制文件.mat 文件二者各自的解压方式不同 在minist里有两个训练的压缩包images 和 labels分别是图片和标签 数据介绍Minist在解压之后是二进制文件，需要再进行解包才能获得数据需要知道解包格式第一行：offse">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/esept/esept.github/612A4366-A9A0-4900-AFC4-C576ACAA05DC.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/1FFF4962-E4B3-4763-85B8-F9FE68D4B763.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/CC81A33B-F9D1-4868-810E-AAAE7D0E6590.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/DD9F3A4F-57E6-4EB0-A8D1-948762C221C6.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/AD898214-B96B-471F-8F0F-B9F25DD6970B.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/%E6%9C%AA%E7%9F%A5.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/%E6%9C%AA%E7%9F%A5.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/%E6%9C%AA%E7%9F%A5.png">
+<meta property="og:image" content="https://github.com/esept/esept.github/%E6%9C%AA%E7%9F%A5.png">
+<meta property="article:published_time" content="2020-06-19T05:38:01.000Z">
+<meta property="article:modified_time" content="2020-06-19T05:38:01.000Z">
+<meta property="article:author" content="Sa_Tsuki">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="数据分析与数据挖掘">
+<meta property="article:tag" content="Jupyter Notebook">
+<meta property="article:tag" content="numpy">
+<meta property="article:tag" content="Pandas">
+<meta property="article:tag" content="sklearn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/esept/esept.github/612A4366-A9A0-4900-AFC4-C576ACAA05DC.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"display":"post","offset":10,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/esept/esept.github.io/2020/06/19/Minist数据集/"/>
+
+
+
+
+
+  <title>Minist数据集 | Undefined</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+
+  <div class="container  page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Undefined</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">未定义的我</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-book"></i> <br />
+            
+            Photos
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-terminal"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/esept/esept.github.io/2020/06/19/Minist%E6%95%B0%E6%8D%AE%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sa_Tsuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mads.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Undefined">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Minist数据集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-19T07:38:01+02:00">
+                2020-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Minist数据集"><a href="#Minist数据集" class="headerlink" title="Minist数据集"></a>Minist数据集</h1><p>sorcket</p>
+<h3 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h3><p>手写的七万个数字图片<br>机器学习领域的hello world<br>新的分类算法都会在minist上练习<br>ubyte 二进制文件</p>
+<p>压缩的二进制文件<br>.mat 文件<br>二者各自的解压方式不同</p>
+<p>在minist里有两个训练的压缩包<br>images 和 labels分别是图片和标签</p>
+<h3 id="数据介绍"><a href="#数据介绍" class="headerlink" title="数据介绍"></a>数据介绍</h3><p>Minist在解压之后是二进制文件，需要再进行解包才能获得数据<br>需要知道解包格式<br>第一行：<br>offset 偏移：0000<br>type = 32bits -》 4个int<br>description：magic number 魔法数字<br>第二行：<br>0004 -〉第一行4个int<br>32bit -》4个int<br>number of items 标签个数<br>后面的：<br>0008-0009····数字都是从0到9，因此不需要过大的位置<br>Unsigned byte ：一个byte<br>label：标签<br>Django-》http协议（body-key-value）需要有request然后返回response<br>Socket协议，传输byte数组 可以常链接 延迟低</p>
+<h2 id="解包和拆包"><a href="#解包和拆包" class="headerlink" title="解包和拆包"></a>解包和拆包</h2><p>pack 打包 -&gt; 把数字2打包成二进制数组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct </span><br><span class="line">struct.pack(‘&gt;i’,<span class="number">2</span>) <span class="comment"># 把二打包成int类型</span></span><br><span class="line"><span class="comment"># --- b’\x00\x00\x00\x02’</span></span><br><span class="line">struct.pack(<span class="string">'&gt;B'</span>,<span class="number">2</span>) <span class="comment"># 把二打包成byte类型</span></span><br><span class="line"><span class="comment"># --- b'\x02'</span></span><br></pre></td></tr></table></figure>
+<p>unpack 解包<br>要按照解压列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./MNIST_data/train-images-idx3-ubyte'</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    buffer = f.read(<span class="number">4</span>*<span class="number">4</span>) <span class="comment"># 4个int -&gt; ’Training set image file‘里 4个int的魔法数字，4个int的图片个数，4个int的宽和高的像素</span></span><br><span class="line">    head = struct.unpack(<span class="string">'&gt;iiii'</span>,buffer) <span class="comment"># 解包成4个int文件</span></span><br><span class="line">    print(head)</span><br><span class="line">    length = head[<span class="number">1</span>]*head[<span class="number">2</span>]*head[<span class="number">3</span>] <span class="comment"># 像素个数，60000*28*28 像素包</span></span><br><span class="line">    print(length)</span><br><span class="line">    buffer = f.read(length)</span><br><span class="line">    print(buffer)</span><br><span class="line">    data = struct.unpack(<span class="string">'&gt;&#123;&#125;B'</span>.format(length),buffer) <span class="comment"># 用unpack解包，‘&gt;&#123;&#125;B’:一个byte的站位，解包length</span></span><br><span class="line"><span class="comment"># (2051, 60000, 28, 28)</span></span><br><span class="line"><span class="comment"># 47040000</span></span><br><span class="line">len(data) <span class="comment"># 长度</span></span><br><span class="line"><span class="comment"># 47040000</span></span><br><span class="line">type(data) <span class="comment"># 类型</span></span><br><span class="line"><span class="comment"># tuple 元组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="图片的显示"><a href="#图片的显示" class="headerlink" title="图片的显示"></a>图片的显示</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np <span class="comment"># 重新塑形</span></span><br><span class="line">imgs = np.reshape(data,(head[<span class="number">1</span>],head[<span class="number">2</span>],head[<span class="number">3</span>])) <span class="comment"># 装换成矩阵</span></span><br><span class="line">imgs.shape <span class="comment"># 60000个图片 每个28*28个像素</span></span><br><span class="line">~<span class="comment"># (60000, 28, 28)~</span></span><br></pre></td></tr></table></figure>
+<p>Imgs有所有的图片数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    plt.imshow(imgs[i],cmap=<span class="string">'gray'</span>) <span class="comment"># imshow 显示图片 cmap色域</span></span><br><span class="line">    plt.show()</span><br><span class="line"><span class="comment"># 显示图片</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="另一种解包方式：mat"><a href="#另一种解包方式：mat" class="headerlink" title="另一种解包方式：mat"></a>另一种解包方式：mat</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> fetch_mldata</span><br><span class="line">mnist = fetch_mldata(<span class="string">'MNIST original'</span>, data_home=<span class="string">'./'</span>) <span class="comment"># 本地加载数据集</span></span><br><span class="line">mnist</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>{‘DESCR’: ‘mldata.org dataset: mnist-original’,<br> ‘COL_NAMES’: [‘label’, ‘data’],<br> ‘target’: array([0., 0., 0., …, 9., 9., 9.]),<br> <del>‘data’: array([[0, 0, 0, …, 0, 0, 0],  二维数组（矩阵-独热编码）</del><br>        [0, 0, 0, …, 0, 0, 0],<br>        [0, 0, 0, …, 0, 0, 0],<br>        …,<br>        [0, 0, 0, …, 0, 0, 0],<br>        [0, 0, 0, …, 0, 0, 0],<br>        [0, 0, 0, …, 0, 0, 0]], dtype=uint8)}  </p>
+</blockquote>
+<ul>
+<li>DESCR 数据集描述</li>
+<li>data 包含一个数组，每个实例为一行，每个特征为一列</li>
+<li>target 包含一个带有标签的数组<br>接下来要拆分测试和训练集以及将数据和标签页拆分出来<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">X,y = mnist[<span class="string">'data'</span>],mnist[<span class="string">'target'</span>] <span class="comment"># 键值对赋值</span></span><br><span class="line">X.shape <span class="comment"># 28*28=784</span></span><br><span class="line"><span class="comment"># (70000, 784)</span></span><br><span class="line">y.shape <span class="comment"># 标签</span></span><br><span class="line">---</span><br><span class="line">~<span class="comment"># 图片的显示~</span></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">some_digit = X[<span class="number">36000</span>]<span class="comment"># 取第36000张图片</span></span><br><span class="line">some_digit_image = some_digit.reshape(<span class="number">28</span>,<span class="number">28</span>) <span class="comment"># 从新塑形成28*28的像素模式</span></span><br><span class="line">---</span><br><span class="line">plt.imshow(some_digit_image,cmap = matplotlib.cm.binary)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment"># 显示图片</span></span><br><span class="line">y[<span class="number">36000</span>] <span class="comment"># 显示标签</span></span><br><span class="line"><span class="comment"># 5.0</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="建立测试集和训练集"><a href="#建立测试集和训练集" class="headerlink" title="建立测试集和训练集"></a>建立测试集和训练集</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_train,X_test,y_train,y_test = X[:<span class="number">60000</span>],X[<span class="number">60000</span>:],y[:<span class="number">60000</span>],y[<span class="number">60000</span>:] <span class="comment"># [:60000]从头到六万个；[:60000]从六万个到最后</span></span><br></pre></td></tr></table></figure>
+<p>将数据集合交叉洗牌，交叉验证时，每个子集合数据分布均匀，有些机器学习算法对训练实例的顺序敏感</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">shuffle_index = np.random.permutation(<span class="number">60000</span>)</span><br><span class="line">shuffle_index</span><br><span class="line"><span class="comment"># array([32752, 22871, 59898, ..., 14516,   956, 31988])</span></span><br><span class="line">X_train, y_train = X_train[shuffle_index], y_train[shuffle_index]<span class="comment"># 将重新洗牌的顺序赋值给训练组</span></span><br><span class="line">X_train</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>array([[0, 0, 0, …, 0, 0, 0],<br>       [0, 0, 0, …, 0, 0, 0],<br>       [0, 0, 0, …, 0, 0, 0],<br>       …,<br>       [0, 0, 0, …, 0, 0, 0],<br>       [0, 0, 0, …, 0, 0, 0],<br>       [0, 0, 0, …, 0, 0, 0]], dtype=uint8)  </p>
+</blockquote>
+<h2 id="训练一个二元分类器"><a href="#训练一个二元分类器" class="headerlink" title="训练一个二元分类器"></a>训练一个二元分类器</h2><p>是/非<br>识别数字，识别0-9其中的一个数字：例如只识别是不是5</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 识别数字5 ，二元分类5或者非5</span></span><br><span class="line"><span class="comment"># 创建目标向量</span></span><br><span class="line">y_train_5 = (y_train == <span class="number">5</span>)</span><br><span class="line">y_train_5</span><br><span class="line"><span class="comment"># array([ True, False, False, ..., False, False,  True]) 值为5的显示为True</span></span><br><span class="line">y_train_5.reshape(<span class="number">20</span>, <span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>array([[ True, False, False, …, False, False, False],<br>       [False, False, False, …,  True, False, False],<br>       [False,  True, False, …, False, False, False],<br>       …,<br>       [False, False, False, …,  True, False, False],<br>       [False, False, False, …, False, False, False],<br>       [False,  True, False, …, False, False,  True]])  </p>
+</blockquote>
+<p><code>y_test_5 = (y_test == 5)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 线性分类器</span></span><br><span class="line"><span class="comment"># SGD 梯度下降 分类器， 适合非常大的数据集，独立处理训练集数据，一次一个，适合在线学习，</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> SGDClassifier</span><br><span class="line"></span><br><span class="line">sgd_clf = SGDClassifier(random_state = <span class="number">42</span>)<span class="comment"># 返回训练好的模型</span></span><br><span class="line">sgd_clf.fit(X_train, y_train_5) <span class="comment"># 用估算器训练模型</span></span><br><span class="line"><span class="comment"># 预测第36000个值 = 5</span></span><br><span class="line">sgd_clf.predict([some_digit])</span><br></pre></td></tr></table></figure>
+<p>array([ True])</p>
+<h2 id="性能考核"><a href="#性能考核" class="headerlink" title="性能考核"></a>性能考核</h2><h3 id="使用交叉验证测量精度"><a href="#使用交叉验证测量精度" class="headerlink" title="使用交叉验证测量精度"></a>使用交叉验证测量精度</h3><p>评估分类器比评估回归器要困难得多<br>3个折叠，正确率达到 95% 以上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score <span class="comment"># 单维度</span></span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>) <span class="comment"># cv 折叠</span></span><br></pre></td></tr></table></figure>
+<p>array([0.959  , 0.95955, 0.96515])<br>正确率很高，但是有一些片面和局限</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把每张图都分类成 非5</span></span><br><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> BaseEstimator</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Never5Classifier</span><span class="params">(BaseEstimator)</span>:</span> <span class="comment"># 评估非5的情况</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self,X,y = None)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self,X)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> np.zeros((len(X),<span class="number">1</span>),dtype=bool) <span class="comment"># X是所有图片的数据</span></span><br><span class="line"></span><br><span class="line">np.zeros((len(X),<span class="number">1</span>),dtype=bool)<span class="comment"># 显示一下内容</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>array([[False],<br>       [False],<br>       [False],<br>       …,<br>       [False],<br>       [False],<br>       [False]])  </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">never_5_clf = Never5Classifier()</span><br><span class="line">cross_val_score(never_5_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>)</span><br></pre></td></tr></table></figure>
+<p>array([0.90985, 0.9091 , 0.91   ])</p>
+<ul>
+<li>准确率超过90%，因为5的图像大约只有10%，你猜一张图不是5，那么90%的时间都是准确的</li>
+<li>这说明准确率无法成为分类器的首要性能指标，特别是当你处理偏科数据集，某些类比其他类更为频繁</li>
+</ul>
+<h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><ul>
+<li>评估分类器性能的更好方法是混淆矩阵</li>
+<li>A类别实例被分类为B类别次数</li>
+<li>想要知道分类器将数字3和数字5混淆多次，通过混淆矩阵的5行3列<br>score 分数 predict 预测值<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict</span><br><span class="line">y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+与 cross_val_score 相比</li>
+<li>同样执行交叉验证</li>
+<li>返回的不是评估分数，是每个折叠的预测</li>
+<li>每一个实例在模型预测时使用的数据，在训练期间从未见过<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line">confusion_matrix(y_train_5, y_train_pred)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>array([[54200,   379],  </p>
+<pre><code>[ 1947,  3474]])  </code></pre></blockquote>
+</li>
+<li>行表示实际类别，列表示预测类别*</li>
+<li>第一行 第一列 53272 被正确的分为 非5 ，真负类*</li>
+<li>第一行 第二列 1307 被错误的分类成 5 ，假正类*</li>
+<li>第二行 第一列 1077 张被错误的分为 非5， 假负类*</li>
+<li>第二行 第二列 4344 张被正确的分在了5 ，真正类*</li>
+<li>这种衡量方式太复杂，我们可以用更简单的指标*<br>假类尽可能校，真类尽可能多<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y_train_perfect_predictions &#x3D; y_train_5</span><br><span class="line">confusion_matrix(y_train_5, y_train_perfect_predictions)</span><br></pre></td></tr></table></figure>
+array([[54579,     0],<pre><code>[    0,  5421]])</code></pre></li>
+</ul>
+<h3 id="正类预测的准确率-被称为分类器的精度"><a href="#正类预测的准确率-被称为分类器的精度" class="headerlink" title="正类预测的准确率 被称为分类器的精度"></a>正类预测的准确率 被称为分类器的精度</h3><p><img src="/esept/esept.github/612A4366-A9A0-4900-AFC4-C576ACAA05DC.png" alt><br>从多个角度全面的分析分类器，而不是只讨论精度，因为这是一个二元分类器，因此它是一个二元矩阵，有四个格子，为了能考虑到表里的所有的数据，所以纵向用精度，横向用召回率<br>那么如何获得精度和召回呢</p>
+<h3 id="精度和召回率"><a href="#精度和召回率" class="headerlink" title="精度和召回率"></a>精度和召回率</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score, recall_score <span class="comment"># </span></span><br><span class="line">precision_score(y_train_5, y_train_pred) <span class="comment"># （实际标签，预测标签）；4327 / 4327 + 1276</span></span><br><span class="line"><span class="comment"># 0.9016350895406177 -&gt;准确概率</span></span><br><span class="line">recall_score(y_train_5, y_train_pred)    <span class="comment">#  4327 / 4327 + 1094</span></span><br><span class="line"><span class="comment"># 0.6408411732152739 -&gt;检测出的概率</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>说明 检测一张图的时候，只有90%的概率是准确的，而且只有64%的数字5 被它检测出来</li>
+<li>精度和召回率合成单一指标，成为 F1 分数，谐波平均值</li>
+<li>平均值平等对待所有的值，谐波平均值会给予较低值更高的权重，只有召回率和精度都很高时，才能获得较高的F1分数<br><img src="/esept/esept.github/1FFF4962-E4B3-4763-85B8-F9FE68D4B763.png" alt><br>sklearn中求F1的方法<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line">f1_score(y_train_5, y_train_pred)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>0.7491912874703472  </p>
+</blockquote>
+</li>
+<li>F1分数对那些具有相近精度和召回率 分类器更有利，这不一定符合你的期望</li>
+<li>有时候你更关心精度，有时你能关心召回率</li>
+<li>训练一个分类器检测儿童可以放心观看的视频，你可能要求拦截了很多好的视频，低召回率，保留下来的都是安全的视频，高精度</li>
+<li>不能同时增加精度并减少召回率，反之亦然<h3 id="精度-召回率权衡"><a href="#精度-召回率权衡" class="headerlink" title="精度/召回率权衡"></a>精度/召回率权衡</h3>￼￼￼<br><img src="/esept/esept.github/CC81A33B-F9D1-4868-810E-AAAE7D0E6590.png" alt></li>
+<li>SGDClassifier对每个实例基于决策函数计算一个分值，大于阀值为正类，否则为负类</li>
+<li>中间阀值右侧找到4个真正类 真5 ， 一个假正类 6， 精度为 4/5 80%</li>
+<li>在所有的6个 真正的5 中，分类器找到了4个，召回率为 4/6 67%</li>
+<li>提高阀值，向右移动，精度提高，召回降低</li>
+<li>反之阀值降低，召回提高，精度降低</li>
+<li>SKlearn不可以直接设置阀值，可以访问决策分数，</li>
+<li>SGDClassifier 默认阀值为0 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如何设置阀值</span></span><br><span class="line"><span class="comment"># 不能直接运行</span></span><br><span class="line"><span class="comment"># 用predict_proba得到每个实例属于正类的概率，然后对概率切一下。以LogisticRegression为例</span></span><br><span class="line">clf = LogisticRegression()</span><br><span class="line">clf.fit(X_train, y_train)</span><br><span class="line">pred_proba = clf.predict_proba(X_test)[:, <span class="number">1</span>]</span><br><span class="line">threshold = <span class="number">0.75</span>  <span class="comment"># 阀值设置为0.75</span></span><br><span class="line">pred_label = pred_proba &gt; threshold</span><br></pre></td></tr></table></figure>
+pred_proba是每个实例为真的概率<br>假设阈值是0.75<br>pred_label里True就是概率大于0.75的<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回决策值decision_function </span></span><br><span class="line">y_scores = sgd_clf.decision_function([some_digit]) <span class="comment"># some_digit=5</span></span><br><span class="line">y_scores <span class="comment"># 决策值</span></span><br></pre></td></tr></table></figure>
+array([42217.83953346])<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">threshold = <span class="number">0</span> <span class="comment"># 阀值为0</span></span><br><span class="line">y_some_digit_pred = (y_scores &gt; threshold) <span class="comment"># 42217 &gt; 0 </span></span><br><span class="line">y_some_digit_pred</span><br></pre></td></tr></table></figure>
+array([ True]) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># **提高阀值可以降低召回率**，提高阀值到200000，就错过了这个图 决策值分数为42217</span></span><br><span class="line">threshold = <span class="number">200000</span></span><br><span class="line">y_some_digit_pred = (y_scores &gt; threshold) <span class="comment"># 42217 &lt; 200000</span></span><br><span class="line">y_some_digit_pred</span><br></pre></td></tr></table></figure>
+array([False])<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如何决定使用什么阀值</span></span><br><span class="line"><span class="comment"># 返回决策值，而不是预测结果</span></span><br><span class="line">y_scores = cross_val_predict(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>,</span><br><span class="line">                             method=<span class="string">"decision_function"</span>)</span><br><span class="line"><span class="comment"># y_scores是所有三次折叠平均的一个决策值</span></span><br><span class="line"><span class="comment"># 有了y_scores，可以计算所有可能的阀值的精度和召回率</span></span><br><span class="line">y_scores.shape</span><br><span class="line"><span class="comment"># (60000,)</span></span><br><span class="line">---</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_recall_curve</span><br><span class="line">precisions, recalls, thresholds = precision_recall_curve(y_train_5, y_scores) <span class="comment"># 精度 召回 阀值</span></span><br></pre></td></tr></table></figure>
+<img src="/esept/esept.github/DD9F3A4F-57E6-4EB0-A8D1-948762C221C6.png" alt><br>虚线—进度<br>实线-召回<br>交点在0.8左右<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_precision_vs_recall</span><span class="params">(precisions, recalls)</span>:</span></span><br><span class="line">    plt.plot(recalls, precisions, <span class="string">"b-"</span>, linewidth=<span class="number">2</span>)</span><br><span class="line">    plt.xlabel(<span class="string">"召回"</span>, fontsize=<span class="number">16</span>)</span><br><span class="line">    plt.ylabel(<span class="string">"精度"</span>, fontsize=<span class="number">16</span>)</span><br><span class="line">    plt.axis([<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">plot_precision_vs_recall(precisions, recalls)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/esept/esept.github/AD898214-B96B-471F-8F0F-B9F25DD6970B.png" alt><h3 id="通过选择阀值来实现最佳的精度-召回率权衡"><a href="#通过选择阀值来实现最佳的精度-召回率权衡" class="headerlink" title="通过选择阀值来实现最佳的精度/召回率权衡"></a>通过选择阀值来实现最佳的精度/召回率权衡</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 目标设定为90%的精度，阀值大概在30000左右 , 设置了阀值为30000</span></span><br><span class="line">y_train_pred_90 = (y_scores &gt; <span class="number">30000</span>)</span><br><span class="line">precision_score(y_train_5, y_train_pred_90)</span><br><span class="line"><span class="comment"># 0.9292811221507891</span></span><br><span class="line">recall_score(y_train_5, y_train_pred_90)</span><br><span class="line"><span class="comment">#30.5866076369673492</span></span><br></pre></td></tr></table></figure></li>
+<li>获得了一个90%精度的分类器，但如果召回太低，精度再高，也不怎么有用</li>
+<li>如果工作中，需要99%的精度，你应该回应，召回率是多少？<h3 id="ROC-曲线"><a href="#ROC-曲线" class="headerlink" title="ROC 曲线"></a>ROC 曲线</h3></li>
+<li>本质是 真正类率tpr和假正类率fpr（错误的分为正类的负类实例比例）</li>
+<li>与召回/精度曲线非常相似<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_curve</span><br><span class="line">fpr, tpr, thresholds = roc_curve(y_train_5, y_scores)</span><br><span class="line"><span class="comment"># 绘制ROC图</span></span><br><span class="line">plt.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_roc_curve</span><span class="params">(fpr, tpr, label=None)</span>:</span></span><br><span class="line">    plt.plot(fpr, tpr, linewidth=<span class="number">2</span>, label=label)</span><br><span class="line">    plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], <span class="string">'k--'</span>)</span><br><span class="line">    plt.axis([<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    plt.xlabel(<span class="string">'假正类率'</span>, fontsize=<span class="number">16</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'真正类率'</span>, fontsize=<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">plot_roc_curve(fpr, tpr)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/esept/esept.github/%E6%9C%AA%E7%9F%A5.png" alt><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算曲线下面积AUC，虚线是随机分类0.5到1 </span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> roc_auc_score</span><br><span class="line">roc_auc_score(y_train_5, y_scores)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>0.9590312638413596  -&gt; 通过计算面积来衡量效率</p>
+<ul>
+<li>召回率TPR越高，分类器的假正类FPR就越多</li>
+<li>虚线表示纯随机分类器的ROC曲线，好的分类器应该远离这条线，向左上角</li>
+<li>是使用精度/召回率 PR曲线，还是使用ROC，关键在于 正类非常少或者更关注假正类而不是假负类，选择PR，反之ROC</li>
+<li>例如：前面例子ROC曲线很不错是因为跟负类 非5 相比， 正类 数据5 数量真的很少<h3 id="训练随机森林分类器，比较SGD分类器的ROC曲线和ROC-AUC分数"><a href="#训练随机森林分类器，比较SGD分类器的ROC曲线和ROC-AUC分数" class="headerlink" title="训练随机森林分类器，比较SGD分类器的ROC曲线和ROC AUC分数"></a>训练随机森林分类器，比较SGD分类器的ROC曲线和ROC AUC分数</h3></li>
+<li>获取训练集中每个实例的分数</li>
+<li>RandomForestClassifier 没有decision_function(),但是拥有dict_proda()方法，sklearn中分类器都有这两个中的一个 -&gt; decision_function()可以获得每一个实力的决策值，和阀值进行对比，如果决策值大于阀值则是正类</li>
+<li>dict_proda返回一个矩阵，矩阵的个数和实例相对应，每行一个实例，每列代表一个类别的概率，比如这个图片 70%是5<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line">forest_clf = RandomForestClassifier(n_estimators=<span class="number">10</span>, random_state=<span class="number">42</span>) </span><br><span class="line">y_probas_forest = cross_val_predict(forest_clf, X_train, y_train_5, cv=<span class="number">3</span>,</span><br><span class="line">                                    method=<span class="string">"predict_proba"</span>)</span><br><span class="line"><span class="comment"># n_estimators=10 森林使用了十棵树</span></span><br><span class="line"><span class="comment"># cross_val_predict 交叉验证</span></span><br><span class="line">y_probas_forest</span><br></pre></td></tr></table></figure>
+拿到分类的概率<br>array([[0.2, 0.8],【负类，正类】<pre><code>[1. , 0. ],
+[1. , 0. ],
+…,
+[0.8, 0.2],
+[1. , 0. ],
+[0.2, 0.8]])</code></pre>绘制ROC曲线，需要决策值不是概率，直接使用正类的概率作为决策值：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">y_scores_forest = y_probas_forest[:, <span class="number">1</span>] <span class="comment"># 取所有的行，取第二列</span></span><br><span class="line">fpr_forest, tpr_forest, thresholds_forest =roc_curve(y_train_5,y_scores_forest)</span><br><span class="line"><span class="comment"># 用roc_curve 获得所有的值</span></span><br><span class="line"><span class="comment"># array([0.8, 0. , 0. , ..., 0.2, 0. , 0.8])</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">6</span>))</span><br><span class="line">plt.plot(fpr, tpr, <span class="string">"b:"</span>, linewidth=<span class="number">2</span>, label=<span class="string">"SGD"</span>)</span><br><span class="line">plot_roc_curve(fpr_forest, tpr_forest, <span class="string">"Random Forest"</span>)</span><br><span class="line">plt.legend(loc=<span class="string">"lower right"</span>, fontsize=<span class="number">16</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/esept/esept.github/%E6%9C%AA%E7%9F%A5.png" alt><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Rand 比SGD 好很多，ROC AUC的分数也高很多</span></span><br><span class="line">roc_auc_score(y_train_5, y_scores_forest)</span><br><span class="line"><span class="comment"># 0.9927612311885732</span></span><br><span class="line"><span class="comment"># 再看一下 精度和召回率 也很高</span></span><br><span class="line">y_train_pred_forest = cross_val_predict(forest_clf, X_train, y_train_5, cv=<span class="number">3</span>)</span><br><span class="line">precision_score(y_train_5, y_train_pred_forest)</span><br><span class="line"><span class="comment"># 0.9842243645924628</span></span><br><span class="line">recall_score(y_train_5, y_train_pred_forest)</span><br><span class="line"><span class="comment"># 0.8286294041689725</span></span><br></pre></td></tr></table></figure>
+总结：</li>
+<li>选择合适的指标利用交叉验证来对分类器进行评估</li>
+<li>选择满足需求的精度/召回率权衡</li>
+<li>使用ROC曲线和ROC AUC分数比较多个模型<h2 id="多类别分类器"><a href="#多类别分类器" class="headerlink" title="多类别分类器"></a>多类别分类器</h2></li>
+<li>尝试5 之外的检测</li>
+<li>多类别分类器 区分 <del>两个以上的类别</del></li>
+<li>随机森里和朴素贝叶斯可以直接处理多个类别</li>
+<li>支持向量机svm和线性分类器(SGD)只可以处理二元分类器<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3></li>
+</ul>
+<ol>
+<li>将数字图片分类0到9，训练10个二元分类器，每个数字一个，检测一张图片时，获取每个分类器的决策分数，哪个最高属于哪个，称为一对多OvA</li>
+<li>为每一对数字训练一个二元分类器，区分0，1 区分0，2 区分1，2 称为一对一OvO策略，存在N个类别，需要N*（N-1）/2个分类器，最后看哪个类别获胜最多</li>
+<li>利用二元分类器的变换使他支持多元分类器<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3></li>
+</ol>
+<ul>
+<li>OvO 只需要用到部分训练集对其必须区分两个类别进行训练</li>
+<li>对于较小训练集合OvO比较有优势， 大训练集合 OvA 速度快，所以OvA更常用，比如svm 在数据规模扩大时表现糟糕</li>
+<li>sklearn 检查到使用二元分类算法进行多类别分类任务，会自动运行OvA，SVM分类器除外<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 线性二元分类器</span></span><br><span class="line">sgd_clf.fit(X_train, y_train)</span><br><span class="line">sgd_clf.predict([some_digit])</span><br><span class="line"><span class="comment"># array([5.])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 内部实际上训练了10个二元分类器，获得图片的决策分数，然后选择了分数最高的类别</span></span><br><span class="line"><span class="comment"># 返回10个分数，每个类别1个 </span></span><br><span class="line">some_digit_scores = sgd_clf.decision_function([some_digit])</span><br><span class="line">some_digit_scores</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>array([[-130925.47994863, -489285.03329748, -233335.03268504,  </p>
+<pre><code>-301491.01792999, -504430.31349679,   42217.83953346,  
+-709294.90235509, -246867.76598493, -579820.13951646,  
+-562334.49609594]])  </code></pre></blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">np.argmax(some_digit_scores) <span class="comment"># 拿到训练值中值最大的索引</span></span><br><span class="line"><span class="comment"># 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 目标类别列表会存储在classes_这个属性中，按值大小排列，</span></span><br><span class="line">sgd_clf.classes_</span><br><span class="line"><span class="comment">#  array([0., 1., 2., 3., 4., 5., 6., 7., 8., 9.])</span></span><br><span class="line">sgd_clf.classes_[np.argmax(some_digit_scores)]</span><br><span class="line"><span class="comment"># 5.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用OvO策略，一对一或者一对多</span></span><br><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsOneClassifier</span><br><span class="line">ovo_clf = OneVsOneClassifier(SGDClassifier(max_iter=<span class="number">5</span>, tol=-np.infty, random_state=<span class="number">42</span>))</span><br><span class="line">ovo_clf.fit(X_train, y_train)</span><br><span class="line">ovo_clf.predict([some_digit])</span><br><span class="line"><span class="comment"># array([5.])</span></span><br><span class="line"></span><br><span class="line">len(ovo_clf.estimators_)<span class="comment"># 输出估算器的个数</span></span><br><span class="line"><span class="comment"># 45</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用随机森林</span></span><br><span class="line">forest_clf.fit(X_train, y_train)</span><br><span class="line">forest_clf.predict([some_digit])</span><br><span class="line"><span class="comment"># array([5.])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机森林直接将实例分为多个类别，调用predict_proba()可以获得分类器将每个实例分类为每个类别的概率列表</span></span><br><span class="line">forest_clf.predict_proba([some_digit])</span><br><span class="line"><span class="comment"># array([[0. , 0. , 0. , 0.2, 0. , 0.8, 0. , 0. , 0. , 0. ]]) -&gt; 20%是3，80%是5</span></span><br></pre></td></tr></table></figure>
+<h3 id="评估分类器"><a href="#评估分类器" class="headerlink" title="评估分类器"></a>评估分类器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用交叉验证评估SGD的准确率</span></span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>)</span><br><span class="line"><span class="comment"># array([0.84433113, 0.86754338, 0.86507976]) 运用SGD预测有85%以上的正确率</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将输入进行简单缩放 ，可以得到准确率 90 %以上</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">scaler = StandardScaler()</span><br><span class="line">X_train_scaled = scaler.fit_transform(X_train.astype(np.float64))</span><br><span class="line">cross_val_score(sgd_clf, X_train_scaled, y_train, cv=<span class="number">3</span>, scoring=<span class="string">"accuracy"</span>)</span><br><span class="line"><span class="comment"># array([0.91076785, 0.90694535, 0.90883633]) 经过简单缩放的优化之后可以将正确率踢伤到90%左右</span></span><br></pre></td></tr></table></figure>
+<h3 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h3><h4 id="项目流程"><a href="#项目流程" class="headerlink" title="项目流程"></a>项目流程</h4></li>
+</ul>
+<ol>
+<li>探索数据准备的选项</li>
+<li>尝试多个模型</li>
+<li>选择最佳模型并用GridSearchCV对参数进行微调</li>
+<li>尽可能自动化<h4 id="确定了一个相对合适的模型，进一步优化，分析其错误类型"><a href="#确定了一个相对合适的模型，进一步优化，分析其错误类型" class="headerlink" title="确定了一个相对合适的模型，进一步优化，分析其错误类型"></a>确定了一个相对合适的模型，进一步优化，分析其错误类型</h4></li>
+</ol>
+<ul>
+<li>查看混淆矩阵</li>
+<li>使用cross_val_predict()进行预测</li>
+<li>调用confusion_matrix()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y_train_pred = cross_val_predict(sgd_clf, X_train_scaled, y_train, cv=<span class="number">3</span>) <span class="comment"># 返回一个预测类型/标签</span></span><br><span class="line">conf_mx = confusion_matrix(y_train, y_train_pred) <span class="comment">#通过实际标签和预测标签运用confusion_matrix形成混淆矩阵</span></span><br><span class="line">conf_mx</span><br></pre></td></tr></table></figure>
+<p>混淆矩阵（10维）<br>最好的混淆矩阵为对角线的值最大，其余值都为0，那么下面的混淆矩阵的对角线值是正确的，其余的都不是很正确</p>
+<blockquote>
+<p>array([[5727,    3,   19,    9,    9,   53,   52,    9,   37,    5],<br>       [   2, 6483,   44,   36,    6,   44,    9,   12,   96,   10],<br>       [  54,   40, 5308,  102,   87,   27,  106,   56,  163,   15],<br>       [  53,   39,  137, 5343,    4,  229,   37,   59,  137,   93],<br>       [  22,   30,   35,    9, 5357,   11,   59,   29,   83,  207],<br>       [  82,   46,   34,  189,   67, 4592,  110,   28,  171,  102],<br>       [  34,   23,   41,    1,   40,   90, 5635,    7,   47,    0],<br>       [  24,   23,   67,   24,   51,   13,    7, 5778,   15,  263],<br>       [  49,  158,   66,  159,   14,  163,   58,   24, 5014,  146],<br>       [  42,   32,   27,   92,  154,   27,    3,  202,   76, 5294]])  </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用matplotlib的matshow 函数来查看混淆矩阵的图像表示</span></span><br><span class="line">plt.matshow(conf_mx, cmap = plt.cm.gray) <span class="comment"># [混淆矩阵，颜色域]</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/esept/esept.github/%E6%9C%AA%E7%9F%A5.png" alt><br>除对角线的值过小，对角线过大因此除对角线的都为黑色，根据坐标可以推断出标签的值，比如左上角就是0，<br>横向 -&gt; 实例  纵向 -&gt; 预测值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看起来不错，大多数图片都在主对角线上，说明它们被正确分类</span></span><br><span class="line"><span class="comment"># 数字5 看起来比较暗，说明1. 数字5图片较少  2. 分类器在数字5上执行效果不如其他数字上好</span></span><br><span class="line"><span class="comment"># 假设把焦点放在错误上，为取得错误率，而不是错误绝对值，需要将混淆矩阵中每个值除以相应类别中的图片数量</span></span><br><span class="line"></span><br><span class="line">row_sums = conf_mx.sum(axis=<span class="number">1</span>, keepdims=<span class="literal">True</span>)</span><br><span class="line">norm_conf_mx = conf_mx / row_sums</span><br><span class="line"><span class="comment"># 用0填充对角线 只保留错误，重新绘制</span></span><br><span class="line">np.fill_diagonal(norm_conf_mx, <span class="number">0</span>)</span><br><span class="line">plt.matshow(norm_conf_mx, cmap=plt.cm.gray)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/esept/esept.github/%E6%9C%AA%E7%9F%A5.png" alt></p>
+<ul>
+<li>每行代表实际类别，每列代表预测类别</li>
+<li>8，9列比较亮，说明许多图片被错误的分类为数字8，9</li>
+<li>类别8，9行也偏亮，说明数字8和9经常会跟其他数字混淆</li>
+<li>有些很暗，比如行1，大多数数字1都被正确的分类，一些和8混淆</li>
+<li>5和3是错误最多的</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/" rel="tag"><i class="fa fa-tag"></i> 数据分析与数据挖掘</a>
+          
+            <a href="/tags/Jupyter-Notebook/" rel="tag"><i class="fa fa-tag"></i> Jupyter Notebook</a>
+          
+            <a href="/tags/numpy/" rel="tag"><i class="fa fa-tag"></i> numpy</a>
+          
+            <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
+          
+            <a href="/tags/sklearn/" rel="tag"><i class="fa fa-tag"></i> sklearn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/13/douban/" rel="next" title="Scrapy原理及个人项目">
+                <i class="fa fa-chevron-left"></i> Scrapy原理及个人项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mads.jpg"
+                alt="Sa_Tsuki" />
+            
+              <p class="site-author-name" itemprop="name">Sa_Tsuki</p>
+              <p class="site-description motion-element" itemprop="description">无知且自大</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Minist数据集"><span class="nav-number">1.</span> <span class="nav-text">Minist数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集介绍"><span class="nav-number">1.0.1.</span> <span class="nav-text">数据集介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据介绍"><span class="nav-number">1.0.2.</span> <span class="nav-text">数据介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解包和拆包"><span class="nav-number">1.1.</span> <span class="nav-text">解包和拆包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片的显示"><span class="nav-number">1.2.</span> <span class="nav-text">图片的显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#另一种解包方式：mat"><span class="nav-number">1.3.</span> <span class="nav-text">另一种解包方式：mat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立测试集和训练集"><span class="nav-number">1.4.</span> <span class="nav-text">建立测试集和训练集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练一个二元分类器"><span class="nav-number">1.5.</span> <span class="nav-text">训练一个二元分类器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能考核"><span class="nav-number">1.6.</span> <span class="nav-text">性能考核</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用交叉验证测量精度"><span class="nav-number">1.6.1.</span> <span class="nav-text">使用交叉验证测量精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.6.2.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正类预测的准确率-被称为分类器的精度"><span class="nav-number">1.6.3.</span> <span class="nav-text">正类预测的准确率 被称为分类器的精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精度和召回率"><span class="nav-number">1.6.4.</span> <span class="nav-text">精度和召回率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精度-召回率权衡"><span class="nav-number">1.6.5.</span> <span class="nav-text">精度&#x2F;召回率权衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过选择阀值来实现最佳的精度-召回率权衡"><span class="nav-number">1.6.6.</span> <span class="nav-text">通过选择阀值来实现最佳的精度&#x2F;召回率权衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-曲线"><span class="nav-number">1.6.7.</span> <span class="nav-text">ROC 曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练随机森林分类器，比较SGD分类器的ROC曲线和ROC-AUC分数"><span class="nav-number">1.6.8.</span> <span class="nav-text">训练随机森林分类器，比较SGD分类器的ROC曲线和ROC AUC分数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多类别分类器"><span class="nav-number">1.7.</span> <span class="nav-text">多类别分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.7.1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">1.7.2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评估分类器"><span class="nav-number">1.7.3.</span> <span class="nav-text">评估分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误分析"><span class="nav-number">1.7.4.</span> <span class="nav-text">错误分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目流程"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">项目流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#确定了一个相对合适的模型，进一步优化，分析其错误类型"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">确定了一个相对合适的模型，进一步优化，分析其错误类型</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sa_Tsuki</span>
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+<br>
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span> 
+<script> 
+    var now = new Date(); 
+    function createtime() {
+    var grt= new Date("02/14/2018 12:49:00");
+    //此处修改你的建站时间或者网站上线时间 
+    now.setTime(now.getTime()+250); 
+    days = (now - grt ) / 1000 / 60 / 60 / 24; 
+    dnum = Math.floor(days); hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); 
+    hnum = Math.floor(hours); 
+    if(String(hnum).length ==1 ){
+        hnum = "0" + hnum;
+    } 
+    minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 )
+    {
+       mnum = "0" + mnum;
+    } 
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if(String(snum).length ==1 ){snum = "0" + snum;} 
+    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+} 
+    setInterval("createtime()",250); 
+</script>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js""></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>&nbsp
+      访问用户：
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>&nbsp
+      访问次数：
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+        <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: window.location.pathname, 
+            owner: 'esept',
+            repo: 'esept.github.io',
+            
+            oauth: {
+            
+            
+                client_secret: '8f678c5aeba3ad10bb5118def2acf8b5e1c2e01e',
+            
+                client_id: '4464a9f12675e12804d3'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

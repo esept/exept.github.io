@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>1</title>
+    <url>/2020/05/15/1/</url>
+    <content><![CDATA[<p>我想给博客上加上一点自己的东西，比如电影的介绍和推荐，</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Scrapy-Bilibili</title>
+    <url>/2020/06/26/bilibili-scrapy/</url>
+    <content><![CDATA[<p>Scrapy 项目<br>Bilibili某一up主的视频名称、播放量、喜欢数<br>以及对他视频弹幕的爬取与词云制作</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> jieba</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DaoyuesheSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'daoyueshe'</span></span><br><span class="line">    allowed_domains = [<span class="string">'bilibili.com'</span>]</span><br><span class="line">    <span class="comment"># start_urls = ['https://space.bilibili.com/99157282/video']</span></span><br><span class="line">    api_all = <span class="string">'https://api.bilibili.com/x/space/upstat?mid=99157282&amp;jsonp=jsonp'</span></span><br><span class="line">    api_video = <span class="string">'https://api.bilibili.com/x/web-interface/view?bvid='</span></span><br><span class="line">    api_comment = <span class="string">'https://comment.bilibili.com/%s.xml'</span></span><br><span class="line">    start_urls = [api_all]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">            url = <span class="string">'https://api.bilibili.com/x/space/arc/search?mid=99157282&amp;ps=30&amp;tid=0&amp;pn=%s&amp;keyword=&amp;order=pubdate&amp;jsonp=jsonp'</span> % (page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url,</span><br><span class="line">                callback = self.parse1</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse1</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        data = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data'</span> != <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">for</span> vn <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">31</span>):</span><br><span class="line">                video_data = data.get(<span class="string">'data'</span>).get(<span class="string">'list'</span>).get(<span class="string">'vlist'</span>)[vn]</span><br><span class="line">                <span class="comment"># print(video_data['title'],'--',video_data['play'],'--',video_data['comment'],'--',video_data['bvid'])</span></span><br><span class="line">                <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                    url = self.api_video+video_data[<span class="string">'bvid'</span>],</span><br><span class="line">                    callback=self.parse_video</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_video</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        data_v = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data_v'</span> != <span class="literal">None</span>:</span><br><span class="line">            cid = str(data_v.get(<span class="string">'data'</span>)[<span class="string">'cid'</span>])</span><br><span class="line">            <span class="comment"># print(cid)</span></span><br><span class="line">            url = self.api_comment</span><br><span class="line">            <span class="comment"># print(type(url))</span></span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url % (cid) ,</span><br><span class="line">                callback=self.parse_comment</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_comment</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        id = response.xpath(<span class="string">'//chatid/text()'</span>).extract()</span><br><span class="line">        print(id[<span class="number">0</span>])</span><br><span class="line">        url = self.api_comment%(id[<span class="number">0</span>])</span><br><span class="line">        all_comment = requests.get(url)</span><br><span class="line">        all_comment.encoding=<span class="string">'utf8'</span></span><br><span class="line">        soup = BeautifulSoup(all_comment.text,<span class="string">'lxml'</span>)</span><br><span class="line">        res = soup.find_all(<span class="string">'d'</span>)</span><br><span class="line">        comments = [comment.text <span class="keyword">for</span> comment <span class="keyword">in</span> res]</span><br><span class="line">        print(comments)</span><br><span class="line">        print(len(comments))</span><br><span class="line"></span><br><span class="line">        comments_clean = [comment.replace(<span class="string">' '</span>, <span class="string">''</span>) <span class="keyword">for</span> comment <span class="keyword">in</span> comments]  <span class="comment"># 去掉空格</span></span><br><span class="line"></span><br><span class="line">        set(comments_clean)  <span class="comment"># 看一下都有啥类似的没用的词语</span></span><br><span class="line"></span><br><span class="line">        useless_words = [<span class="string">'//TEST'</span>,</span><br><span class="line">                         <span class="string">'/TESR'</span>,</span><br><span class="line">                         <span class="string">'/TEST'</span>,</span><br><span class="line">                         <span class="string">'/TEST/'</span>,</span><br><span class="line">                         <span class="string">'/TEXT'</span>,</span><br><span class="line">                         <span class="string">'/TEXTSUPREME'</span>,</span><br><span class="line">                         <span class="string">'/TSET'</span>,</span><br><span class="line">                         <span class="string">'/Y'</span>,</span><br><span class="line">                         <span class="string">'\\TEST'</span>]</span><br><span class="line"></span><br><span class="line">        comments_clean = [element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean <span class="keyword">if</span> element <span class="keyword">not</span> <span class="keyword">in</span> useless_words]  <span class="comment"># 去掉不想要的字符</span></span><br><span class="line">        cipin = pd.DataFrame(&#123;<span class="string">'danmu'</span>: comments_clean&#125;)</span><br><span class="line">        cipin[<span class="string">'danmu'</span>].value_counts()  <span class="comment"># 查看词频</span></span><br><span class="line">        danmustr = <span class="string">''</span>.join(element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean)  <span class="comment"># 把所有的弹幕都合并成一个字符串</span></span><br><span class="line">        words = list(jieba.cut(danmustr))  <span class="comment"># 分词</span></span><br><span class="line">        fnl_words = [word <span class="keyword">for</span> word <span class="keyword">in</span> words <span class="keyword">if</span> len(word) &gt; <span class="number">1</span>]  <span class="comment"># 去掉单字</span></span><br><span class="line">        wc = wordcloud.WordCloud(width=<span class="number">1000</span>, font_path=<span class="string">'STHeiti Medium.ttc'</span>, height=<span class="number">800</span>)  <span class="comment"># 设定词云画的大小字体，一定要设定字体，否则中文显示不出来</span></span><br><span class="line">        wc.generate(<span class="string">' '</span>.join(fnl_words))</span><br><span class="line"></span><br><span class="line">        plt.imshow(wc)  <span class="comment"># 看图</span></span><br><span class="line">        wc.to_file(<span class="string">r"./%s.png"</span>%(id[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>scrapy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Diary-05-2020</title>
     <url>/2020/05/10/diary/</url>
     <content><![CDATA[<p>这里曾经，依旧是我的五月<br>岁月漫长，但是值得等待<br> <a id="more"></a></p>
@@ -19,12 +40,6 @@
       <tags>
         <tag>采集忘却</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>1</title>
-    <url>/2020/05/15/1/</url>
-    <content><![CDATA[<p>我想给博客上加上一点自己的东西，比如电影的介绍和推荐，</p>
-]]></content>
   </entry>
   <entry>
     <title>Minist数据集</title>
@@ -219,21 +234,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>Scrapy-Bilibili</title>
-    <url>/2020/06/26/bilibili-scrapy/</url>
-    <content><![CDATA[<p>Scrapy 项目<br>Bilibili某一up主的视频名称、播放量、喜欢数<br>以及对他视频弹幕的爬取与词云制作</p>
-<a id="more"></a>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> jieba</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DaoyuesheSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'daoyueshe'</span></span><br><span class="line">    allowed_domains = [<span class="string">'bilibili.com'</span>]</span><br><span class="line">    <span class="comment"># start_urls = ['https://space.bilibili.com/99157282/video']</span></span><br><span class="line">    api_all = <span class="string">'https://api.bilibili.com/x/space/upstat?mid=99157282&amp;jsonp=jsonp'</span></span><br><span class="line">    api_video = <span class="string">'https://api.bilibili.com/x/web-interface/view?bvid='</span></span><br><span class="line">    api_comment = <span class="string">'https://comment.bilibili.com/%s.xml'</span></span><br><span class="line">    start_urls = [api_all]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">            url = <span class="string">'https://api.bilibili.com/x/space/arc/search?mid=99157282&amp;ps=30&amp;tid=0&amp;pn=%s&amp;keyword=&amp;order=pubdate&amp;jsonp=jsonp'</span> % (page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url,</span><br><span class="line">                callback = self.parse1</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse1</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        data = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data'</span> != <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">for</span> vn <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">31</span>):</span><br><span class="line">                video_data = data.get(<span class="string">'data'</span>).get(<span class="string">'list'</span>).get(<span class="string">'vlist'</span>)[vn]</span><br><span class="line">                <span class="comment"># print(video_data['title'],'--',video_data['play'],'--',video_data['comment'],'--',video_data['bvid'])</span></span><br><span class="line">                <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                    url = self.api_video+video_data[<span class="string">'bvid'</span>],</span><br><span class="line">                    callback=self.parse_video</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_video</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        data_v = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data_v'</span> != <span class="literal">None</span>:</span><br><span class="line">            cid = str(data_v.get(<span class="string">'data'</span>)[<span class="string">'cid'</span>])</span><br><span class="line">            <span class="comment"># print(cid)</span></span><br><span class="line">            url = self.api_comment</span><br><span class="line">            <span class="comment"># print(type(url))</span></span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url % (cid) ,</span><br><span class="line">                callback=self.parse_comment</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_comment</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        id = response.xpath(<span class="string">'//chatid/text()'</span>).extract()</span><br><span class="line">        print(id[<span class="number">0</span>])</span><br><span class="line">        url = self.api_comment%(id[<span class="number">0</span>])</span><br><span class="line">        all_comment = requests.get(url)</span><br><span class="line">        all_comment.encoding=<span class="string">'utf8'</span></span><br><span class="line">        soup = BeautifulSoup(all_comment.text,<span class="string">'lxml'</span>)</span><br><span class="line">        res = soup.find_all(<span class="string">'d'</span>)</span><br><span class="line">        comments = [comment.text <span class="keyword">for</span> comment <span class="keyword">in</span> res]</span><br><span class="line">        print(comments)</span><br><span class="line">        print(len(comments))</span><br><span class="line"></span><br><span class="line">        comments_clean = [comment.replace(<span class="string">' '</span>, <span class="string">''</span>) <span class="keyword">for</span> comment <span class="keyword">in</span> comments]  <span class="comment"># 去掉空格</span></span><br><span class="line"></span><br><span class="line">        set(comments_clean)  <span class="comment"># 看一下都有啥类似的没用的词语</span></span><br><span class="line"></span><br><span class="line">        useless_words = [<span class="string">'//TEST'</span>,</span><br><span class="line">                         <span class="string">'/TESR'</span>,</span><br><span class="line">                         <span class="string">'/TEST'</span>,</span><br><span class="line">                         <span class="string">'/TEST/'</span>,</span><br><span class="line">                         <span class="string">'/TEXT'</span>,</span><br><span class="line">                         <span class="string">'/TEXTSUPREME'</span>,</span><br><span class="line">                         <span class="string">'/TSET'</span>,</span><br><span class="line">                         <span class="string">'/Y'</span>,</span><br><span class="line">                         <span class="string">'\\TEST'</span>]</span><br><span class="line"></span><br><span class="line">        comments_clean = [element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean <span class="keyword">if</span> element <span class="keyword">not</span> <span class="keyword">in</span> useless_words]  <span class="comment"># 去掉不想要的字符</span></span><br><span class="line">        cipin = pd.DataFrame(&#123;<span class="string">'danmu'</span>: comments_clean&#125;)</span><br><span class="line">        cipin[<span class="string">'danmu'</span>].value_counts()  <span class="comment"># 查看词频</span></span><br><span class="line">        danmustr = <span class="string">''</span>.join(element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean)  <span class="comment"># 把所有的弹幕都合并成一个字符串</span></span><br><span class="line">        words = list(jieba.cut(danmustr))  <span class="comment"># 分词</span></span><br><span class="line">        fnl_words = [word <span class="keyword">for</span> word <span class="keyword">in</span> words <span class="keyword">if</span> len(word) &gt; <span class="number">1</span>]  <span class="comment"># 去掉单字</span></span><br><span class="line">        wc = wordcloud.WordCloud(width=<span class="number">1000</span>, font_path=<span class="string">'STHeiti Medium.ttc'</span>, height=<span class="number">800</span>)  <span class="comment"># 设定词云画的大小字体，一定要设定字体，否则中文显示不出来</span></span><br><span class="line">        wc.generate(<span class="string">' '</span>.join(fnl_words))</span><br><span class="line"></span><br><span class="line">        plt.imshow(wc)  <span class="comment"># 看图</span></span><br><span class="line">        wc.to_file(<span class="string">r"./%s.png"</span>%(id[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>他是诗人</title>
     <url>/2020/05/08/doc/</url>
     <content><![CDATA[<p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
@@ -256,6 +256,59 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </categories>
       <tags>
         <tag>采集忘却</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java-1</title>
+    <url>/2020/06/27/java/</url>
+    <content><![CDATA[<h2 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>面向对象，简单易学</li>
+<li>跨平台性，一次编译处处运行【JVM】</li>
+<li>适合分布式项目：大型的互联网分布式项目</li>
+</ul>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><ul>
+<li>JavaSE 标准版 - 主要</li>
+<li>JavaME 微型版 - 移动端，基本淘汰</li>
+<li>JavaEE 企业版 - 企业级应用技术开发</li>
+</ul>
+<h2 id="Java运行环境"><a href="#Java运行环境" class="headerlink" title="Java运行环境"></a>Java运行环境</h2><p>JDK：java开发工具</p>
+<ul>
+<li>JRE<ul>
+<li>JVM： 在内存里创建一个java虚拟机，java程序载入jvm后运行</li>
+<li>java核心类库： java在运行的过程中需要依赖一些库文件 </li>
+</ul>
+</li>
+<li>Java开发工具包</li>
+</ul>
+<blockquote>
+<p>可以直接安装JDK</p>
+</blockquote>
+<h3 id="程序实例"><a href="#程序实例" class="headerlink" title="程序实例"></a>程序实例</h3><p>文件名：helloworld.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">helloworld</span></span>&#123;</span><br><span class="line">	<span class="comment">// 程序的执行入口</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; </span><br><span class="line">		System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在终端中<br><code>$ javac helloworld.java</code><br>生成.class文件，如果没有出现检查java文件是否为空<br>class文件出现后<br><code>$ java helloworld</code></p>
+<h3 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h3><p>文件名字和类名要一致<br>类名的首字母要大写<br>在类里写方法</p>
+<h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><p>创建java文件（helloworld.java）<br>    javac<br>自解码文件（helloworld.class）<br>    java<br>jvm运行</p>
+<h2 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h2><ul>
+<li><p>基本数据类型（8种）</p>
+<ul>
+<li>数值类型<ul>
+<li>整数类型<br>  · 字节类型 byte<br>  · 短整型 short<br>  · 整型 int<br>  · 长整型 long</li>
+<li>小数类型<br>  · 单精度 float<br>  · 双精度 double</li>
+</ul>
+</li>
+<li>布尔类型 boolean</li>
+<li>字符类型 char</li>
+</ul>
+</li>
+<li><p>引用数据类型</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -368,6 +421,21 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
+    <title>博客更新日志</title>
+    <url>/2020/06/26/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>用于更新博客格式/小改动的日志</p>
+<a id="more"></a>
+
+<p>6-27<br>更新了网站logo</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>numpy</title>
     <url>/2020/05/17/numpy/</url>
     <content><![CDATA[<p>numpy的安装及基础操作<br>针对数组和矩阵</p>
@@ -465,59 +533,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>Java-1</title>
-    <url>/2020/06/27/java/</url>
-    <content><![CDATA[<h2 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>面向对象，简单易学</li>
-<li>跨平台性，一次编译处处运行【JVM】</li>
-<li>适合分布式项目：大型的互联网分布式项目</li>
-</ul>
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><ul>
-<li>JavaSE 标准版 - 主要</li>
-<li>JavaME 微型版 - 移动端，基本淘汰</li>
-<li>JavaEE 企业版 - 企业级应用技术开发</li>
-</ul>
-<h2 id="Java运行环境"><a href="#Java运行环境" class="headerlink" title="Java运行环境"></a>Java运行环境</h2><p>JDK：java开发工具</p>
-<ul>
-<li>JRE<ul>
-<li>JVM： 在内存里创建一个java虚拟机，java程序载入jvm后运行</li>
-<li>java核心类库： java在运行的过程中需要依赖一些库文件 </li>
-</ul>
-</li>
-<li>Java开发工具包</li>
-</ul>
-<blockquote>
-<p>可以直接安装JDK</p>
-</blockquote>
-<h3 id="程序实例"><a href="#程序实例" class="headerlink" title="程序实例"></a>程序实例</h3><p>文件名：helloworld.java</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">helloworld</span></span>&#123;</span><br><span class="line">	<span class="comment">// 程序的执行入口</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; </span><br><span class="line">		System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在终端中<br><code>$ javac helloworld.java</code><br>生成.class文件，如果没有出现检查java文件是否为空<br>class文件出现后<br><code>$ java helloworld</code></p>
-<h3 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h3><p>文件名字和类名要一致<br>类名的首字母要大写<br>在类里写方法</p>
-<h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><p>创建java文件（helloworld.java）<br>    javac<br>自解码文件（helloworld.class）<br>    java<br>jvm运行</p>
-<h2 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h2><ul>
-<li><p>基本数据类型（8种）</p>
-<ul>
-<li>数值类型<ul>
-<li>整数类型<br>  · 字节类型 byte<br>  · 短整型 short<br>  · 整型 int<br>  · 长整型 long</li>
-<li>小数类型<br>  · 单精度 float<br>  · 双精度 double</li>
-</ul>
-</li>
-<li>布尔类型 boolean</li>
-<li>字符类型 char</li>
-</ul>
-</li>
-<li><p>引用数据类型</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>大多数的我</title>
     <url>/2020/05/06/%E5%A4%A7%E5%A4%9A%E6%95%B0%E7%9A%84%E6%88%91/</url>
     <content><![CDATA[<p>少数的我<br>梦见了故乡</p>
@@ -530,40 +545,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       <tags>
         <tag>采集忘却</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>博客更新日志</title>
-    <url>/2020/06/26/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<p>用于更新博客格式/小改动的日志</p>
-<a id="more"></a>
-
-<p>6-27<br>更新了网站logo</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如果我想你</title>
-    <url>/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/</url>
-    <content><![CDATA[<p>愿你能从他身上听到你想听的话<br>单调却挂念的话<br>有没有一些<br>来自我这个人渣</p>
-<a id="more"></a>
-<p>记忆的沙 霜冻的画<br>故乡的花已经发芽<br>牵着希望的手悄然滑下<br>我还是怀念我残破的家<br>音乐盒的主人公默念牵挂<br>没有你的口信<br>我不敢安家<br>你还留着我寄存的味道吗<br>书写下的话 让天空散漫着花<br>那景象是我从未见过的<br>我想问你可知爱字如何落下<br>却无法否认那是我从未见过的回答</p>
-]]></content>
-      <categories>
-        <category>思考与遐想</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>服务器日志分析</title>
-    <url>/2020/05/20/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>爬虫项目1</title>
@@ -665,6 +646,25 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
         <tag>python</tag>
         <tag>爬虫</tag>
         <tag>个人项目</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务器日志分析</title>
+    <url>/2020/05/20/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>如果我想你</title>
+    <url>/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/</url>
+    <content><![CDATA[<p>愿你能从他身上听到你想听的话<br>单调却挂念的话<br>有没有一些<br>来自我这个人渣</p>
+<a id="more"></a>
+<p>记忆的沙 霜冻的画<br>故乡的花已经发芽<br>牵着希望的手悄然滑下<br>我还是怀念我残破的家<br>音乐盒的主人公默念牵挂<br>没有你的口信<br>我不敢安家<br>你还留着我寄存的味道吗<br>书写下的话 让天空散漫着花<br>那景象是我从未见过的<br>我想问你可知爱字如何落下<br>却无法否认那是我从未见过的回答</p>
+]]></content>
+      <categories>
+        <category>思考与遐想</category>
+      </categories>
+      <tags>
+        <tag>采集忘却</tag>
       </tags>
   </entry>
   <entry>

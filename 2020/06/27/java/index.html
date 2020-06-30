@@ -134,7 +134,7 @@
 
 <meta name="description" content="Java概述特点 面向对象，简单易学 跨平台性，一次编译处处运行【JVM】 适合分布式项目：大型的互联网分布式项目  分支 JavaSE 标准版 - 主要 JavaME 微型版 - 移动端，基本淘汰 JavaEE 企业版 - 企业级应用技术开发  Java运行环境JDK：java开发工具  JRE JVM： 在内存里创建一个java虚拟机，java程序载入jvm后运行 java核心类库： java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-1">
+<meta property="og:title" content="Java_First">
 <meta property="og:url" content="https://github.com/esept/esept.github.io/2020/06/27/java/index.html">
 <meta property="og:site_name" content="Undefined">
 <meta property="og:description" content="Java概述特点 面向对象，简单易学 跨平台性，一次编译处处运行【JVM】 适合分布式项目：大型的互联网分布式项目  分支 JavaSE 标准版 - 主要 JavaME 微型版 - 移动端，基本淘汰 JavaEE 企业版 - 企业级应用技术开发  Java运行环境JDK：java开发工具  JRE JVM： 在内存里创建一个java虚拟机，java程序载入jvm后运行 java核心类库： java">
@@ -179,7 +179,7 @@
 
 
 
-  <title>Java-1 | Undefined</title>
+  <title>Java_First | Undefined</title>
   
 
 
@@ -365,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java-1</h1>
+          <h1 class="post-title" itemprop="name headline">Java_First</h1>
         
 
         <div class="post-meta">
@@ -465,21 +465,30 @@
 <h3 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h3><p>文件名字和类名要一致<br>类名的首字母要大写<br>在类里写方法</p>
 <h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><p>创建java文件（helloworld.java）<br>    javac<br>自解码文件（helloworld.class）<br>    java<br>jvm运行</p>
 <h2 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h2><ul>
-<li><p>基本数据类型（8种）</p>
-<ul>
-<li>数值类型<ul>
-<li>整数类型<br>  · 字节类型 byte<br>  · 短整型 short<br>  · 整型 int<br>  · 长整型 long</li>
-<li>小数类型<br>  · 单精度 float<br>  · 双精度 double</li>
+<li>基本数据类型（8种）<br>  ·· 数值类型<pre><code>- 整数类型
+    · 字节类型 byte
+    · 短整型 short
+    · 整型 int
+    · 长整型 long
+- 小数类型
+    · 单精度 float
+    · 双精度 double</code></pre>  ·· 布尔类型 boolean<br>  ·· 字符类型 char</li>
+<li>引用数据类型</li>
 </ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h4 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h4><ol>
+<li>所有的type、short、char值运算的时候都会提升成int类型（char-&gt;ascii)</li>
+<li>int,long,float,double 自身来计算的时候，类型超出范围不会自动转换，如果超出范围了就会出现精度的损失</li>
+<li>int + float = float；double <blockquote>
+<p>Java在变量赋值的时候，其中float、double、long数据类型变量，需要在赋值直接量后面分别添加f或F、d或D、l或L尾缀来说明。<br>其中，long类型最好以大写L来添加尾缀，因为小写l容易和数字1混淆。<br><a href="https://blog.csdn.net/FX677588/article/details/52663805" target="_blank" rel="noopener">https://blog.csdn.net/FX677588/article/details/52663805</a></p>
+</blockquote>
 </li>
-<li>布尔类型 boolean</li>
-<li>字符类型 char</li>
-</ul>
-</li>
-<li><p>引用数据类型</p>
-</li>
-</ul>
-
+</ol>
+<h4 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h4><ol>
+<li>小数转整数，会把小数点后去掉(float-&gt;int)</li>
+<li>char 与 int相互转换都是与Ascii相关的</li>
+</ol>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><p>与 &amp; (如果使用&amp;&amp;，则前面的能决定计算结果的时候后一个就不继续进行计算)<br>或 |<br>非 !=</p>
+<h3 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h3>
       
     </div>
     
@@ -662,7 +671,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java概述"><span class="nav-number">1.</span> <span class="nav-text">Java概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">1.2.</span> <span class="nav-text">分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java运行环境"><span class="nav-number">2.</span> <span class="nav-text">Java运行环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序实例"><span class="nav-number">2.1.</span> <span class="nav-text">程序实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范"><span class="nav-number">2.2.</span> <span class="nav-text">规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的运行机制"><span class="nav-number">3.</span> <span class="nav-text">Java的运行机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java的数据类型"><span class="nav-number">4.</span> <span class="nav-text">java的数据类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java概述"><span class="nav-number">1.</span> <span class="nav-text">Java概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">1.2.</span> <span class="nav-text">分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java运行环境"><span class="nav-number">2.</span> <span class="nav-text">Java运行环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序实例"><span class="nav-number">2.1.</span> <span class="nav-text">程序实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范"><span class="nav-number">2.2.</span> <span class="nav-text">规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的运行机制"><span class="nav-number">3.</span> <span class="nav-text">Java的运行机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java的数据类型"><span class="nav-number">4.</span> <span class="nav-text">java的数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">5.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">5.1.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自动类型转换"><span class="nav-number">5.1.1.</span> <span class="nav-text">自动类型转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强制类型转换"><span class="nav-number">5.1.2.</span> <span class="nav-text">强制类型转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算"><span class="nav-number">5.2.</span> <span class="nav-text">逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三元运算符"><span class="nav-number">5.3.</span> <span class="nav-text">三元运算符</span></a></li></ol></li></ol></div>
             
 
           </div>

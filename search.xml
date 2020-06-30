@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>1</title>
+    <url>/2020/05/15/1/</url>
+    <content><![CDATA[<p>我想给博客上加上一点自己的东西，比如电影的介绍和推荐，</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Scrapy-Bilibili</title>
+    <url>/2020/06/26/bilibili-scrapy/</url>
+    <content><![CDATA[<p>Scrapy 项目<br>Bilibili某一up主的视频名称、播放量、喜欢数<br>以及对他视频弹幕的爬取与词云制作</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> jieba</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DaoyuesheSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'daoyueshe'</span></span><br><span class="line">    allowed_domains = [<span class="string">'bilibili.com'</span>]</span><br><span class="line">    <span class="comment"># start_urls = ['https://space.bilibili.com/99157282/video']</span></span><br><span class="line">    api_all = <span class="string">'https://api.bilibili.com/x/space/upstat?mid=99157282&amp;jsonp=jsonp'</span></span><br><span class="line">    api_video = <span class="string">'https://api.bilibili.com/x/web-interface/view?bvid='</span></span><br><span class="line">    api_comment = <span class="string">'https://comment.bilibili.com/%s.xml'</span></span><br><span class="line">    start_urls = [api_all]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">            url = <span class="string">'https://api.bilibili.com/x/space/arc/search?mid=99157282&amp;ps=30&amp;tid=0&amp;pn=%s&amp;keyword=&amp;order=pubdate&amp;jsonp=jsonp'</span> % (page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url,</span><br><span class="line">                callback = self.parse1</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse1</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        data = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data'</span> != <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">for</span> vn <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">31</span>):</span><br><span class="line">                video_data = data.get(<span class="string">'data'</span>).get(<span class="string">'list'</span>).get(<span class="string">'vlist'</span>)[vn]</span><br><span class="line">                <span class="comment"># print(video_data['title'],'--',video_data['play'],'--',video_data['comment'],'--',video_data['bvid'])</span></span><br><span class="line">                <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                    url = self.api_video+video_data[<span class="string">'bvid'</span>],</span><br><span class="line">                    callback=self.parse_video</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_video</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        data_v = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data_v'</span> != <span class="literal">None</span>:</span><br><span class="line">            cid = str(data_v.get(<span class="string">'data'</span>)[<span class="string">'cid'</span>])</span><br><span class="line">            <span class="comment"># print(cid)</span></span><br><span class="line">            url = self.api_comment</span><br><span class="line">            <span class="comment"># print(type(url))</span></span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url % (cid) ,</span><br><span class="line">                callback=self.parse_comment</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_comment</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        id = response.xpath(<span class="string">'//chatid/text()'</span>).extract()</span><br><span class="line">        print(id[<span class="number">0</span>])</span><br><span class="line">        url = self.api_comment%(id[<span class="number">0</span>])</span><br><span class="line">        all_comment = requests.get(url)</span><br><span class="line">        all_comment.encoding=<span class="string">'utf8'</span></span><br><span class="line">        soup = BeautifulSoup(all_comment.text,<span class="string">'lxml'</span>)</span><br><span class="line">        res = soup.find_all(<span class="string">'d'</span>)</span><br><span class="line">        comments = [comment.text <span class="keyword">for</span> comment <span class="keyword">in</span> res]</span><br><span class="line">        print(comments)</span><br><span class="line">        print(len(comments))</span><br><span class="line"></span><br><span class="line">        comments_clean = [comment.replace(<span class="string">' '</span>, <span class="string">''</span>) <span class="keyword">for</span> comment <span class="keyword">in</span> comments]  <span class="comment"># 去掉空格</span></span><br><span class="line"></span><br><span class="line">        set(comments_clean)  <span class="comment"># 看一下都有啥类似的没用的词语</span></span><br><span class="line"></span><br><span class="line">        useless_words = [<span class="string">'//TEST'</span>,</span><br><span class="line">                         <span class="string">'/TESR'</span>,</span><br><span class="line">                         <span class="string">'/TEST'</span>,</span><br><span class="line">                         <span class="string">'/TEST/'</span>,</span><br><span class="line">                         <span class="string">'/TEXT'</span>,</span><br><span class="line">                         <span class="string">'/TEXTSUPREME'</span>,</span><br><span class="line">                         <span class="string">'/TSET'</span>,</span><br><span class="line">                         <span class="string">'/Y'</span>,</span><br><span class="line">                         <span class="string">'\\TEST'</span>]</span><br><span class="line"></span><br><span class="line">        comments_clean = [element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean <span class="keyword">if</span> element <span class="keyword">not</span> <span class="keyword">in</span> useless_words]  <span class="comment"># 去掉不想要的字符</span></span><br><span class="line">        cipin = pd.DataFrame(&#123;<span class="string">'danmu'</span>: comments_clean&#125;)</span><br><span class="line">        cipin[<span class="string">'danmu'</span>].value_counts()  <span class="comment"># 查看词频</span></span><br><span class="line">        danmustr = <span class="string">''</span>.join(element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean)  <span class="comment"># 把所有的弹幕都合并成一个字符串</span></span><br><span class="line">        words = list(jieba.cut(danmustr))  <span class="comment"># 分词</span></span><br><span class="line">        fnl_words = [word <span class="keyword">for</span> word <span class="keyword">in</span> words <span class="keyword">if</span> len(word) &gt; <span class="number">1</span>]  <span class="comment"># 去掉单字</span></span><br><span class="line">        wc = wordcloud.WordCloud(width=<span class="number">1000</span>, font_path=<span class="string">'STHeiti Medium.ttc'</span>, height=<span class="number">800</span>)  <span class="comment"># 设定词云画的大小字体，一定要设定字体，否则中文显示不出来</span></span><br><span class="line">        wc.generate(<span class="string">' '</span>.join(fnl_words))</span><br><span class="line"></span><br><span class="line">        plt.imshow(wc)  <span class="comment"># 看图</span></span><br><span class="line">        wc.to_file(<span class="string">r"./%s.png"</span>%(id[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>scrapy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>他是诗人</title>
+    <url>/2020/05/08/doc/</url>
+    <content><![CDATA[<p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
+<p>让岁月抚平忧伤<br>年华换成怅惘<br>星空月夜伴随凄凉<br>独自扼杀希望</p>
+<p>谁说诗人习惯独自流浪<br>只不过从未找到过家的方向<br>他在尝试抚平心灵创伤<br>用诗来抒发梦想</p>
+<p>他也曾尝过爱情<br>决绝 苦涩 需要勇气<br>他不许任何人亵渎这经历<br>就像他人亵渎自己</p>
+<p>他早迷失在混乱世界<br>等待爱人将他救起<br>他却说我是诗人<br>悲伤才是对的记忆</p>
+<p>他在等人帮他抹去泪水<br>等人填补空洞心伤<br>诗人强撑着精神病体<br>说着自由 理应继续彷徨</p>
+<p>现在的我向往自由与孤独<br>现在的我甘愿流浪<br>诗人不停地大声吟唱<br>天空的雨滴浸透出点点荒凉</p>
+<p>诗人的梦里有他想要的一切<br>却不知从何记起<br>他在夜里悲伤的哭泣<br>谁又见过他的无助模样</p>
+<p>他还在用低沉的声音吟唱<br>唱出对世界无尽的失望<br>海阔天空和万丈悬崖其实一样<br>都会抛下久违的梦想</p>
+<p>诗人披着月光<br>低吟清唱着他的忧伤<br>他说坚强一点<br>就像月光不惧朝阳</p>
+<p>他在慢慢游荡<br>渐渐走向陌生的远方<br>他也不想背井离乡<br>只因这里过分凄凉</p>
+<p>其实诗人早就死亡<br>只剩他的躯体被迫流浪<br>他的灵魂灰飞烟灭<br>却无人惋惜他的坚强</p>
+<p>你是否曾望见过诗人的孤寂背影<br>就像月光才是最柔美的光芒<br>人们不知是否该去祭奠<br>来安抚孤魂的游荡带来的离殇</p>
+<p>固执的他 说 我是诗人<br>怎敢以流泪缓解悲伤<br>他说我喜欢孤身一人 只身迎接<br>坎坷路途上的天堂</p>
+]]></content>
+      <categories>
+        <category>思考与遐想</category>
+      </categories>
+      <tags>
+        <tag>采集忘却</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java_First</title>
+    <url>/2020/06/27/java/</url>
+    <content><![CDATA[<h2 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>面向对象，简单易学</li>
+<li>跨平台性，一次编译处处运行【JVM】</li>
+<li>适合分布式项目：大型的互联网分布式项目</li>
+</ul>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><ul>
+<li>JavaSE 标准版 - 主要</li>
+<li>JavaME 微型版 - 移动端，基本淘汰</li>
+<li>JavaEE 企业版 - 企业级应用技术开发</li>
+</ul>
+<h2 id="Java运行环境"><a href="#Java运行环境" class="headerlink" title="Java运行环境"></a>Java运行环境</h2><p>JDK：java开发工具</p>
+<ul>
+<li>JRE<ul>
+<li>JVM： 在内存里创建一个java虚拟机，java程序载入jvm后运行</li>
+<li>java核心类库： java在运行的过程中需要依赖一些库文件 </li>
+</ul>
+</li>
+<li>Java开发工具包</li>
+</ul>
+<blockquote>
+<p>可以直接安装JDK</p>
+</blockquote>
+<h3 id="程序实例"><a href="#程序实例" class="headerlink" title="程序实例"></a>程序实例</h3><p>文件名：helloworld.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">helloworld</span></span>&#123;</span><br><span class="line">	<span class="comment">// 程序的执行入口</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; </span><br><span class="line">		System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在终端中<br><code>$ javac helloworld.java</code><br>生成.class文件，如果没有出现检查java文件是否为空<br>class文件出现后<br><code>$ java helloworld</code></p>
+<h3 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h3><p>文件名字和类名要一致<br>类名的首字母要大写<br>在类里写方法</p>
+<h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><p>创建java文件（helloworld.java）<br>    javac<br>自解码文件（helloworld.class）<br>    java<br>jvm运行</p>
+<h2 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h2><ul>
+<li>基本数据类型（8种）<br>  ·· 数值类型<pre><code>- 整数类型
+    · 字节类型 byte
+    · 短整型 short
+    · 整型 int
+    · 长整型 long
+- 小数类型
+    · 单精度 float
+    · 双精度 double</code></pre>  ·· 布尔类型 boolean<br>  ·· 字符类型 char</li>
+<li>引用数据类型</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h4 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h4><ol>
+<li>所有的type、short、char值运算的时候都会提升成int类型（char-&gt;ascii)</li>
+<li>int,long,float,double 自身来计算的时候，类型超出范围不会自动转换，如果超出范围了就会出现精度的损失</li>
+<li>int + float = float；double <blockquote>
+<p>Java在变量赋值的时候，其中float、double、long数据类型变量，需要在赋值直接量后面分别添加f或F、d或D、l或L尾缀来说明。<br>其中，long类型最好以大写L来添加尾缀，因为小写l容易和数字1混淆。<br><a href="https://blog.csdn.net/FX677588/article/details/52663805" target="_blank" rel="noopener">https://blog.csdn.net/FX677588/article/details/52663805</a></p>
+</blockquote>
+</li>
+</ol>
+<h4 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h4><ol>
+<li>小数转整数，会把小数点后去掉(float-&gt;int)</li>
+<li>char 与 int相互转换都是与Ascii相关的</li>
+</ol>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><p>与 &amp; (如果使用&amp;&amp;，则前面的能决定计算结果的时候后一个就不继续进行计算)<br>或 |<br>非 !=</p>
+<h3 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h3>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Minist数据集</title>
     <url>/2020/06/19/Minist%E6%95%B0%E6%8D%AE%E9%9B%86/</url>
     <content><![CDATA[<h1 id="Minist数据集"><a href="#Minist数据集" class="headerlink" title="Minist数据集"></a>Minist数据集</h1><p>sorcket</p>
@@ -193,72 +301,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>1</title>
-    <url>/2020/05/15/1/</url>
-    <content><![CDATA[<p>我想给博客上加上一点自己的东西，比如电影的介绍和推荐，</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Scrapy-Bilibili</title>
-    <url>/2020/06/26/bilibili-scrapy/</url>
-    <content><![CDATA[<p>Scrapy 项目<br>Bilibili某一up主的视频名称、播放量、喜欢数<br>以及对他视频弹幕的爬取与词云制作</p>
-<a id="more"></a>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> jieba</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DaoyuesheSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'daoyueshe'</span></span><br><span class="line">    allowed_domains = [<span class="string">'bilibili.com'</span>]</span><br><span class="line">    <span class="comment"># start_urls = ['https://space.bilibili.com/99157282/video']</span></span><br><span class="line">    api_all = <span class="string">'https://api.bilibili.com/x/space/upstat?mid=99157282&amp;jsonp=jsonp'</span></span><br><span class="line">    api_video = <span class="string">'https://api.bilibili.com/x/web-interface/view?bvid='</span></span><br><span class="line">    api_comment = <span class="string">'https://comment.bilibili.com/%s.xml'</span></span><br><span class="line">    start_urls = [api_all]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">            url = <span class="string">'https://api.bilibili.com/x/space/arc/search?mid=99157282&amp;ps=30&amp;tid=0&amp;pn=%s&amp;keyword=&amp;order=pubdate&amp;jsonp=jsonp'</span> % (page)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url,</span><br><span class="line">                callback = self.parse1</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse1</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        data = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data'</span> != <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">for</span> vn <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">31</span>):</span><br><span class="line">                video_data = data.get(<span class="string">'data'</span>).get(<span class="string">'list'</span>).get(<span class="string">'vlist'</span>)[vn]</span><br><span class="line">                <span class="comment"># print(video_data['title'],'--',video_data['play'],'--',video_data['comment'],'--',video_data['bvid'])</span></span><br><span class="line">                <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                    url = self.api_video+video_data[<span class="string">'bvid'</span>],</span><br><span class="line">                    callback=self.parse_video</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_video</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        data_v = json.loads(response.text)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'data_v'</span> != <span class="literal">None</span>:</span><br><span class="line">            cid = str(data_v.get(<span class="string">'data'</span>)[<span class="string">'cid'</span>])</span><br><span class="line">            <span class="comment"># print(cid)</span></span><br><span class="line">            url = self.api_comment</span><br><span class="line">            <span class="comment"># print(type(url))</span></span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(</span><br><span class="line">                url = url % (cid) ,</span><br><span class="line">                callback=self.parse_comment</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_comment</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        id = response.xpath(<span class="string">'//chatid/text()'</span>).extract()</span><br><span class="line">        print(id[<span class="number">0</span>])</span><br><span class="line">        url = self.api_comment%(id[<span class="number">0</span>])</span><br><span class="line">        all_comment = requests.get(url)</span><br><span class="line">        all_comment.encoding=<span class="string">'utf8'</span></span><br><span class="line">        soup = BeautifulSoup(all_comment.text,<span class="string">'lxml'</span>)</span><br><span class="line">        res = soup.find_all(<span class="string">'d'</span>)</span><br><span class="line">        comments = [comment.text <span class="keyword">for</span> comment <span class="keyword">in</span> res]</span><br><span class="line">        print(comments)</span><br><span class="line">        print(len(comments))</span><br><span class="line"></span><br><span class="line">        comments_clean = [comment.replace(<span class="string">' '</span>, <span class="string">''</span>) <span class="keyword">for</span> comment <span class="keyword">in</span> comments]  <span class="comment"># 去掉空格</span></span><br><span class="line"></span><br><span class="line">        set(comments_clean)  <span class="comment"># 看一下都有啥类似的没用的词语</span></span><br><span class="line"></span><br><span class="line">        useless_words = [<span class="string">'//TEST'</span>,</span><br><span class="line">                         <span class="string">'/TESR'</span>,</span><br><span class="line">                         <span class="string">'/TEST'</span>,</span><br><span class="line">                         <span class="string">'/TEST/'</span>,</span><br><span class="line">                         <span class="string">'/TEXT'</span>,</span><br><span class="line">                         <span class="string">'/TEXTSUPREME'</span>,</span><br><span class="line">                         <span class="string">'/TSET'</span>,</span><br><span class="line">                         <span class="string">'/Y'</span>,</span><br><span class="line">                         <span class="string">'\\TEST'</span>]</span><br><span class="line"></span><br><span class="line">        comments_clean = [element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean <span class="keyword">if</span> element <span class="keyword">not</span> <span class="keyword">in</span> useless_words]  <span class="comment"># 去掉不想要的字符</span></span><br><span class="line">        cipin = pd.DataFrame(&#123;<span class="string">'danmu'</span>: comments_clean&#125;)</span><br><span class="line">        cipin[<span class="string">'danmu'</span>].value_counts()  <span class="comment"># 查看词频</span></span><br><span class="line">        danmustr = <span class="string">''</span>.join(element <span class="keyword">for</span> element <span class="keyword">in</span> comments_clean)  <span class="comment"># 把所有的弹幕都合并成一个字符串</span></span><br><span class="line">        words = list(jieba.cut(danmustr))  <span class="comment"># 分词</span></span><br><span class="line">        fnl_words = [word <span class="keyword">for</span> word <span class="keyword">in</span> words <span class="keyword">if</span> len(word) &gt; <span class="number">1</span>]  <span class="comment"># 去掉单字</span></span><br><span class="line">        wc = wordcloud.WordCloud(width=<span class="number">1000</span>, font_path=<span class="string">'STHeiti Medium.ttc'</span>, height=<span class="number">800</span>)  <span class="comment"># 设定词云画的大小字体，一定要设定字体，否则中文显示不出来</span></span><br><span class="line">        wc.generate(<span class="string">' '</span>.join(fnl_words))</span><br><span class="line"></span><br><span class="line">        plt.imshow(wc)  <span class="comment"># 看图</span></span><br><span class="line">        wc.to_file(<span class="string">r"./%s.png"</span>%(id[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Diary-05-2020</title>
-    <url>/2020/05/10/diary/</url>
-    <content><![CDATA[<p>这里曾经，依旧是我的五月<br>岁月漫长，但是值得等待<br> <a id="more"></a></p>
-<h2 id="2020-05"><a href="#2020-05" class="headerlink" title="2020-05"></a>2020-05</h2><p>自己剖析自己是一件挺可怕的事情，因为有的时候一旦发现自己做那件事的原因竟然是因为这样的一个理由，如果这样的原因是一个不愿被自己接受的结果，那面对自己都会有一点不情愿<br>对于爬虫这个东西真的是麻烦，做个项目竟然还要自己购买代理</p>
-<p>今天不知道是第几次试图创建图片流失败了<br>我基本上已经要放弃尝试了，现在前端的东西一点也不会，完全就是按照网上的教程来进行自己的操作<br>然后嘞，我发现现在这样子的一个环境还是很适合自己的<br>因为很有感觉<br>然后发现自己创建更新内容和前端，访问量轻轻松松上百</p>
-<p>Emmm。。。</p>
-<p>想回国的时候去北京吃一堆想吃的东西</p>
-<p>今天先这样子吧</p>
-<p>喜欢下雨天。</p>
-<p>苏格兰威士忌<br>威士忌的味道是我很喜欢的，没有刺激性的气味，淡淡的香气给我一种很安稳的感觉，轻轻的闻一下是一种甜甜的味道。和舌尖接触可以让舌尖发麻，但是没有其他的感觉。现在买的第二瓶还剩一个根，等我晚上再把其他的感觉补上。</p>
-<p>朗姆酒<br>闻起来是一种比威士忌更强烈的香气，甜味对我来说有些太浓了</p>
-]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>他是诗人</title>
-    <url>/2020/05/08/doc/</url>
-    <content><![CDATA[<p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
-<p>让岁月抚平忧伤<br>年华换成怅惘<br>星空月夜伴随凄凉<br>独自扼杀希望</p>
-<p>谁说诗人习惯独自流浪<br>只不过从未找到过家的方向<br>他在尝试抚平心灵创伤<br>用诗来抒发梦想</p>
-<p>他也曾尝过爱情<br>决绝 苦涩 需要勇气<br>他不许任何人亵渎这经历<br>就像他人亵渎自己</p>
-<p>他早迷失在混乱世界<br>等待爱人将他救起<br>他却说我是诗人<br>悲伤才是对的记忆</p>
-<p>他在等人帮他抹去泪水<br>等人填补空洞心伤<br>诗人强撑着精神病体<br>说着自由 理应继续彷徨</p>
-<p>现在的我向往自由与孤独<br>现在的我甘愿流浪<br>诗人不停地大声吟唱<br>天空的雨滴浸透出点点荒凉</p>
-<p>诗人的梦里有他想要的一切<br>却不知从何记起<br>他在夜里悲伤的哭泣<br>谁又见过他的无助模样</p>
-<p>他还在用低沉的声音吟唱<br>唱出对世界无尽的失望<br>海阔天空和万丈悬崖其实一样<br>都会抛下久违的梦想</p>
-<p>诗人披着月光<br>低吟清唱着他的忧伤<br>他说坚强一点<br>就像月光不惧朝阳</p>
-<p>他在慢慢游荡<br>渐渐走向陌生的远方<br>他也不想背井离乡<br>只因这里过分凄凉</p>
-<p>其实诗人早就死亡<br>只剩他的躯体被迫流浪<br>他的灵魂灰飞烟灭<br>却无人惋惜他的坚强</p>
-<p>你是否曾望见过诗人的孤寂背影<br>就像月光才是最柔美的光芒<br>人们不知是否该去祭奠<br>来安抚孤魂的游荡带来的离殇</p>
-<p>固执的他 说 我是诗人<br>怎敢以流泪缓解悲伤<br>他说我喜欢孤身一人 只身迎接<br>坎坷路途上的天堂</p>
-]]></content>
-      <categories>
-        <category>思考与遐想</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Scrapy原理及个人项目</title>
     <url>/2020/06/13/douban/</url>
     <content><![CDATA[<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>scrapy engine 核心</p>
@@ -294,59 +336,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       <tags>
         <tag>python</tag>
         <tag>scrapy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-1</title>
-    <url>/2020/06/27/java/</url>
-    <content><![CDATA[<h2 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>面向对象，简单易学</li>
-<li>跨平台性，一次编译处处运行【JVM】</li>
-<li>适合分布式项目：大型的互联网分布式项目</li>
-</ul>
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><ul>
-<li>JavaSE 标准版 - 主要</li>
-<li>JavaME 微型版 - 移动端，基本淘汰</li>
-<li>JavaEE 企业版 - 企业级应用技术开发</li>
-</ul>
-<h2 id="Java运行环境"><a href="#Java运行环境" class="headerlink" title="Java运行环境"></a>Java运行环境</h2><p>JDK：java开发工具</p>
-<ul>
-<li>JRE<ul>
-<li>JVM： 在内存里创建一个java虚拟机，java程序载入jvm后运行</li>
-<li>java核心类库： java在运行的过程中需要依赖一些库文件 </li>
-</ul>
-</li>
-<li>Java开发工具包</li>
-</ul>
-<blockquote>
-<p>可以直接安装JDK</p>
-</blockquote>
-<h3 id="程序实例"><a href="#程序实例" class="headerlink" title="程序实例"></a>程序实例</h3><p>文件名：helloworld.java</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">helloworld</span></span>&#123;</span><br><span class="line">	<span class="comment">// 程序的执行入口</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; </span><br><span class="line">		System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在终端中<br><code>$ javac helloworld.java</code><br>生成.class文件，如果没有出现检查java文件是否为空<br>class文件出现后<br><code>$ java helloworld</code></p>
-<h3 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h3><p>文件名字和类名要一致<br>类名的首字母要大写<br>在类里写方法</p>
-<h2 id="Java的运行机制"><a href="#Java的运行机制" class="headerlink" title="Java的运行机制"></a>Java的运行机制</h2><p>创建java文件（helloworld.java）<br>    javac<br>自解码文件（helloworld.class）<br>    java<br>jvm运行</p>
-<h2 id="java的数据类型"><a href="#java的数据类型" class="headerlink" title="java的数据类型"></a>java的数据类型</h2><ul>
-<li><p>基本数据类型（8种）</p>
-<ul>
-<li>数值类型<ul>
-<li>整数类型<br>  · 字节类型 byte<br>  · 短整型 short<br>  · 整型 int<br>  · 长整型 long</li>
-<li>小数类型<br>  · 单精度 float<br>  · 双精度 double</li>
-</ul>
-</li>
-<li>布尔类型 boolean</li>
-<li>字符类型 char</li>
-</ul>
-</li>
-<li><p>引用数据类型</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -402,6 +391,95 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
         <tag>python</tag>
         <tag>数据分析与数据挖掘</tag>
         <tag>Jupyter Notebook</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Scrapy-Redis分布式爬虫</title>
+    <url>/2020/05/14/scrapy-redis/</url>
+    <content><![CDATA[<p>修改scrapy-爬虫里的文件，使项目成为scrapy-redis爬虫项目<br>【redis】-【scrapy】-【爬虫】-【pyhton】</p>
+<a id="more"></a>
+
+<h1 id="Redis基础介绍"><a href="#Redis基础介绍" class="headerlink" title="Redis基础介绍"></a>Redis基础介绍</h1><h2 id="Redis-的数据库结构"><a href="#Redis-的数据库结构" class="headerlink" title="Redis 的数据库结构"></a>Redis 的数据库结构</h2><ol>
+<li>Redis中有16个数据库db(0) ~ db(15)<br>开启Redis后默认使用db(0)<br>非关系型数据库，所有数据都堆积在一起</li>
+<li>切换数据库：<br>select 【index】<br>例如：切换到db1 </li>
+</ol>
+<blockquote>
+<p>select 1<br>3. 终端里<br>$ redis-cli<br>显示端口号：‘27.0.0.1:6379&gt; ’<br>select 1<br>select 0</p>
+</blockquote>
+<h2 id="Redis的数据类型"><a href="#Redis的数据类型" class="headerlink" title="Redis的数据类型"></a>Redis的数据类型</h2><p>后续上传文件</p>
+<h2 id="pycharm-配置"><a href="#pycharm-配置" class="headerlink" title="pycharm 配置"></a>pycharm 配置</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line">redis_conn = redis.StrictRedis(</span><br><span class="line">    host = <span class="string">'localhost'</span>,</span><br><span class="line">    port = <span class="number">6379</span>,</span><br><span class="line">    password=<span class="string">''</span>,</span><br><span class="line">    decode_responses = <span class="literal">True</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="运行redis命令"><a href="#运行redis命令" class="headerlink" title="运行redis命令"></a>运行redis命令</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">ret = redis_conn.execute_command(<span class="string">'keys *'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(type(ret))</span><br><span class="line">redis_conn.execute_command(<span class="string">'set k1 v1'</span>)</span><br><span class="line">print(ret)</span><br><span class="line"><span class="comment">######################################</span></span><br><span class="line">[<span class="string">'k3'</span>, <span class="string">'k1'</span>, <span class="string">'k5'</span>, <span class="string">'k2'</span>]</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt;</span></span><br><span class="line">['k3', 'k1', 'k5', 'k2']</span><br></pre></td></tr></table></figure>
+
+<h1 id="Scrapy-redis"><a href="#Scrapy-redis" class="headerlink" title="Scrapy-redis"></a>Scrapy-redis</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>pip install scrapy-redis</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>多个爬虫项目爬取一个网站<br>多台计算机配合爬取一个网站</p>
+<p>scrapy-redis 组建实现分布式爬虫<br>不是一种框架，是一个拓展使scrapy可以完成分布式爬虫</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在scrapy项目中的settings加入下列代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动Scrapy-Redis去重过滤器，取消Scrapy的去重功能</span></span><br><span class="line">DUPEFILTER_CLASS = <span class="string">"scrapy_redis.dupefilter.RFPDupeFilter"</span></span><br><span class="line"><span class="comment"># 启用Scrapy-Redis的调度器，取消Scrapy的调度器</span></span><br><span class="line">SCHEDULER = <span class="string">"scrapy_redis.scheduler.Scheduler"</span></span><br><span class="line"><span class="comment"># Scrapy-Redis断点续爬</span></span><br><span class="line">SCHEDULER_PERSIST = <span class="literal">True</span></span><br><span class="line"><span class="comment"># 配置Redis数据库的连接</span></span><br><span class="line">REDIS_URL = <span class="string">'redis://127.0.0.1:6379'</span></span><br></pre></td></tr></table></figure>
+<p>在这行代码中，需要不断访问代理IP</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">request.meta[<span class="string">'proxy'</span>] = <span class="string">'http://'</span> + ur.urlopen(<span class="string">'http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=3'</span>).read().decode(<span class="string">'utf-8'</span>).strip() <span class="comment"># 设置代理</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="proxypool-py"><a href="#proxypool-py" class="headerlink" title="proxypool.py"></a>proxypool.py</h2><p>在项目文件夹（非spider）下建立proxypool.py</p>
+<ol>
+<li>倒入模块<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"><span class="keyword">import</span> urllib.request <span class="keyword">as</span> ur</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure></li>
+<li>定义Proxypool类并定义两个方法<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyPool</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.redis_conn = redis.StrictRedis(</span><br><span class="line">            host=<span class="string">'localhost'</span>,</span><br><span class="line">            port = <span class="number">6379</span>,</span><br><span class="line">            decode_responses=<span class="literal">True</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">    	proxy_new = ur.urlopen(<span class="string">'http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=4'</span>).read().decode(<span class="string">'utf-8'</span>).strip().split(<span class="string">' '</span>)</span><br><span class="line">    	print(proxy)</span><br><span class="line">        <span class="comment"># while True:# 不断循环获取链接</span></span><br><span class="line">        <span class="comment">#     proxy_new = ur.urlopen('http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=4').read().decode('utf-8').strip().split(' ')# strip：去掉首位空格，split：用空格隔开</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">     	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    ProxyPool().set_proxy()</span><br></pre></td></tr></table></figure>
+<p>此时运行main，会获取到两个被打印的代理IP</p>
+<h2 id="更换代理IP地址-得到"><a href="#更换代理IP地址-得到" class="headerlink" title="更换代理IP地址(得到)"></a>更换代理IP地址(得到)</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">	proxy_odd = <span class="literal">None</span> <span class="comment"># 旧的代理IP地址</span></span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">	    proxy_new = ur.urlopen(<span class="string">'代理IP地址'</span>).read().decode(<span class="string">'utf-8'</span>).strip().split(<span class="string">' '</span>) <span class="comment"># 获取的新的代理IP地址</span></span><br><span class="line">	    <span class="keyword">if</span> proxy_new != proxy_odd: <span class="comment"># 如果心就的代理IP不同</span></span><br><span class="line">	    	proxy_odd = proxy_new <span class="comment"># 将新的代理IP赋值给旧的代理IP</span></span><br><span class="line">	        self.redis_conn.delete(<span class="string">'proxy'</span>) <span class="comment"># 删除链接对象里‘proxy’这个键的值</span></span><br><span class="line">	        self.redis_conn.sadd(<span class="string">'proxy'</span>,*proxy_new) <span class="comment"># 向‘proxy’这个键中添加两个代理IP地址（刚刚获取到的），这里相当于执行了两次添加</span></span><br><span class="line">	        time.sleep(<span class="number">2</span>) <span class="comment"># 睡眠</span></span><br><span class="line">	    <span class="keyword">else</span>:</span><br><span class="line">	        time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="设置代理IP地址"><a href="#设置代理IP地址" class="headerlink" title="设置代理IP地址"></a>设置代理IP地址</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyPool</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">	    ret = self.redis_conn.scandmember(<span class="string">'proxy'</span>,<span class="number">1</span>) <span class="comment">#得到代理IP</span></span><br><span class="line">	    print(ret) <span class="comment"># </span></span><br><span class="line">	    print(type(ret)) <span class="comment"># list对象，列表</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># ProxyPool().set_proxy()</span></span><br><span class="line">    ProxyPool().get_proxy()</span><br></pre></td></tr></table></figure>
+<p>在这种情况下可能出现的问题是，在set-proxy运行到’delete‘时，得到的代理IP的值为空，因此要加入一个判断，在代理IP的值为空的情况下需要进行的操作</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyPool</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">        proxy_s = self.redis_conn.scandmember(<span class="string">'proxy'</span>,<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># print(ret)</span></span><br><span class="line">        <span class="comment"># print(type(ret))</span></span><br><span class="line">        <span class="keyword">if</span> proxy_s: <span class="comment"># 如果proxy—s的值不为空</span></span><br><span class="line">            <span class="keyword">return</span> proxy_s[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># 如果为空</span></span><br><span class="line">            time.sleep(<span class="number">0.1</span>) <span class="comment"># 延时0.1s</span></span><br><span class="line">            <span class="keyword">return</span> self.get_proxy() <span class="comment"># 调用自己</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># ProxyPool().set_proxy()</span></span><br><span class="line">    ProxyPool().get_proxy()</span><br></pre></td></tr></table></figure>
+<p>之后开启main方法</p>
+<h2 id="修改middlewares"><a href="#修改middlewares" class="headerlink" title="修改middlewares"></a>修改middlewares</h2><p>倒入包</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> zhaobiao.proxypool <span class="keyword">import</span> ProxyPool</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhaobiaoDownloaderMiddleware</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> <span class="comment"># 实例化init 对象</span></span><br><span class="line">        self.proxyPool = ProxyPool() </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(self, request, spider)</span>:</span></span><br><span class="line">        <span class="comment"># request.meta['proxy'] = 'http://' + ur.urlopen('http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=3').read().decode('utf-8').strip() # 设置代理</span></span><br><span class="line">        request.meta[<span class="string">'proxy'</span>] = <span class="string">'http://'</span> + self.proxyPool.get_proxy()</span><br><span class="line">        print(request.meta[<span class="string">'proxy'</span>])</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>之后就可以既在pycharm中开启项目，也可以在terminal中开启项目</p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>redis</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Diary-05-2020</title>
+    <url>/2020/05/10/diary/</url>
+    <content><![CDATA[<p>这里曾经，依旧是我的五月<br>岁月漫长，但是值得等待<br> <a id="more"></a></p>
+<h2 id="2020-05"><a href="#2020-05" class="headerlink" title="2020-05"></a>2020-05</h2><p>自己剖析自己是一件挺可怕的事情，因为有的时候一旦发现自己做那件事的原因竟然是因为这样的一个理由，如果这样的原因是一个不愿被自己接受的结果，那面对自己都会有一点不情愿<br>对于爬虫这个东西真的是麻烦，做个项目竟然还要自己购买代理</p>
+<p>今天不知道是第几次试图创建图片流失败了<br>我基本上已经要放弃尝试了，现在前端的东西一点也不会，完全就是按照网上的教程来进行自己的操作<br>然后嘞，我发现现在这样子的一个环境还是很适合自己的<br>因为很有感觉<br>然后发现自己创建更新内容和前端，访问量轻轻松松上百</p>
+<p>Emmm。。。</p>
+<p>想回国的时候去北京吃一堆想吃的东西</p>
+<p>今天先这样子吧</p>
+<p>喜欢下雨天。</p>
+<p>苏格兰威士忌<br>威士忌的味道是我很喜欢的，没有刺激性的气味，淡淡的香气给我一种很安稳的感觉，轻轻的闻一下是一种甜甜的味道。和舌尖接触可以让舌尖发麻，但是没有其他的感觉。现在买的第二瓶还剩一个根，等我晚上再把其他的感觉补上。</p>
+<p>朗姆酒<br>闻起来是一种比威士忌更强烈的香气，甜味对我来说有些太浓了</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>采集忘却</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客更新日志</title>
+    <url>/2020/06/26/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>用于更新博客格式/小改动的日志</p>
+<a id="more"></a>
+
+<p>6-27<br>更新了网站logo</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -464,60 +542,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>Scrapy-Redis分布式爬虫</title>
-    <url>/2020/05/14/scrapy-redis/</url>
-    <content><![CDATA[<p>修改scrapy-爬虫里的文件，使项目成为scrapy-redis爬虫项目<br>【redis】-【scrapy】-【爬虫】-【pyhton】</p>
-<a id="more"></a>
-
-<h1 id="Redis基础介绍"><a href="#Redis基础介绍" class="headerlink" title="Redis基础介绍"></a>Redis基础介绍</h1><h2 id="Redis-的数据库结构"><a href="#Redis-的数据库结构" class="headerlink" title="Redis 的数据库结构"></a>Redis 的数据库结构</h2><ol>
-<li>Redis中有16个数据库db(0) ~ db(15)<br>开启Redis后默认使用db(0)<br>非关系型数据库，所有数据都堆积在一起</li>
-<li>切换数据库：<br>select 【index】<br>例如：切换到db1 </li>
-</ol>
-<blockquote>
-<p>select 1<br>3. 终端里<br>$ redis-cli<br>显示端口号：‘27.0.0.1:6379&gt; ’<br>select 1<br>select 0</p>
-</blockquote>
-<h2 id="Redis的数据类型"><a href="#Redis的数据类型" class="headerlink" title="Redis的数据类型"></a>Redis的数据类型</h2><p>后续上传文件</p>
-<h2 id="pycharm-配置"><a href="#pycharm-配置" class="headerlink" title="pycharm 配置"></a>pycharm 配置</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line">redis_conn = redis.StrictRedis(</span><br><span class="line">    host = <span class="string">'localhost'</span>,</span><br><span class="line">    port = <span class="number">6379</span>,</span><br><span class="line">    password=<span class="string">''</span>,</span><br><span class="line">    decode_responses = <span class="literal">True</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h2 id="运行redis命令"><a href="#运行redis命令" class="headerlink" title="运行redis命令"></a>运行redis命令</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">ret = redis_conn.execute_command(<span class="string">'keys *'</span>)</span><br><span class="line">print(ret)</span><br><span class="line">print(type(ret))</span><br><span class="line">redis_conn.execute_command(<span class="string">'set k1 v1'</span>)</span><br><span class="line">print(ret)</span><br><span class="line"><span class="comment">######################################</span></span><br><span class="line">[<span class="string">'k3'</span>, <span class="string">'k1'</span>, <span class="string">'k5'</span>, <span class="string">'k2'</span>]</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt;</span></span><br><span class="line">['k3', 'k1', 'k5', 'k2']</span><br></pre></td></tr></table></figure>
-
-<h1 id="Scrapy-redis"><a href="#Scrapy-redis" class="headerlink" title="Scrapy-redis"></a>Scrapy-redis</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>pip install scrapy-redis</p>
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>多个爬虫项目爬取一个网站<br>多台计算机配合爬取一个网站</p>
-<p>scrapy-redis 组建实现分布式爬虫<br>不是一种框架，是一个拓展使scrapy可以完成分布式爬虫</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在scrapy项目中的settings加入下列代码</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动Scrapy-Redis去重过滤器，取消Scrapy的去重功能</span></span><br><span class="line">DUPEFILTER_CLASS = <span class="string">"scrapy_redis.dupefilter.RFPDupeFilter"</span></span><br><span class="line"><span class="comment"># 启用Scrapy-Redis的调度器，取消Scrapy的调度器</span></span><br><span class="line">SCHEDULER = <span class="string">"scrapy_redis.scheduler.Scheduler"</span></span><br><span class="line"><span class="comment"># Scrapy-Redis断点续爬</span></span><br><span class="line">SCHEDULER_PERSIST = <span class="literal">True</span></span><br><span class="line"><span class="comment"># 配置Redis数据库的连接</span></span><br><span class="line">REDIS_URL = <span class="string">'redis://127.0.0.1:6379'</span></span><br></pre></td></tr></table></figure>
-<p>在这行代码中，需要不断访问代理IP</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">request.meta[<span class="string">'proxy'</span>] = <span class="string">'http://'</span> + ur.urlopen(<span class="string">'http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=3'</span>).read().decode(<span class="string">'utf-8'</span>).strip() <span class="comment"># 设置代理</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="proxypool-py"><a href="#proxypool-py" class="headerlink" title="proxypool.py"></a>proxypool.py</h2><p>在项目文件夹（非spider）下建立proxypool.py</p>
-<ol>
-<li>倒入模块<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"><span class="keyword">import</span> urllib.request <span class="keyword">as</span> ur</span><br><span class="line"><span class="keyword">import</span> time</span><br></pre></td></tr></table></figure></li>
-<li>定义Proxypool类并定义两个方法<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyPool</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.redis_conn = redis.StrictRedis(</span><br><span class="line">            host=<span class="string">'localhost'</span>,</span><br><span class="line">            port = <span class="number">6379</span>,</span><br><span class="line">            decode_responses=<span class="literal">True</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">    	proxy_new = ur.urlopen(<span class="string">'http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=4'</span>).read().decode(<span class="string">'utf-8'</span>).strip().split(<span class="string">' '</span>)</span><br><span class="line">    	print(proxy)</span><br><span class="line">        <span class="comment"># while True:# 不断循环获取链接</span></span><br><span class="line">        <span class="comment">#     proxy_new = ur.urlopen('http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=4').read().decode('utf-8').strip().split(' ')# strip：去掉首位空格，split：用空格隔开</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">     	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    ProxyPool().set_proxy()</span><br></pre></td></tr></table></figure>
-<p>此时运行main，会获取到两个被打印的代理IP</p>
-<h2 id="更换代理IP地址-得到"><a href="#更换代理IP地址-得到" class="headerlink" title="更换代理IP地址(得到)"></a>更换代理IP地址(得到)</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">	proxy_odd = <span class="literal">None</span> <span class="comment"># 旧的代理IP地址</span></span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">	    proxy_new = ur.urlopen(<span class="string">'代理IP地址'</span>).read().decode(<span class="string">'utf-8'</span>).strip().split(<span class="string">' '</span>) <span class="comment"># 获取的新的代理IP地址</span></span><br><span class="line">	    <span class="keyword">if</span> proxy_new != proxy_odd: <span class="comment"># 如果心就的代理IP不同</span></span><br><span class="line">	    	proxy_odd = proxy_new <span class="comment"># 将新的代理IP赋值给旧的代理IP</span></span><br><span class="line">	        self.redis_conn.delete(<span class="string">'proxy'</span>) <span class="comment"># 删除链接对象里‘proxy’这个键的值</span></span><br><span class="line">	        self.redis_conn.sadd(<span class="string">'proxy'</span>,*proxy_new) <span class="comment"># 向‘proxy’这个键中添加两个代理IP地址（刚刚获取到的），这里相当于执行了两次添加</span></span><br><span class="line">	        time.sleep(<span class="number">2</span>) <span class="comment"># 睡眠</span></span><br><span class="line">	    <span class="keyword">else</span>:</span><br><span class="line">	        time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="设置代理IP地址"><a href="#设置代理IP地址" class="headerlink" title="设置代理IP地址"></a>设置代理IP地址</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyPool</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">	    ret = self.redis_conn.scandmember(<span class="string">'proxy'</span>,<span class="number">1</span>) <span class="comment">#得到代理IP</span></span><br><span class="line">	    print(ret) <span class="comment"># </span></span><br><span class="line">	    print(type(ret)) <span class="comment"># list对象，列表</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># ProxyPool().set_proxy()</span></span><br><span class="line">    ProxyPool().get_proxy()</span><br></pre></td></tr></table></figure>
-<p>在这种情况下可能出现的问题是，在set-proxy运行到’delete‘时，得到的代理IP的值为空，因此要加入一个判断，在代理IP的值为空的情况下需要进行的操作</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyPool</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_proxy</span><span class="params">(self)</span>:</span></span><br><span class="line">        proxy_s = self.redis_conn.scandmember(<span class="string">'proxy'</span>,<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># print(ret)</span></span><br><span class="line">        <span class="comment"># print(type(ret))</span></span><br><span class="line">        <span class="keyword">if</span> proxy_s: <span class="comment"># 如果proxy—s的值不为空</span></span><br><span class="line">            <span class="keyword">return</span> proxy_s[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># 如果为空</span></span><br><span class="line">            time.sleep(<span class="number">0.1</span>) <span class="comment"># 延时0.1s</span></span><br><span class="line">            <span class="keyword">return</span> self.get_proxy() <span class="comment"># 调用自己</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># ProxyPool().set_proxy()</span></span><br><span class="line">    ProxyPool().get_proxy()</span><br></pre></td></tr></table></figure>
-<p>之后开启main方法</p>
-<h2 id="修改middlewares"><a href="#修改middlewares" class="headerlink" title="修改middlewares"></a>修改middlewares</h2><p>倒入包</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> zhaobiao.proxypool <span class="keyword">import</span> ProxyPool</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhaobiaoDownloaderMiddleware</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> <span class="comment"># 实例化init 对象</span></span><br><span class="line">        self.proxyPool = ProxyPool() </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_request</span><span class="params">(self, request, spider)</span>:</span></span><br><span class="line">        <span class="comment"># request.meta['proxy'] = 'http://' + ur.urlopen('http://api.ip.data5u.com/dynamic/get.html?order=d314e5e5e19b0dfd19762f98308114ba&amp;sep=3').read().decode('utf-8').strip() # 设置代理</span></span><br><span class="line">        request.meta[<span class="string">'proxy'</span>] = <span class="string">'http://'</span> + self.proxyPool.get_proxy()</span><br><span class="line">        print(request.meta[<span class="string">'proxy'</span>])</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>之后就可以既在pycharm中开启项目，也可以在terminal中开启项目</p>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>redis</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>大多数的我</title>
     <url>/2020/05/06/%E5%A4%A7%E5%A4%9A%E6%95%B0%E7%9A%84%E6%88%91/</url>
     <content><![CDATA[<p>少数的我<br>梦见了故乡</p>
@@ -532,21 +556,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>博客更新日志</title>
-    <url>/2020/06/26/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<p>用于更新博客格式/小改动的日志</p>
-<a id="more"></a>
-
-<p>6-27<br>更新了网站logo</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如果我想你</title>
     <url>/2020/05/08/%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%A0/</url>
     <content><![CDATA[<p>愿你能从他身上听到你想听的话<br>单调却挂念的话<br>有没有一些<br>来自我这个人渣</p>
@@ -558,6 +567,34 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </categories>
       <tags>
         <tag>采集忘却</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>爬虫项目1</title>
+    <url>/2020/05/13/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE1/</url>
+    <content><![CDATA[<p>通过在老师带领下操作了爬虫项目爬取csdn的热门博客，希望自己可以试着去爬取bilibili上某一up主的视频题目</p>
+<a id="more"></a>
+
+<h1 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h1><h2 id="获取网页内容"><a href="#获取网页内容" class="headerlink" title="获取网页内容"></a>获取网页内容</h2><p>首先，由于是直接找某一up的视频，所以网站解析页可以为他的主页</p>
+<blockquote>
+<p>https: //space.bilibili.com/</p>
+</blockquote>
+<p>在主页中，选择选项中的“视频”，可以获得一个新的网址</p>
+<blockquote>
+<p>https: //space.bilibili.com/99157282/video</p>
+</blockquote>
+<p>为了寻找到不同页数时所使用的不同网址，因此点击第二、三页得到另一个网址</p>
+<blockquote>
+<p>https: //space.bilibili.com/99157282/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate<br>https: //space.bilibili.com/99157282/video?tid=0&amp;page=3&amp;keyword=&amp;order=pubdate<br>通过对比可以发现在不同页面只有【page=2】更改，因此可以了解到不同页面的区别只是需要更改page的数字即可</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>爬虫</tag>
+        <tag>个人项目</tag>
       </tags>
   </entry>
   <entry>
@@ -630,34 +667,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
 
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="bilian-py"><a href="#bilian-py" class="headerlink" title="bilian.py"></a>bilian.py</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> re <span class="comment">#</span></span><br><span class="line"><span class="keyword">from</span> copy <span class="keyword">import</span> deepcopy <span class="comment"># 深度复制</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BilianSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'bilian'</span></span><br><span class="line">    allowed_domains = [<span class="string">'ebnew'</span>,<span class="string">'ss.ebnew.com'</span>]</span><br><span class="line"></span><br><span class="line">    keyword_s =[</span><br><span class="line">        <span class="string">'路由器'</span>,<span class="string">'变压器'</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># start_urls = ['http://ebnew/']</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># def parse(self, response):</span></span><br><span class="line">    <span class="comment">#     pass</span></span><br><span class="line">    <span class="comment"># 存储的数据格式</span></span><br><span class="line">    sql_data = dict(</span><br><span class="line">        projectcode=<span class="string">''</span>,  <span class="comment"># 项目编号</span></span><br><span class="line">        web=<span class="string">''</span>,  <span class="comment"># 信息来源网站</span></span><br><span class="line">        keyword=<span class="string">''</span>,  <span class="comment"># 关键字</span></span><br><span class="line">        detail_url=<span class="string">''</span>,  <span class="comment"># 招标详细页网址</span></span><br><span class="line">        title=<span class="string">''</span>,  <span class="comment"># 第三方网站发布标题</span></span><br><span class="line">        toptype=<span class="string">''</span>,  <span class="comment"># 信息类型</span></span><br><span class="line">        province=<span class="string">''</span>,  <span class="comment"># 归属省份</span></span><br><span class="line">        product=<span class="string">''</span>,  <span class="comment"># 产品范畴</span></span><br><span class="line">        industry=<span class="string">''</span>,  <span class="comment"># 归属行业</span></span><br><span class="line">        tendering_manner=<span class="string">''</span>,  <span class="comment"># 招标方式</span></span><br><span class="line">        publicity_date=<span class="string">''</span>,  <span class="comment"># 招标公示日期</span></span><br><span class="line">        expiry_date=<span class="string">''</span>,  <span class="comment"># 招标截止时间</span></span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># Form表单的数据格式</span></span><br><span class="line">    form_data = dict(</span><br><span class="line">        infoClassCodes=<span class="string">''</span>,</span><br><span class="line">        rangeType=<span class="string">''</span>,</span><br><span class="line">        projectType=<span class="string">'bid'</span>,</span><br><span class="line">        fundSourceCodes=<span class="string">''</span>,</span><br><span class="line">        dateType=<span class="string">''</span>,</span><br><span class="line">        startDateCode=<span class="string">''</span>,</span><br><span class="line">        endDateCode=<span class="string">''</span>,</span><br><span class="line">        normIndustry=<span class="string">''</span>,</span><br><span class="line">        normIndustryName=<span class="string">''</span>,</span><br><span class="line">        zone=<span class="string">''</span>,</span><br><span class="line">        zoneName=<span class="string">''</span>,</span><br><span class="line">        zoneText=<span class="string">''</span>,</span><br><span class="line">        key=<span class="string">''</span>,  <span class="comment"># 搜索的关键字</span></span><br><span class="line">        pubDateType=<span class="string">''</span>,</span><br><span class="line">        pubDateBegin=<span class="string">''</span>,</span><br><span class="line">        pubDateEnd=<span class="string">''</span>,</span><br><span class="line">        sortMethod=<span class="string">'timeDesc'</span>,</span><br><span class="line">        orgName=<span class="string">''</span>,</span><br><span class="line">        currentPage=<span class="string">''</span>,  <span class="comment"># 当前页码</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span> <span class="comment"># 可以跳过allow domaine</span></span><br><span class="line">        <span class="keyword">for</span> keyword <span class="keyword">in</span> self.keyword_s:</span><br><span class="line">            form_data = deepcopy(self.form_data)</span><br><span class="line">            form_data[<span class="string">'key'</span>] = keyword</span><br><span class="line">            form_data[<span class="string">'currentPage'</span>] = <span class="string">'1'</span></span><br><span class="line">            request = scrapy.FormRequest(</span><br><span class="line">                url=<span class="string">'http://ss.ebnew.com/tradingSearch/index.htm'</span>,</span><br><span class="line">                formdata=form_data,</span><br><span class="line">                callback=self.parse_start</span><br><span class="line">            )</span><br><span class="line">            request.meta[<span class="string">'form_data'</span>] = form_data <span class="comment"># 把这个对象保存在request对象的meta里</span></span><br><span class="line">            <span class="keyword">yield</span> request</span><br><span class="line"></span><br><span class="line">        <span class="comment"># yield scrapy.Request(</span></span><br><span class="line">        <span class="comment">#     url = 'http://www.ebnew.com/businessShow/645672039.html',</span></span><br><span class="line">        <span class="comment">#     callback = self.parse_page(2)</span></span><br><span class="line">        <span class="comment"># )</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># form_data = self.form_data</span></span><br><span class="line">        <span class="comment"># form_data['key'] = '路由器'</span></span><br><span class="line">        <span class="comment"># form_data['currentPage'] = '2'</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="comment"># yield scrapy.FormRequest( # 对FormRequest的封装，可以提交表单数据</span></span><br><span class="line">        <span class="comment">#     url = 'http://ss.ebnew.com/tradingSearch/index.htm',</span></span><br><span class="line">        <span class="comment">#     formdata= form_data,# 传递字典对象</span></span><br><span class="line">        <span class="comment">#     callback=self.parse_page1,# 定义回调函数</span></span><br><span class="line">        <span class="comment"># )</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_start</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        a_text_s = response.xpath(<span class="string">'//form[@id="pagerSubmitForm"]/a/text()'</span>).extract()</span><br><span class="line">        page_max = max(</span><br><span class="line">            [int(a_text) <span class="keyword">for</span> a_text <span class="keyword">in</span> a_text_s <span class="keyword">if</span> re.match(<span class="string">'\d+'</span>,a_text)] <span class="comment"># 都是数字的列表取最大值</span></span><br><span class="line">        )</span><br><span class="line">        page_max = <span class="number">2</span></span><br><span class="line">        self.parse_page1(response) <span class="comment"># parse_start 访问的就是第一页，所以要加这个步骤，在进行其他页码的遍历</span></span><br><span class="line">        <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">2</span>,page_max+<span class="number">1</span>):</span><br><span class="line">            form_data = deepcopy(response.meta[<span class="string">'form_data'</span>])</span><br><span class="line">            form_data[<span class="string">'currentPage'</span>] = str(page)</span><br><span class="line">            request = scrapy.FormRequest(</span><br><span class="line">                url = <span class="string">'http://ss.ebnew.com/tradingSearch/index.htm'</span>,</span><br><span class="line">                formdata=form_data,</span><br><span class="line">                callback=self.parse_page1</span><br><span class="line">            )</span><br><span class="line">            request.meta[<span class="string">'form_data'</span>] = form_data</span><br><span class="line">            <span class="keyword">yield</span> request</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_page1</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        form_data = response.meta[<span class="string">'form_data'</span>]</span><br><span class="line">        keyword = form_data.get(<span class="string">'key'</span>)</span><br><span class="line">        content_list_x_s = response.xpath(<span class="string">'//div[@class="ebnew-content-list"]/div'</span>)</span><br><span class="line">        <span class="keyword">for</span> content_list_x <span class="keyword">in</span> content_list_x_s:</span><br><span class="line">            sql_data = deepcopy(self.sql_data)</span><br><span class="line">            <span class="comment"># 这里需要把下面的数据保存到sql_data里</span></span><br><span class="line">            sql_data[<span class="string">'toptype'</span>] = content_list_x.xpath(<span class="string">'./div[1]/i[1]/text()'</span>).extract_first()</span><br><span class="line">            sql_data[<span class="string">'title'</span>] = content_list_x.xpath(<span class="string">'./div[1]/a[1]/text()'</span>).extract_first()</span><br><span class="line">            sql_data[<span class="string">'publicity_date'</span>] =content_list_x.xpath(<span class="string">'./div[1]/i[2]/text()'</span>).extract_first()</span><br><span class="line">            <span class="keyword">if</span> sql_data[<span class="string">'publicity_date'</span>]:</span><br><span class="line">                sql_data[<span class="string">'publicity_date'</span>] = re.sub(<span class="string">'[^0-9\-]'</span>,<span class="string">''</span>,sql_data[<span class="string">'publicity_date'</span>]) <span class="comment"># 将发布日期里的文字'发布日期'替换成空字符串的格式</span></span><br><span class="line"></span><br><span class="line">            sql_data[<span class="string">'tendering_manner'</span>] = content_list_x.xpath(<span class="string">'./div[2]/div[1]/p[1]/span[2]/text()'</span>).extract_first()</span><br><span class="line">            sql_data[<span class="string">'product'</span>] = content_list_x.xpath(<span class="string">'./div[2]/div[1]/p[2]/span[2]/text()'</span>).extract_first()</span><br><span class="line">            sql_data[<span class="string">'expiry_date'</span>] = content_list_x.xpath(<span class="string">'./div[2]/div[2]/p[1]/span[2]/text()'</span>).extract_first()</span><br><span class="line">            sql_data[<span class="string">'province'</span>] = content_list_x.xpath(<span class="string">'./div[2]/div[2]/p[2]/span[2]/text()'</span>).extract_first()</span><br><span class="line">            sql_data[<span class="string">'detail_url'</span>] = content_list_x.xpath(<span class="string">'./div[1]/a/@href'</span>).extract_first()</span><br><span class="line">            sql_data[<span class="string">'keyword'</span>] = keyword</span><br><span class="line">            sql_data[<span class="string">'web'</span>] = <span class="string">'必联网'</span></span><br><span class="line">            request = scrapy.Request(</span><br><span class="line">                url = sql_data[<span class="string">'detail_url'</span>],</span><br><span class="line">                callback=self.parse_page2</span><br><span class="line">            )</span><br><span class="line">            request.meta[<span class="string">'sql_data'</span>] = sql_data</span><br><span class="line">            <span class="keyword">yield</span> request</span><br><span class="line">            <span class="comment"># print(toptype,title,publicity_date,tendering_manner,product,expiry_date,province)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_page2</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        sql_data = response.meta[<span class="string">'sql_data'</span>]</span><br><span class="line">        sql_data[<span class="string">'projectcode'</span>] = response.xpath(</span><br><span class="line">            <span class="string">'/ul[contains(@class,"ebnew-project-information")]/li[1]/span[2]/text()'</span>).extract_first()</span><br><span class="line">        sql_data[<span class="string">'industry'</span>] = response.xpath(</span><br><span class="line">            <span class="string">'/ul[contains(@class,"ebnew-project-information")]/li[8]/span[2]/text()'</span>).extract_first()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> response.meta[<span class="string">'projectcode'</span>]:</span><br><span class="line">            projectcode_find = re.findall(<span class="string">'项目编号[：:]&#123;0,1&#125;\s&#123;0,2&#125;([a-zA-Z0-9\-]&#123;10,80&#125;)'</span>,response.body.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">            response.meta[<span class="string">'projectcode '</span>]= projectcode_find[<span class="number">0</span>] <span class="keyword">if</span> projectcode_find <span class="keyword">else</span> <span class="string">""</span></span><br><span class="line">        <span class="comment"># print(industry,projectcode)</span></span><br><span class="line">        <span class="keyword">yield</span> sql_data <span class="comment"># 把sql_data转交给管道文件</span></span><br></pre></td></tr></table></figure>
 <h2 id="pipelines-py"><a href="#pipelines-py" class="headerlink" title="pipelines.py"></a>pipelines.py</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZhaobiaoPipeline</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.mysql_conn = pymysql.connections(</span><br><span class="line">            host = <span class="string">'localhost'</span>,</span><br><span class="line">            post=<span class="number">3306</span>,</span><br><span class="line">            user=<span class="string">'root'</span>,</span><br><span class="line">            password = <span class="string">'126511'</span>,</span><br><span class="line">            database=<span class="string">'zhaobiao'</span>,</span><br><span class="line">            charset=<span class="string">'utf8'</span>,</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        <span class="comment"># 创建光标对象</span></span><br><span class="line">        cs = self.mysql_conn.cursur()</span><br><span class="line">        <span class="comment"># sql_str = 'insert into t_zhaobiao (字段,字段) value ("值","值")'</span></span><br><span class="line">        sql_column = <span class="string">','</span>.join([key <span class="keyword">for</span> key <span class="keyword">in</span> item.keys()])</span><br><span class="line">        sql_value = <span class="string">','</span>.join([<span class="string">'"%s"'</span>% item[key] <span class="keyword">for</span> key <span class="keyword">in</span> item.keys()])</span><br><span class="line">        sql_str = <span class="string">'insert into t_zhaobiao (%s) value (%s);'</span> %(sql_column,sql_value)</span><br><span class="line">        cs.execute(sql_str)</span><br><span class="line"></span><br><span class="line">        self.mysql_conn.commit()</span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>爬虫</tag>
-        <tag>个人项目</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爬虫项目1</title>
-    <url>/2020/05/13/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE1/</url>
-    <content><![CDATA[<p>通过在老师带领下操作了爬虫项目爬取csdn的热门博客，希望自己可以试着去爬取bilibili上某一up主的视频题目</p>
-<a id="more"></a>
-
-<h1 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h1><h2 id="获取网页内容"><a href="#获取网页内容" class="headerlink" title="获取网页内容"></a>获取网页内容</h2><p>首先，由于是直接找某一up的视频，所以网站解析页可以为他的主页</p>
-<blockquote>
-<p>https: //space.bilibili.com/</p>
-</blockquote>
-<p>在主页中，选择选项中的“视频”，可以获得一个新的网址</p>
-<blockquote>
-<p>https: //space.bilibili.com/99157282/video</p>
-</blockquote>
-<p>为了寻找到不同页数时所使用的不同网址，因此点击第二、三页得到另一个网址</p>
-<blockquote>
-<p>https: //space.bilibili.com/99157282/video?tid=0&amp;page=2&amp;keyword=&amp;order=pubdate<br>https: //space.bilibili.com/99157282/video?tid=0&amp;page=3&amp;keyword=&amp;order=pubdate<br>通过对比可以发现在不同页面只有【page=2】更改，因此可以了解到不同页面的区别只是需要更改page的数字即可</p>
-</blockquote>
-]]></content>
       <categories>
         <category>python</category>
       </categories>

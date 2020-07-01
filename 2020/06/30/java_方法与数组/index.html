@@ -132,12 +132,12 @@
 
 
 
-<meta name="description" content="sout -&gt; 输出快捷方式 -&gt;System.out.println(); #方法定义一个方法的格式pvsm 创建方法快捷方式public static void main(String[] args) {} 1234567public static void name(方法名称)()&amp;#123;	SS;(方法体x)&amp;#125;public static void main(Stri">
+<meta name="description" content="sout -&gt; 输出快捷方式 -&gt;System.out.println(); #方法定义一个方法的格式pvsm 创建方法快捷方式public static void main(String[] args) {} 1234567public static void name(方法名称)()&amp;#123;	SS;(方法体x)&amp;#125;public static void main(Str">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java_JVM">
+<meta property="og:title" content="Java_方法与数组">
 <meta property="og:url" content="https://github.com/esept/esept.github.io/2020/06/30/java_%E6%96%B9%E6%B3%95%E4%B8%8E%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Undefined">
-<meta property="og:description" content="sout -&gt; 输出快捷方式 -&gt;System.out.println(); #方法定义一个方法的格式pvsm 创建方法快捷方式public static void main(String[] args) {} 1234567public static void name(方法名称)()&amp;#123;	SS;(方法体x)&amp;#125;public static void main(Stri">
+<meta property="og:description" content="sout -&gt; 输出快捷方式 -&gt;System.out.println(); #方法定义一个方法的格式pvsm 创建方法快捷方式public static void main(String[] args) {} 1234567public static void name(方法名称)()&amp;#123;	SS;(方法体x)&amp;#125;public static void main(Str">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-30T05:16:51.000Z">
 <meta property="article:modified_time" content="2020-06-30T05:16:51.000Z">
@@ -179,7 +179,7 @@
 
 
 
-  <title>Java_JVM | Undefined</title>
+  <title>Java_方法与数组 | Undefined</title>
   
 
 
@@ -258,16 +258,6 @@
               <i class="menu-item-icon fa fa-fw fa-fas fa-th"></i> <br />
             
             Categories
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-photos">
-          <a href="/photos" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-fas fa-book"></i> <br />
-            
-            Photos
           </a>
         </li>
       
@@ -365,7 +355,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java_JVM</h1>
+          <h1 class="post-title" itemprop="name headline">Java_方法与数组</h1>
         
 
         <div class="post-meta">
@@ -377,7 +367,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-30T13:16:51+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-30T07:16:51+02:00">
                 2020-06-30
               </time>
             
@@ -437,7 +427,8 @@
       
 
       
-        <p><code>sout</code> -&gt; 输出快捷方式 -&gt;<code>System.out.println();</code></p>
+        <a id="more"></a>
+<p><code>sout</code> -&gt; 输出快捷方式 -&gt;<code>System.out.println();</code></p>
 <p>#方法<br>定义一个方法的格式<br><code>pvsm</code> 创建方法快捷方式<code>public static void main(String[] args) {}</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">name</span><span class="params">(方法名称)</span><span class="params">()</span></span>&#123;</span><br><span class="line">	SS;(方法体x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	name();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>1- 方法的定义不能产生嵌套关系<br>2- 方法定义好之后需要调用来让他执行</p>
@@ -445,7 +436,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo01MethodDefine</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(sum(<span class="number">11</span>,<span class="number">22</span>,<span class="number">4</span>,<span class="number">3</span>));</span><br><span class="line">        System.out.println(sum(<span class="number">11</span>,<span class="number">22</span>,<span class="number">4</span>));</span><br><span class="line">        System.out.println(sum(<span class="number">11</span>,<span class="number">22</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b+c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b+c+d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">out:</span><br><span class="line"><span class="number">40</span></span><br><span class="line"><span class="number">37</span></span><br><span class="line"><span class="number">33</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>数组是一种引用数据类型<br>数组当中的多个数据，类型必须统一<br>数组的长度在程序运行期间不能改变</p>
-<p>数组的初始化：<br>在内存中创建一个数组，并向其中赋予一些默认值<br>动态初始化：指定长度</p>
+<h1 id="数组的初始化："><a href="#数组的初始化：" class="headerlink" title="数组的初始化："></a>数组的初始化：</h1><p>在内存中创建一个数组，并向其中赋予一些默认值<br>动态初始化：指定长度</p>
 <p>动态初始化数组的格式：</p>
 <p><code>数据类型[] 数组名称 = new 数据类型[数组长度]</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arrayA = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">300</span>];</span><br><span class="line"><span class="keyword">double</span>[] arrayB = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">10</span>];</span><br><span class="line">String[] arrayC = <span class="keyword">new</span> String[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
@@ -453,16 +444,45 @@
 <p>静态初始化：指定内容:直接将具体的数据内容进行指定<br><code>数据类型[] 数组名称 = new 数据类型[] {元素1,元素2···}</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arrayD = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">5</span>,<span class="number">15</span>,<span class="number">25</span>&#125;;</span><br><span class="line">String[] arrayE = <span class="keyword">new</span> String[]&#123;<span class="string">"hello"</span>,<span class="string">"world"</span>,<span class="string">"Java"</span>&#125;;</span><br></pre></td></tr></table></figure>
 <p>使用静态初始化数组的时候，格式还可以在省略一下：可以省略’new 数据类型[]’</p>
-<p>初始化的拆分</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arrayB ;</span><br><span class="line">arrayB = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">11</span>,<span class="number">21</span>,<span class="number">41</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] arrayc;</span><br><span class="line">arrayc = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
-<p>访问数组元素<br>直接打印数组名称得到的是数组对应的内存地址哈希值</p>
+<h1 id="初始化的拆分"><a href="#初始化的拆分" class="headerlink" title="初始化的拆分"></a>初始化的拆分</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arrayB ;</span><br><span class="line">arrayB = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">11</span>,<span class="number">21</span>,<span class="number">41</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] arrayc;</span><br><span class="line">arrayc = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<h1 id="访问数组元素"><a href="#访问数组元素" class="headerlink" title="访问数组元素"></a>访问数组元素</h1><p>直接打印数组名称得到的是数组对应的内存地址哈希值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">shuzu</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] array = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>&#125;;</span><br><span class="line">        System.out.println(array); <span class="comment">// out:[I@5b2133b1</span></span><br><span class="line">        System.out.println(array[<span class="number">0</span>]); <span class="comment">// out: 10</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] arrayA = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">        System.out.println(arrayA[<span class="number">0</span>]); <span class="comment">//out:0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">[I@<span class="number">5</span>b2133b1</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
 
-<p>访问数组的格式：<br>数组名称[索引值]</p>
+<h1 id="访问数组的格式："><a href="#访问数组的格式：" class="headerlink" title="访问数组的格式："></a>访问数组的格式：</h1><p>数组名称[索引值]</p>
 <p>在使用动态初始化数组的时候，其中的元素都会自动有一个默认值<br>int：0<br>float：0.0<br>字符类型：‘\u0000’<br>布尔类型：false<br>如果是引用类型：null</p>
 <blockquote>
-<p><a href="https://blog.csdn.net/zy_remarkable/article/details/80616037?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/zy_remarkable/article/details/80616037?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase</a><br>引用类型</p>
+<p><a href="https://blog.csdn.net/zy_remarkable/article/details/80616037?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/zy_remarkable/article/details/80616037?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.nonecase</a><br>(引用类型)</p>
 </blockquote>
+<h1 id="java的内存需要划分成五个部分"><a href="#java的内存需要划分成五个部分" class="headerlink" title="java的内存需要划分成五个部分"></a>java的内存需要划分成五个部分</h1><p><strong>栈（stack）</strong>:存放的都是方法中的局部变量<br>    局部变量：方法的参数，或是方法{}内部的变量<br>    作用域：一旦超出作用域，立刻从栈内存中消失<br><strong>堆（heap）</strong>: 凡事new出来的东西，都在堆当中<br>    堆内存里面的东西都有一个地址值：16进制<br>    堆内存里面的数据都有默认值<br>    整数：0<br>    浮点数：0.0<br>    字符类型：‘\u0000’<br>    布尔类型：false<br>    如果是引用类型：null<br><strong>方法区(Method Area)</strong>:存储.class相关信息，包含方法的信息</p>
+<p>本地方法栈(Native Method Stack)<br>寄存器(pc Resister)</p>
+<h1 id="ArrayIndexOutOfBoundsException-数组索引越界异常"><a href="#ArrayIndexOutOfBoundsException-数组索引越界异常" class="headerlink" title="ArrayIndexOutOfBoundsException-数组索引越界异常"></a>ArrayIndexOutOfBoundsException-数组索引越界异常</h1><p>原因：索引编号错误<br>解决：修改为存在的正确索引编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int[] array &#x3D; null;</span><br><span class="line">System.out.println(array[0]);</span><br></pre></td></tr></table></figure>
+
+<h1 id="NullPointerException-空指针异常"><a href="#NullPointerException-空指针异常" class="headerlink" title="NullPointerException-空指针异常"></a>NullPointerException-空指针异常</h1><p>只赋值了一个null，没有用new进行创建<br>原因：忘了new<br>解决：补上new</p>
+<h1 id="获取数组长度"><a href="#获取数组长度" class="headerlink" title="获取数组长度"></a>获取数组长度</h1><p><code>数组名称.length</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] arrayA = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> len = arrayA.length;</span><br><span class="line">System.out.println(len);</span><br><span class="line">out:</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h1 id="数组的遍历"><a href="#数组的遍历" class="headerlink" title="数组的遍历"></a>数组的遍历</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;<span class="comment">//array.fori</span></span><br><span class="line">    System.out.println(array[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
     </div>
@@ -650,7 +670,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的初始化："><span class="nav-number">2.</span> <span class="nav-text">数组的初始化：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化的拆分"><span class="nav-number">3.</span> <span class="nav-text">初始化的拆分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问数组元素"><span class="nav-number">4.</span> <span class="nav-text">访问数组元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问数组的格式："><span class="nav-number">5.</span> <span class="nav-text">访问数组的格式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java的内存需要划分成五个部分"><span class="nav-number">6.</span> <span class="nav-text">java的内存需要划分成五个部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayIndexOutOfBoundsException-数组索引越界异常"><span class="nav-number">7.</span> <span class="nav-text">ArrayIndexOutOfBoundsException-数组索引越界异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NullPointerException-空指针异常"><span class="nav-number">8.</span> <span class="nav-text">NullPointerException-空指针异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取数组长度"><span class="nav-number">9.</span> <span class="nav-text">获取数组长度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的遍历"><span class="nav-number">10.</span> <span class="nav-text">数组的遍历</span></a></li></ol></div>
             
 
           </div>

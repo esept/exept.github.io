@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Righteous:300,300italic,400,400italic,700,700italic|ZCOOL XiaoWei:300,300italic,400,400italic,700,700italic|Special Elite:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JVM组成部分，每个组件的作用，各组件间的关系，案例，注意事项，面试问题 http:&#x2F;&#x2F;java.file.io 文件和目录路径名的抽象表示形式 java把电脑中的文件和文件夹(目录)封装成了一个File类,我们可以使用file类对文件和文件夹进行操作 方法:  创建一个文件夹 删除文件&#x2F;文件夹 获取文件&#x2F;文件夹 判断文件&#x2F;文件夹是否存在 对文件夹进行遍历 获取文件的大小  File类是一个与系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java_File类">
+<meta property="og:url" content="https://github.com/esept/esept.github.io/2020/07/03/File%E7%B1%BB/index.html">
+<meta property="og:site_name" content="Undefined">
+<meta property="og:description" content="JVM组成部分，每个组件的作用，各组件间的关系，案例，注意事项，面试问题 http:&#x2F;&#x2F;java.file.io 文件和目录路径名的抽象表示形式 java把电脑中的文件和文件夹(目录)封装成了一个File类,我们可以使用file类对文件和文件夹进行操作 方法:  创建一个文件夹 删除文件&#x2F;文件夹 获取文件&#x2F;文件夹 判断文件&#x2F;文件夹是否存在 对文件夹进行遍历 获取文件的大小  File类是一个与系统">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-02T16:00:00.000Z">
+<meta property="article:author" content="半夏敬秋_Hsu">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"display":"post","offset":10,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/esept/esept.github.io/2020/07/03/File类/"/>
+
+
+
+
+
+  <title>Java_File类 | Undefined</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+
+  <div class="container  page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Undefined</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">未定义的我</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fas fa-terminal"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notion">
+          <a href="https://www.notion.so/_Hsu-598c0590857546008f28fd57f10e83f2" target="_blank" rel="section noopener">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            notion
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/esept/esept.github.io/2020/07/03/File%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="半夏敬秋_Hsu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/mads.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Undefined">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java_File类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-03T00:00:00+08:00">
+                2020-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JVM组成部分，每个组件的作用，各组件间的关系，案例，注意事项，面试问题</p>
+<p><a href="http://java.file.io" target="_blank" rel="noopener">http://java.file.io</a></p>
+<p>文件和目录路径名的抽象表示形式</p>
+<p>java把电脑中的文件和文件夹(目录)封装成了一个File类,我们可以使用file类对文件和文件夹进行操作</p>
+<p>方法:</p>
+<ol>
+<li>创建一个文件夹</li>
+<li>删除文件/文件夹</li>
+<li>获取文件/文件夹</li>
+<li>判断文件/文件夹是否存在</li>
+<li>对文件夹进行遍历</li>
+<li>获取文件的大小</li>
+</ol>
+<p>File类是一个与系统无关的类,任何的操作系统都可以使用这个类中的方法</p>
+<p>重点:</p>
+<ul>
+<li>file : 文件</li>
+<li>directory: 文件夹/目录</li>
+<li>path: 路径</li>
+</ul>
+<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><ul>
+<li>static String pathSeparator : 与系统有关的路径分隔符,为了方便,他被标示为一个字符串</li>
+<li>static char pathSeparatorChar : 与系统有关的路径分隔符</li>
+<li>static String separator: 与系统有关的默认名称分隔符,为了方便,被标示为一个字符串</li>
+<li>static char separatorChar : 与系统有关的默认名称分隔符</li>
+</ul>
+<p>因为系统的不同,所以路径不能写死了:</p>
+<ul>
+<li>C :\develop\a\a.txt windows</li>
+<li>C: /develop/a/a.txt  linux</li>
+</ul>
+<p>因此为了防止路径错误,就将其中的分隔符换成代码格式</p>
+<p>“C: “+File.separator+”develop”+File.separator+”a”+File.separator+”a.txt”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Static</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String pathSeparator = File.pathSeparator;</span><br><span class="line">        System.out.println(pathSeparator); <span class="comment">// 路径分隔符 windows ; linux :</span></span><br><span class="line">        </span><br><span class="line">        String separator = File.separator;</span><br><span class="line">        System.out.println(separator); <span class="comment">// 文件名分隔符 windows: 反斜杠 \\ linux :正斜杠 /</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">:</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>绝对路径: 一个完整的路径,以盘符开始的路径</p>
+<p>相对路径: 一个简化的路径,相对于当前的根目录,相对路径可以省略项目的根目录</p>
+<p>注意:</p>
+<ul>
+<li>路径不区分大小写</li>
+<li>路径中的文件名成分隔符在两个系统中不同</li>
+<li>路径分隔符 windows ; linux :</li>
+<li>文件名分隔符 windows: 反斜杠 \ linux :正斜杠 /  反斜杠是转义字符,两个反斜杠代表一个普通的反斜杠</li>
+</ul>
+<h2 id="File类的构造方法"><a href="#File类的构造方法" class="headerlink" title="File类的构造方法"></a>File类的构造方法</h2><h3 id="通过将给定路径名字符串转换为抽象路径来创建一个新File实例"><a href="#通过将给定路径名字符串转换为抽象路径来创建一个新File实例" class="headerlink" title="通过将给定路径名字符串转换为抽象路径来创建一个新File实例"></a>通过将给定路径名字符串转换为抽象路径来创建一个新File实例</h3><p>File(String pathname)</p>
+<p>参数:</p>
+<ol>
+<li>String pathname : 字符串的路径名称</li>
+<li>路径可以是以文件结尾,也可以是文件夹结尾</li>
+<li>路径可以是相对路径,也可以是绝对路径</li>
+<li>路径可以存在,也可以不存在</li>
+<li>创建File对象,知识吧字符串路径封装为File对象,不考虑路径的真假情况</li>
+</ol>
+<h3 id="根据parent路径名字符串和child路径名字符串创建一个新的File实例"><a href="#根据parent路径名字符串和child路径名字符串创建一个新的File实例" class="headerlink" title="根据parent路径名字符串和child路径名字符串创建一个新的File实例"></a>根据parent路径名字符串和child路径名字符串创建一个新的File实例</h3><p>File(String parent, String child)</p>
+<p>​    String parent</p>
+<p>​    String child</p>
+<p>好处: 父路径和子路径可以单独书写,使用起来非常灵活,父路径和子路径都可以变化</p>
+<h3 id="根据抽象路径名和child路径字符串创建一个新File实例"><a href="#根据抽象路径名和child路径字符串创建一个新File实例" class="headerlink" title="根据抽象路径名和child路径字符串创建一个新File实例"></a>根据抽象路径名和child路径字符串创建一个新File实例</h3><p>参数: 把路径分成了两部分</p>
+<p>​    File parent :父路径</p>
+<p>​    String child: 子路径</p>
+<p>好处:</p>
+<p>​    父路径和子路径可以单独书写,使用起来非常灵活,父路径和子路径都可以变化</p>
+<p>​    父路径是File类型,可以使用File的方法对路径进行一些操作,在使用路径创建对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File parent = <span class="keyword">new</span> File(<span class="string">"/Users/xuzy/Documents"</span>);</span><br><span class="line">        File file = <span class="keyword">new</span> File(parent,<span class="string">"Java.txt"</span>);</span><br><span class="line">        System.out.println(file);</span><br><span class="line">    &#125;</span><br><span class="line">out:**/Users/xuzy/Documents/Java.txt**</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show02</span><span class="params">(String parent,String child)</span></span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(parent,child);</span><br><span class="line">        System.out.println(file);</span><br><span class="line">    &#125;</span><br><span class="line">out:**/Users/xuzy/Documents/a.txt**</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File f1 = <span class="keyword">new</span> File(<span class="string">"fff.txt"</span>);<span class="comment">// 不管是否真是都可以打印</span></span><br><span class="line">        System.out.println(f1);</span><br><span class="line">out:**fff.txt**</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="测试此抽象路径名是否为绝对路径名"><a href="#测试此抽象路径名是否为绝对路径名" class="headerlink" title="测试此抽象路径名是否为绝对路径名"></a>测试此抽象路径名是否为绝对路径名</h3><p>public boolean isAbsolute()</p>
+<h3 id="返回抽象路径名的绝对路径名字符串"><a href="#返回抽象路径名的绝对路径名字符串" class="headerlink" title="返回抽象路径名的绝对路径名字符串"></a>返回抽象路径名的绝对路径名字符串</h3><p>public String getAbsolutePath()</p>
+<h3 id="返回此抽象路径名的路径名字符串"><a href="#返回此抽象路径名的路径名字符串" class="headerlink" title="返回此抽象路径名的路径名字符串"></a>返回此抽象路径名的路径名字符串</h3><p>public String toString()</p>
+<h3 id="返回由此抽象路径名表示的文件或目录的名称"><a href="#返回由此抽象路径名表示的文件或目录的名称" class="headerlink" title="返回由此抽象路径名表示的文件或目录的名称"></a>返回由此抽象路径名表示的文件或目录的名称</h3><p>public String getName()</p>
+<h3 id="返回由此抽象路径名表示的文件的长度"><a href="#返回由此抽象路径名表示的文件的长度" class="headerlink" title="返回由此抽象路径名表示的文件的长度"></a>返回由此抽象路径名表示的文件的长度</h3><p>public long length()</p>
+<h2 id="目录的遍历"><a href="#目录的遍历" class="headerlink" title="目录的遍历"></a>目录的遍历</h2><p>public String[ ] list() 返回一个String数组,表示该File目录中的所有子文件或目录</p>
+<p>​    遍历构造方法中给出的目录,会获取目录中所有文件/文件夹的名称,把获取到的多个名称存储到一个String类型的数组中</p>
+<p>public File[ ] listFiles() 返回一个File数组,表示该File目录中的所有子文件或目录</p>
+<p>​    遍历构造方法中给出的目录,会获取目录中所有的文件/文件夹,把文件/文件夹封装为File对象,多个File对象存储到File数组中</p>
+<p>注意:</p>
+<p>​    list方法和listFiles方法遍历的是构造方法中给出的目录</p>
+<p>​    如果构造方法中给出的目录路径不存在,会抛出空指针异常</p>
+<p>​    如果构造方法中给出的路径不是一个目录,也会抛出空指针异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04bianli</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        show01();</span><br><span class="line">        show02();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"/Users/xuzy/Downloads"</span>);</span><br><span class="line">        File[] files = file.listFiles();</span><br><span class="line">        <span class="keyword">for</span> (File file1 : files) &#123;</span><br><span class="line">            System.out.println(file1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File f = <span class="keyword">new</span> File(<span class="string">"/Users/xuzy/Downloads"</span>);</span><br><span class="line">        String[] arr = f.list();</span><br><span class="line">        <span class="keyword">for</span> (String s : arr) &#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">MATLAB R2019bMac</span><br><span class="line">编程文件夹</span><br><span class="line">.DS_Store</span><br><span class="line">English in use</span><br><span class="line">《新世界》<span class="number">2013</span>年韩国剧情,犯罪电影在线观看_蛋蛋赞影院.mp4</span><br><span class="line">.localized</span><br><span class="line">电子书</span><br><span class="line">Algo</span><br><span class="line">统计学原理.rar</span><br><span class="line">.du..UfNfzhhc4Q</span><br><span class="line">._BusyCal Installer.pkg</span><br><span class="line">私人</span><br><span class="line">/Users/xuzy/Downloads/MATLAB R2019bMac</span><br><span class="line">/Users/xuzy/Downloads/编程文件夹</span><br><span class="line">/Users/xuzy/Downloads/.DS_Store</span><br><span class="line">/Users/xuzy/Downloads/English in use</span><br><span class="line">/Users/xuzy/Downloads/《新世界》<span class="number">2013</span>年韩国剧情,犯罪电影在线观看_蛋蛋赞影院.mp4</span><br><span class="line">/Users/xuzy/Downloads/.localized</span><br><span class="line">/Users/xuzy/Downloads/电子书</span><br><span class="line">/Users/xuzy/Downloads/Algo</span><br><span class="line">/Users/xuzy/Downloads/统计学原理.rar</span><br><span class="line">/Users/xuzy/Downloads/.du..UfNfzhhc4Q</span><br><span class="line">/Users/xuzy/Downloads/._BusyCal Installer.pkg</span><br><span class="line">/Users/xuzy/Downloads/私人</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/03/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="Java_Lambda表达式">
+                <i class="fa fa-chevron-left"></i> Java_Lambda表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/03/java_%E9%9D%99%E6%80%81/" rel="prev" title="Java_static">
+                Java_static <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/mads.jpg"
+                alt="半夏敬秋_Hsu" />
+            
+              <p class="site-author-name" itemprop="name">半夏敬秋_Hsu</p>
+              <p class="site-description motion-element" itemprop="description">无知且自大</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#静态方法"><span class="nav-number">1.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路径"><span class="nav-number">2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类的构造方法"><span class="nav-number">3.</span> <span class="nav-text">File类的构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过将给定路径名字符串转换为抽象路径来创建一个新File实例"><span class="nav-number">3.1.</span> <span class="nav-text">通过将给定路径名字符串转换为抽象路径来创建一个新File实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据parent路径名字符串和child路径名字符串创建一个新的File实例"><span class="nav-number">3.2.</span> <span class="nav-text">根据parent路径名字符串和child路径名字符串创建一个新的File实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据抽象路径名和child路径字符串创建一个新File实例"><span class="nav-number">3.3.</span> <span class="nav-text">根据抽象路径名和child路径字符串创建一个新File实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用方法"><span class="nav-number">4.</span> <span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试此抽象路径名是否为绝对路径名"><span class="nav-number">4.1.</span> <span class="nav-text">测试此抽象路径名是否为绝对路径名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回抽象路径名的绝对路径名字符串"><span class="nav-number">4.2.</span> <span class="nav-text">返回抽象路径名的绝对路径名字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回此抽象路径名的路径名字符串"><span class="nav-number">4.3.</span> <span class="nav-text">返回此抽象路径名的路径名字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回由此抽象路径名表示的文件或目录的名称"><span class="nav-number">4.4.</span> <span class="nav-text">返回由此抽象路径名表示的文件或目录的名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回由此抽象路径名表示的文件的长度"><span class="nav-number">4.5.</span> <span class="nav-text">返回由此抽象路径名表示的文件的长度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录的遍历"><span class="nav-number">5.</span> <span class="nav-text">目录的遍历</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">半夏敬秋_Hsu</span>
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+<br>
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span> 
+<script> 
+    var now = new Date(); 
+    function createtime() {
+    var grt= new Date("02/14/2018 12:49:00");
+    //此处修改你的建站时间或者网站上线时间 
+    now.setTime(now.getTime()+250); 
+    days = (now - grt ) / 1000 / 60 / 60 / 24; 
+    dnum = Math.floor(days); hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); 
+    hnum = Math.floor(hours); 
+    if(String(hnum).length ==1 ){
+        hnum = "0" + hnum;
+    } 
+    minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 )
+    {
+       mnum = "0" + mnum;
+    } 
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if(String(snum).length ==1 ){snum = "0" + snum;} 
+    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+} 
+    setInterval("createtime()",250); 
+</script>
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js""></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>&nbsp
+      访问用户：
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>&nbsp
+      访问次数：
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://www.wenjunjiang.win/css/gitment.css">
+        <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: window.location.pathname, 
+            owner: 'esept',
+            repo: 'esept.github.io',
+            
+            oauth: {
+            
+            
+                client_secret: '8f678c5aeba3ad10bb5118def2acf8b5e1c2e01e',
+            
+                client_id: '4464a9f12675e12804d3'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>1</title>
-    <url>/2020/05/15/1/</url>
-    <content><![CDATA[<p>我想给博客上加上一点自己的东西，比如电影的介绍和推荐，</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Java_</title>
-    <url>/2025/07/01/Java_/</url>
+    <url>/2025/07/02/Java_/</url>
     <content><![CDATA[<p>essayer?</p>
 ]]></content>
       <categories>
@@ -19,7 +13,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Java_JVM</title>
+    <title>Java_JVM-未完成</title>
     <url>/2020/06/30/Java_JVM/</url>
     <content><![CDATA[<p>JVM组成部分，每个组件的作用，各组件间的关系，案例，注意事项，面试问题</p>
 <a id="more"></a>
@@ -41,7 +35,7 @@
   </entry>
   <entry>
     <title>Java_字符串/Math</title>
-    <url>/2020/07/01/Java_%E5%AD%97%E7%AC%A6%E4%B8%B2:Math/</url>
+    <url>/2020/07/02/Java_%E5%AD%97%E7%AC%A6%E4%B8%B2:Math/</url>
     <content><![CDATA[<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>public static String toString(数组)<br>将参数数组变成字符串,按照默认格式</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">newDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] array = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>&#125;;</span><br><span class="line">        String intStr = Arrays.toString(array);</span><br><span class="line">        System.out.println(intStr);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] array1 = &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>&#125;;</span><br><span class="line">        Arrays.sort(array1);</span><br><span class="line">        System.out.println(Arrays.toString(array1));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        String[] array3 = &#123;<span class="string">"aaa"</span>,<span class="string">"ccc"</span>,<span class="string">"ddd"</span>&#125;;</span><br><span class="line">        Arrays.sort(array3);</span><br><span class="line">        System.out.println(Arrays.toString(array3));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">[<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>]</span><br><span class="line">[aaa, ccc, ddd]</span><br></pre></td></tr></table></figure>
 
@@ -283,21 +277,8 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>Web服务器通信原理</title>
-    <url>/2020/07/01/Web%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p>C/S -&gt; Client/Server 客户/服务器架构: 端游/通信app 所有的操作都依赖于客户端<br>B/S -&gt; Brower/Server 浏览器/服务器架构 网页游戏</p>
-<p>IP地址:    Internet Protocol 网络地址互联协议 唯一性  计算机唯一的地址<br>MAC地址:</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Scrapy-Bilibili</title>
-    <url>/2020/06/26/bilibili-scrapy/</url>
+    <url>/2020/06/27/bilibili-scrapy/</url>
     <content><![CDATA[<p>Scrapy 项目<br>Bilibili某一up主的视频名称、播放量、喜欢数<br>以及对他视频弹幕的爬取与词云制作</p>
 <a id="more"></a>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> jieba</span><br></pre></td></tr></table></figure>
@@ -311,33 +292,8 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>他是诗人</title>
-    <url>/2020/05/08/doc/</url>
-    <content><![CDATA[<p>他曾说 我爱你<br>就像叶爱飘零 风爱游荡<br>他曾禁锢在个人世界<br>无人读懂 欢喜惆怅<br> <a id="more"></a></p>
-<p>让岁月抚平忧伤<br>年华换成怅惘<br>星空月夜伴随凄凉<br>独自扼杀希望</p>
-<p>谁说诗人习惯独自流浪<br>只不过从未找到过家的方向<br>他在尝试抚平心灵创伤<br>用诗来抒发梦想</p>
-<p>他也曾尝过爱情<br>决绝 苦涩 需要勇气<br>他不许任何人亵渎这经历<br>就像他人亵渎自己</p>
-<p>他早迷失在混乱世界<br>等待爱人将他救起<br>他却说我是诗人<br>悲伤才是对的记忆</p>
-<p>他在等人帮他抹去泪水<br>等人填补空洞心伤<br>诗人强撑着精神病体<br>说着自由 理应继续彷徨</p>
-<p>现在的我向往自由与孤独<br>现在的我甘愿流浪<br>诗人不停地大声吟唱<br>天空的雨滴浸透出点点荒凉</p>
-<p>诗人的梦里有他想要的一切<br>却不知从何记起<br>他在夜里悲伤的哭泣<br>谁又见过他的无助模样</p>
-<p>他还在用低沉的声音吟唱<br>唱出对世界无尽的失望<br>海阔天空和万丈悬崖其实一样<br>都会抛下久违的梦想</p>
-<p>诗人披着月光<br>低吟清唱着他的忧伤<br>他说坚强一点<br>就像月光不惧朝阳</p>
-<p>他在慢慢游荡<br>渐渐走向陌生的远方<br>他也不想背井离乡<br>只因这里过分凄凉</p>
-<p>其实诗人早就死亡<br>只剩他的躯体被迫流浪<br>他的灵魂灰飞烟灭<br>却无人惋惜他的坚强</p>
-<p>你是否曾望见过诗人的孤寂背影<br>就像月光才是最柔美的光芒<br>人们不知是否该去祭奠<br>来安抚孤魂的游荡带来的离殇</p>
-<p>固执的他 说 我是诗人<br>怎敢以流泪缓解悲伤<br>他说我喜欢孤身一人 只身迎接<br>坎坷路途上的天堂</p>
-]]></content>
-      <categories>
-        <category>思考与遐想</category>
-      </categories>
-      <tags>
-        <tag>采集忘却</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Scrapy原理及个人项目</title>
-    <url>/2020/06/13/douban/</url>
+    <url>/2020/06/14/douban/</url>
     <content><![CDATA[<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>scrapy engine 核心</p>
 <p>##spiders 文件-爬虫文件<br>对下载器传回的响应response进行处理，<br>-spider middleware 基本不会用到</p>
 <a id="more"></a>
@@ -602,7 +558,7 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
   </entry>
   <entry>
     <title>Java_static</title>
-    <url>/2020/07/02/java_%E9%9D%99%E6%80%81/</url>
+    <url>/2020/07/03/java_%E9%9D%99%E6%80%81/</url>
     <content><![CDATA[<p>静态static关键字</p>
 <p>一旦用了static关键字,那么这样的内容不再属于对象自己,而是属于类的,所以凡是本类的对象,都共享同一份</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">staticGJZ</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">static</span> String room;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> idCounter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">staticGJZ</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = idCounter ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">staticGJZ</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.id = ++idCounter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">·················································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        staticGJZ one = <span class="keyword">new</span> staticGJZ(<span class="string">"guo"</span>,<span class="number">12</span>);</span><br><span class="line">        one.room = <span class="string">"101"</span>;</span><br><span class="line">        System.out.println(one.getName()+<span class="string">" "</span>+one.getAge()+<span class="string">" "</span>+one.room + <span class="string">" "</span> + one.getId());</span><br><span class="line">        staticGJZ teo = <span class="keyword">new</span> staticGJZ(<span class="string">"zhuo"</span>,<span class="number">22</span>);</span><br><span class="line">        System.out.println(teo.getName()+<span class="string">" "</span>+teo.getAge()+<span class="string">" "</span>+teo.room + <span class="string">" "</span> + teo.getId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">out:</span><br><span class="line">guo <span class="number">12</span> <span class="number">101</span> <span class="number">1</span></span><br><span class="line">zhuo <span class="number">22</span> <span class="number">101</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
@@ -632,11 +588,11 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
   </entry>
   <entry>
     <title>Java_继承</title>
-    <url>/2020/07/01/java_%E7%BB%A7%E6%89%BF/</url>
+    <url>/2020/07/02/java_%E7%BB%A7%E6%89%BF/</url>
     <content><![CDATA[<p>Java继承性<br>继承是多态的前提,如果没有继承,就没有多态<br>继承主要解决的问题就是:<strong>共性抽取</strong><br>父类:也可以叫基类/超类<br>子类:也可以叫派生类<br>继承关系中,子类可以拥有父类的内容<br>子类还可以拥有自己专有的内容</p>
 <p>定义父类的格式:一个普通类的定义</p>
 <p>public class father{···}</p>
-<p>public class son extends father{···}</p>
+<p> public class son extends father{···}</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"方法执行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···········································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword">extends</span> <span class="title">Employee</span> </span>&#123;&#125;</span><br><span class="line">···········································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Assistant</span> <span class="keyword">extends</span> <span class="title">Employee</span> </span>&#123;&#125;</span><br><span class="line">···········································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Teacher tea = <span class="keyword">new</span> Teacher();</span><br><span class="line">        tea.method();</span><br><span class="line">        Assistant assis = <span class="keyword">new</span> Assistant();</span><br><span class="line">        assis.method();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">方法执行</span><br><span class="line">方法执行</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">fu</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> numFu = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodFU</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···········································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">fu</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> numZi = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">200</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodZI</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">···········································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoFuZi</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        fu f = <span class="keyword">new</span> fu();<span class="comment">//创建父类对象</span></span><br><span class="line">        System.out.println(f.numFu);<span class="comment">//只能用父类的东西</span></span><br><span class="line"></span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        System.out.println(z.numFu);</span><br><span class="line">        System.out.println(z.numZi);</span><br><span class="line">        System.out.println(<span class="string">"====================="</span>);</span><br><span class="line">        System.out.println(z.num);<span class="comment">//左边是子类，优先子类</span></span><br><span class="line">        System.out.println(<span class="string">"====================="</span>);</span><br><span class="line">        z.methodZI();<span class="comment">//子类方法，优先子类</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">20</span></span><br><span class="line">=====================</span><br><span class="line"><span class="number">200</span></span><br><span class="line">=====================</span><br><span class="line"><span class="number">200</span></span><br><span class="line">···········································································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fu</span> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> num = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">···········································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Zi</span> <span class="keyword">extends</span> <span class="title">Fu</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">20</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">30</span>;</span><br><span class="line">        System.out.println(num);<span class="comment">//30 局部变量</span></span><br><span class="line">        System.out.println(<span class="keyword">this</span>.num);<span class="comment">//20 本类成员变量</span></span><br><span class="line">        System.out.println(<span class="keyword">super</span>.num); <span class="comment">// 10 父类的成员变量</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">···········································</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">deno</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Zi z = <span class="keyword">new</span> Zi();</span><br><span class="line">        z.method();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line"><span class="number">30</span></span><br><span class="line"><span class="number">20</span></span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
@@ -682,22 +638,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
       </categories>
       <tags>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>matplotlib</title>
-    <url>/2020/05/19/matplotlib/</url>
-    <content><![CDATA[<h1 id="Matplotlib-安装"><a href="#Matplotlib-安装" class="headerlink" title="Matplotlib 安装"></a>Matplotlib 安装</h1><h1 id="Matplotlib-绘制散点图"><a href="#Matplotlib-绘制散点图" class="headerlink" title="Matplotlib 绘制散点图"></a>Matplotlib 绘制散点图</h1><h1 id="Matplotlib-绘制折线图"><a href="#Matplotlib-绘制折线图" class="headerlink" title="Matplotlib 绘制折线图"></a>Matplotlib 绘制折线图</h1><h1 id="Matplotlib-绘制柱状图和饼状图"><a href="#Matplotlib-绘制柱状图和饼状图" class="headerlink" title="Matplotlib 绘制柱状图和饼状图"></a>Matplotlib 绘制柱状图和饼状图</h1><h1 id="Matplotlib-绘制直方图和箱线图"><a href="#Matplotlib-绘制直方图和箱线图" class="headerlink" title="Matplotlib 绘制直方图和箱线图"></a>Matplotlib 绘制直方图和箱线图</h1><h1 id="Matplotlib-绘制子图"><a href="#Matplotlib-绘制子图" class="headerlink" title="Matplotlib 绘制子图"></a>Matplotlib 绘制子图</h1><h1 id="pandas中绘制图表"><a href="#pandas中绘制图表" class="headerlink" title="pandas中绘制图表"></a>pandas中绘制图表</h1>]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>数据分析与数据挖掘</tag>
-        <tag>Jupyter Notebook</tag>
-        <tag>numpy</tag>
-        <tag>Pandas</tag>
-        <tag>matplotlib</tag>
       </tags>
   </entry>
   <entry>
@@ -829,11 +769,6 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
         <tag>数据分析与数据挖掘</tag>
         <tag>Jupyter Notebook</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>服务器日志分析</title>
-    <url>/2020/05/20/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>numpy</title>
@@ -1036,7 +971,7 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
   </entry>
   <entry>
     <title>特征工程</title>
-    <url>/2020/05/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
+    <url>/2020/05/24/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
     <content><![CDATA[<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p>-&gt; 拿到的数据不规范，了解数据的一些信息和格式，便于后期工作<br>-&gt; 机器学习前的准备工作<br>-&gt; 前期是理论，后期是实践</p>
 <h2 id="本周内容"><a href="#本周内容" class="headerlink" title="本周内容"></a>本周内容</h2><a id="more"></a>
 <h3 id="1-机器学习的简单理解"><a href="#1-机器学习的简单理解" class="headerlink" title="1.机器学习的简单理解"></a>1.机器学习的简单理解</h3><p>和其他的计算机程序没有区别<br>核心也是算法和数据，从数据中学习，并建立模型<br>拿到源数据</p>
@@ -1192,6 +1127,274 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
         <tag>matplotlib</tag>
         <tag>projec</tag>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java_File类</title>
+    <url>/2020/07/03/File%E7%B1%BB/</url>
+    <content><![CDATA[<p>JVM组成部分，每个组件的作用，各组件间的关系，案例，注意事项，面试问题</p>
+<p><a href="http://java.file.io" target="_blank" rel="noopener">http://java.file.io</a></p>
+<p>文件和目录路径名的抽象表示形式</p>
+<p>java把电脑中的文件和文件夹(目录)封装成了一个File类,我们可以使用file类对文件和文件夹进行操作</p>
+<p>方法:</p>
+<ol>
+<li>创建一个文件夹</li>
+<li>删除文件/文件夹</li>
+<li>获取文件/文件夹</li>
+<li>判断文件/文件夹是否存在</li>
+<li>对文件夹进行遍历</li>
+<li>获取文件的大小</li>
+</ol>
+<p>File类是一个与系统无关的类,任何的操作系统都可以使用这个类中的方法</p>
+<p>重点:</p>
+<ul>
+<li>file : 文件</li>
+<li>directory: 文件夹/目录</li>
+<li>path: 路径</li>
+</ul>
+<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><ul>
+<li>static String pathSeparator : 与系统有关的路径分隔符,为了方便,他被标示为一个字符串</li>
+<li>static char pathSeparatorChar : 与系统有关的路径分隔符</li>
+<li>static String separator: 与系统有关的默认名称分隔符,为了方便,被标示为一个字符串</li>
+<li>static char separatorChar : 与系统有关的默认名称分隔符</li>
+</ul>
+<p>因为系统的不同,所以路径不能写死了:</p>
+<ul>
+<li>C :\develop\a\a.txt windows</li>
+<li>C: /develop/a/a.txt  linux</li>
+</ul>
+<p>因此为了防止路径错误,就将其中的分隔符换成代码格式</p>
+<p>“C: “+File.separator+”develop”+File.separator+”a”+File.separator+”a.txt”</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Static</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String pathSeparator = File.pathSeparator;</span><br><span class="line">        System.out.println(pathSeparator); <span class="comment">// 路径分隔符 windows ; linux :</span></span><br><span class="line">        </span><br><span class="line">        String separator = File.separator;</span><br><span class="line">        System.out.println(separator); <span class="comment">// 文件名分隔符 windows: 反斜杠 \\ linux :正斜杠 /</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">:</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
+
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>绝对路径: 一个完整的路径,以盘符开始的路径</p>
+<p>相对路径: 一个简化的路径,相对于当前的根目录,相对路径可以省略项目的根目录</p>
+<p>注意:</p>
+<ul>
+<li>路径不区分大小写</li>
+<li>路径中的文件名成分隔符在两个系统中不同</li>
+<li>路径分隔符 windows ; linux :</li>
+<li>文件名分隔符 windows: 反斜杠 \ linux :正斜杠 /  反斜杠是转义字符,两个反斜杠代表一个普通的反斜杠</li>
+</ul>
+<h2 id="File类的构造方法"><a href="#File类的构造方法" class="headerlink" title="File类的构造方法"></a>File类的构造方法</h2><h3 id="通过将给定路径名字符串转换为抽象路径来创建一个新File实例"><a href="#通过将给定路径名字符串转换为抽象路径来创建一个新File实例" class="headerlink" title="通过将给定路径名字符串转换为抽象路径来创建一个新File实例"></a>通过将给定路径名字符串转换为抽象路径来创建一个新File实例</h3><p>File(String pathname)</p>
+<p>参数:</p>
+<ol>
+<li>String pathname : 字符串的路径名称</li>
+<li>路径可以是以文件结尾,也可以是文件夹结尾</li>
+<li>路径可以是相对路径,也可以是绝对路径</li>
+<li>路径可以存在,也可以不存在</li>
+<li>创建File对象,知识吧字符串路径封装为File对象,不考虑路径的真假情况</li>
+</ol>
+<h3 id="根据parent路径名字符串和child路径名字符串创建一个新的File实例"><a href="#根据parent路径名字符串和child路径名字符串创建一个新的File实例" class="headerlink" title="根据parent路径名字符串和child路径名字符串创建一个新的File实例"></a>根据parent路径名字符串和child路径名字符串创建一个新的File实例</h3><p>File(String parent, String child)</p>
+<p>​    String parent</p>
+<p>​    String child</p>
+<p>好处: 父路径和子路径可以单独书写,使用起来非常灵活,父路径和子路径都可以变化</p>
+<h3 id="根据抽象路径名和child路径字符串创建一个新File实例"><a href="#根据抽象路径名和child路径字符串创建一个新File实例" class="headerlink" title="根据抽象路径名和child路径字符串创建一个新File实例"></a>根据抽象路径名和child路径字符串创建一个新File实例</h3><p>参数: 把路径分成了两部分</p>
+<p>​    File parent :父路径</p>
+<p>​    String child: 子路径</p>
+<p>好处:</p>
+<p>​    父路径和子路径可以单独书写,使用起来非常灵活,父路径和子路径都可以变化</p>
+<p>​    父路径是File类型,可以使用File的方法对路径进行一些操作,在使用路径创建对象</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File parent = <span class="keyword">new</span> File(<span class="string">"/Users/xuzy/Documents"</span>);</span><br><span class="line">        File file = <span class="keyword">new</span> File(parent,<span class="string">"Java.txt"</span>);</span><br><span class="line">        System.out.println(file);</span><br><span class="line">    &#125;</span><br><span class="line">out:**/Users/xuzy/Documents/Java.txt**</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show02</span><span class="params">(String parent,String child)</span></span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(parent,child);</span><br><span class="line">        System.out.println(file);</span><br><span class="line">    &#125;</span><br><span class="line">out:**/Users/xuzy/Documents/a.txt**</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File f1 = <span class="keyword">new</span> File(<span class="string">"fff.txt"</span>);<span class="comment">// 不管是否真是都可以打印</span></span><br><span class="line">        System.out.println(f1);</span><br><span class="line">out:**fff.txt**</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h3 id="测试此抽象路径名是否为绝对路径名"><a href="#测试此抽象路径名是否为绝对路径名" class="headerlink" title="测试此抽象路径名是否为绝对路径名"></a>测试此抽象路径名是否为绝对路径名</h3><p>public boolean isAbsolute()</p>
+<h3 id="返回抽象路径名的绝对路径名字符串"><a href="#返回抽象路径名的绝对路径名字符串" class="headerlink" title="返回抽象路径名的绝对路径名字符串"></a>返回抽象路径名的绝对路径名字符串</h3><p>public String getAbsolutePath()</p>
+<h3 id="返回此抽象路径名的路径名字符串"><a href="#返回此抽象路径名的路径名字符串" class="headerlink" title="返回此抽象路径名的路径名字符串"></a>返回此抽象路径名的路径名字符串</h3><p>public String toString()</p>
+<h3 id="返回由此抽象路径名表示的文件或目录的名称"><a href="#返回由此抽象路径名表示的文件或目录的名称" class="headerlink" title="返回由此抽象路径名表示的文件或目录的名称"></a>返回由此抽象路径名表示的文件或目录的名称</h3><p>public String getName()</p>
+<h3 id="返回由此抽象路径名表示的文件的长度"><a href="#返回由此抽象路径名表示的文件的长度" class="headerlink" title="返回由此抽象路径名表示的文件的长度"></a>返回由此抽象路径名表示的文件的长度</h3><p>public long length()</p>
+<h2 id="目录的遍历"><a href="#目录的遍历" class="headerlink" title="目录的遍历"></a>目录的遍历</h2><p>public String[ ] list() 返回一个String数组,表示该File目录中的所有子文件或目录</p>
+<p>​    遍历构造方法中给出的目录,会获取目录中所有文件/文件夹的名称,把获取到的多个名称存储到一个String类型的数组中</p>
+<p>public File[ ] listFiles() 返回一个File数组,表示该File目录中的所有子文件或目录</p>
+<p>​    遍历构造方法中给出的目录,会获取目录中所有的文件/文件夹,把文件/文件夹封装为File对象,多个File对象存储到File数组中</p>
+<p>注意:</p>
+<p>​    list方法和listFiles方法遍历的是构造方法中给出的目录</p>
+<p>​    如果构造方法中给出的目录路径不存在,会抛出空指针异常</p>
+<p>​    如果构造方法中给出的路径不是一个目录,也会抛出空指针异常</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04bianli</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        show01();</span><br><span class="line">        show02();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"/Users/xuzy/Downloads"</span>);</span><br><span class="line">        File[] files = file.listFiles();</span><br><span class="line">        <span class="keyword">for</span> (File file1 : files) &#123;</span><br><span class="line">            System.out.println(file1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File f = <span class="keyword">new</span> File(<span class="string">"/Users/xuzy/Downloads"</span>);</span><br><span class="line">        String[] arr = f.list();</span><br><span class="line">        <span class="keyword">for</span> (String s : arr) &#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">MATLAB R2019bMac</span><br><span class="line">编程文件夹</span><br><span class="line">.DS_Store</span><br><span class="line">English in use</span><br><span class="line">《新世界》<span class="number">2013</span>年韩国剧情,犯罪电影在线观看_蛋蛋赞影院.mp4</span><br><span class="line">.localized</span><br><span class="line">电子书</span><br><span class="line">Algo</span><br><span class="line">统计学原理.rar</span><br><span class="line">.du..UfNfzhhc4Q</span><br><span class="line">._BusyCal Installer.pkg</span><br><span class="line">私人</span><br><span class="line">/Users/xuzy/Downloads/MATLAB R2019bMac</span><br><span class="line">/Users/xuzy/Downloads/编程文件夹</span><br><span class="line">/Users/xuzy/Downloads/.DS_Store</span><br><span class="line">/Users/xuzy/Downloads/English in use</span><br><span class="line">/Users/xuzy/Downloads/《新世界》<span class="number">2013</span>年韩国剧情,犯罪电影在线观看_蛋蛋赞影院.mp4</span><br><span class="line">/Users/xuzy/Downloads/.localized</span><br><span class="line">/Users/xuzy/Downloads/电子书</span><br><span class="line">/Users/xuzy/Downloads/Algo</span><br><span class="line">/Users/xuzy/Downloads/统计学原理.rar</span><br><span class="line">/Users/xuzy/Downloads/.du..UfNfzhhc4Q</span><br><span class="line">/Users/xuzy/Downloads/._BusyCal Installer.pkg</span><br><span class="line">/Users/xuzy/Downloads/私人</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java_Lambda表达式</title>
+    <url>/2020/07/03/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p>面向对象思想:</p>
+<p>做一件事情,找一个能解决这个事情的对象,调用对象的方法,完成事情</p>
+<p>函数式编程思想:</p>
+<p>只要能获取到结构,谁去做的,怎么做的都不重要,不重视过程</p>
+<h2 id="Runnable代码分析"><a href="#Runnable代码分析" class="headerlink" title="Runnable代码分析"></a>Runnable代码分析</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> lambda;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Runnable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Runnable 接口的实现类对象</span></span><br><span class="line">        RunnableImpl run = <span class="keyword">new</span> RunnableImpl();</span><br><span class="line"><span class="comment">// 创建Thread实现类对象，构造方法中传递Runnable接口的实现类</span></span><br><span class="line">        Thread t = <span class="keyword">new</span> Thread(run);</span><br><span class="line">        t.start();</span><br><span class="line">        <span class="comment">// 使用匿名内部类简化代码，实现多线程程序</span></span><br><span class="line">        Runnable r = <span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">" 新线程创建了1"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">new</span> Thread(r).start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 继续简化代码</span></span><br><span class="line">        <span class="keyword">new</span> Thread( <span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">" 新线程创建了2"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Thread类中run方法用来指定线程任务的核心,为了指定run方法,<u>不得不需要Runnable接口的实现类</u>,为了省去RunnableImpl实现类,<u>不得不使用匿名内部类</u>,必须覆盖重写抽象run方法,<u>所以方法名称,参数,返回值不得不重写一遍.</u>但是只有方法体才是关键</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableImpl</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() +<span class="string">" 新线程创建了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用Lambda表达式实现多线程"><a href="#使用Lambda表达式实现多线程" class="headerlink" title="使用Lambda表达式实现多线程"></a>使用Lambda表达式实现多线程</h2><p>匿名内部类:</p>
+<p>​    可以省去实现类的定义,但是很复杂</p>
+<p>分析代码中的语义:</p>
+<ul>
+<li>无参数: 不需要任何条件即可执行该方案</li>
+<li>无返回值: 该发难不产生任何结果</li>
+<li>代码块: 该方案的具体执行步骤</li>
+</ul>
+<p>同样的语义体现在Lambda语法中更加简单:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">() -&gt; System.out.println(<span class="string">"多线程任务执行"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>前面的一堆小括号即[run]方法的参数(无),代表不需要任何条件</p>
+<p>中间的一个箭头代表将前面的参数传递给后面的代码</p>
+<p>后面的输出语句即业务逻辑代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01lambda1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread( <span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName()+<span class="string">" 新线程创建了2"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"lambda的新线程"</span>);</span><br><span class="line">        &#125;).start();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">Thread-<span class="number">1l</span>ambda的新线程</span><br><span class="line">Thread-<span class="number">0</span> 新线程创建了<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lambda表达式的标准格式-三个部分"><a href="#Lambda表达式的标准格式-三个部分" class="headerlink" title="Lambda表达式的标准格式(三个部分)"></a>Lambda表达式的标准格式(三个部分)</h2><p>(参数列表) → {重写方法的代码}</p>
+<ul>
+<li>一些参数: 接口中抽象方法的参数列表</li>
+<li>一个箭头: 传递的意思</li>
+<li>一段代码: 重写接口的抽象方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cook</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">makefood</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Cook</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 调用invokefood方法，参数是Cook接口，传递Cook接口的匿名内部类对象</span></span><br><span class="line">        invokefood(<span class="keyword">new</span> Cook() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makefood</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"吃饭了"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用lambda 表达式简化匿名内部类的书写</span></span><br><span class="line">        invokefood(() -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"吃饭了"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 定义一个方法，参数传递cook接口，方法内部调用Cook接口中的方法makefood</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">invokefood</span><span class="params">(Cook cook)</span></span>&#123;</span><br><span class="line">        cook.makefood();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lambda的参数和返回值"><a href="#Lambda的参数和返回值" class="headerlink" title="Lambda的参数和返回值"></a>Lambda的参数和返回值</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Array</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person[] arr = &#123;</span><br><span class="line">                <span class="keyword">new</span> Person(<span class="string">"LIU"</span>,<span class="number">38</span>),</span><br><span class="line">                <span class="keyword">new</span> Person(<span class="string">"DI"</span>,<span class="number">18</span>),</span><br><span class="line">                <span class="keyword">new</span> Person(<span class="string">"GU"</span>,<span class="number">15</span>)</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 数组中的Person对象使用Arrays方法的sort方法通过年龄进行升序（前-后）排序</span></span><br><span class="line">        Arrays.sort(arr, <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span>  o1.getAge()-o2.getAge();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (Person person : arr) &#123;</span><br><span class="line">            System.out.println(person);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        **System.out.println(<span class="string">"+++++++++++++++++++++++++++"</span>);</span><br><span class="line">        <span class="comment">// Lambda 表达式，简化匿名内部类</span></span><br><span class="line">        Arrays.sort(arr,(Person o1,Person o2)-&gt;&#123;</span><br><span class="line">            <span class="keyword">return</span> o1.getAge()-o2.getAge();</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (Person person : arr) &#123;</span><br><span class="line">            System.out.println(person);</span><br><span class="line">        &#125;**</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">Person&#123;name=<span class="string">'GU'</span>, age=<span class="number">15</span>&#125;</span><br><span class="line">Person&#123;name=<span class="string">'DI'</span>, age=<span class="number">18</span>&#125;</span><br><span class="line">Person&#123;name=<span class="string">'LIU'</span>, age=<span class="number">38</span>&#125;</span><br><span class="line">+++++++++++++++++++++++++++</span><br><span class="line">Person&#123;name=<span class="string">'GU'</span>, age=<span class="number">15</span>&#125;</span><br><span class="line">Person&#123;name=<span class="string">'DI'</span>, age=<span class="number">18</span>&#125;</span><br><span class="line">Person&#123;name=<span class="string">'LIU'</span>, age=<span class="number">38</span>&#125;</span><br><span class="line"><span class="keyword">package</span> LambdaCook;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\\'</span><span class="string">' +</span></span><br><span class="line"><span class="string">                ", age=" + age +</span></span><br><span class="line"><span class="string">                '</span>&#125;<span class="string">';</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    public String getName() &#123;</span></span><br><span class="line"><span class="string">        return name;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    public void setName(String name) &#123;</span></span><br><span class="line"><span class="string">        this.name = name;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    public int getAge() &#123;</span></span><br><span class="line"><span class="string">        return age;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    public void setAge(int age) &#123;</span></span><br><span class="line"><span class="string">        this.age = age;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lambad表达式有参数有返回值的练习"><a href="#Lambad表达式有参数有返回值的练习" class="headerlink" title="Lambad表达式有参数有返回值的练习"></a>Lambad表达式有参数有返回值的练习</h2><p>需求:</p>
+<p>给定一个计算器Calculator接口,内含抽象方法calc可以将两个int数字相加得到和值</p>
+<p>使用Lambda的标准格式调用invokeCalc,完成10 和20的相加计算</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">Calc</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line"><span class="number">30</span></span><br><span class="line"><span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Lambda表达式-可推导-可省略的"><a href="#Lambda表达式-可推导-可省略的" class="headerlink" title="Lambda表达式: 可推导,可省略的"></a>Lambda表达式: 可推导,可省略的</h3><p>凡是根据上下文推到出得内容,都可以省略书写</p>
+<p>可以省略的:</p>
+<ul>
+<li>( 参数列表) 括号中参数列表的数据类型,可以省略</li>
+<li>(参数列表) 括号中的参数如果只有一个,那么类型和()都可以省略</li>
+<li>(代码) 如果{} 中的代码只有一行,无论是否有返回值,都可以省略({},return ,”;”)注意: 要省略这三个必须一起省略</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoCalcultor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 匿名内部类</span></span><br><span class="line">        invokeCalc(<span class="number">10</span>, <span class="number">20</span>, <span class="keyword">new</span> Calculator() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Calc</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a+b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// lambda 简化 匿名内部类</span></span><br><span class="line">        invokeCalc(<span class="number">10</span>,<span class="number">20</span>,(<span class="keyword">int</span> a,<span class="keyword">int</span> b)-&gt;&#123;</span><br><span class="line">            <span class="keyword">return</span> a+b;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*定义一个方法，参数传递两个int类型的整数</span></span><br><span class="line"><span class="comment">    参数传递Calcultor接口</span></span><br><span class="line"><span class="comment">    方法内部调用Calculator中的方法Calc计算两个整数的和*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">invokeCalc</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, Calculator c)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = c.Calc(a,b);</span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人博客介绍</title>
+    <url>/2020/05/13/%E4%B8%AA%E4%BA%BAhexo%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<p>介绍</p>
+<p>整个博客被我分成了两个部分</p>
+<p>首先第一部分是Hexo,就是这个网站的本体,即esept.github.io,还有我个人的Notion</p>
+<p>Hexo 部分主要是技术类型,会往里加入自己的学习路径</p>
+<p>Notion 主要是更加私人化的一些,因为我一个啥也不是的人,如果有人愿意关注我那肯定是因为咱俩关系很好对吧</p>
+<p>自认为我的Notion模版的使用已经可以了,作为一个日常记录,可能会再更新一些比较新奇的东西,但是现在来说绝对够用,如果你想试试我的模版,直接从自我介绍找到我的联系方式就可以啦</p>
+<p>hexo作为一个比notion麻烦十倍的网站,我期待着有一天我可以自己写一个博客网站,所以会按照现在的状态继续使用,再加上hexo在网上的教程相对来说多得多,所以也就没有必要在找我进行询问了.</p>
+<hr>
+<p>2020-08-28</p>
+<p>对之前笔记的整理</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java_线程状态概述</title>
+    <url>/2020/05/13/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E6%A6%82%E8%BF%B0/</url>
+    <content><![CDATA[<p>笔记</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f1f38e9b-30b9-4837-90b4-10dde5e53fac/Untitled.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f1f38e9b-30b9-4837-90b4-10dde5e53fac/Untitled.png"></p>
+<h2 id="Waiting-无限等待"><a href="#Waiting-无限等待" class="headerlink" title="Waiting : 无限等待"></a>Waiting : 无限等待</h2><p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7de6593-ffd2-4187-9f40-c53638d8e668/Untitled.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7de6593-ffd2-4187-9f40-c53638d8e668/Untitled.png"></p>
+<p>等待唤醒案例:</p>
+<ul>
+<li>创建一个顾客线程: 告知老板要的包子的种类和数量,调用wait方法,放弃cpu的执行,进入到waiting状态</li>
+<li>创建一个老板线程: 花五秒做包子,做好包子之后,调用notify方法,唤醒顾客吃包子</li>
+</ul>
+<p>注意:</p>
+<ul>
+<li>顾客和老板必须使用同步代码包裹起来,保证等待和唤醒只有一个在执行</li>
+<li>同步使用的锁对象必须保持统一</li>
+<li>只有锁对象才能调用wait和notify方法</li>
+</ul>
+<p>Object类中的方法</p>
+<ul>
+<li>void wait() :在其他线程调用此对象的notify/notifyAll()方法前,导致当前线程等待</li>
+<li>void notify(): 唤醒此对象监视器上等待的单个线程,会继续执行wait方法之后的代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">out:</span><br><span class="line">告知包子的种类和数量</span><br><span class="line">老板<span class="number">5</span>s之后做好包子，告知顾客</span><br><span class="line">包子做好了，开吃</span><br></pre></td></tr></table></figure>
+
+<h2 id="TimeWaiting-计时等待"><a href="#TimeWaiting-计时等待" class="headerlink" title="TimeWaiting(计时等待)"></a>TimeWaiting(计时等待)</h2><p>进入到TImeWaiting有两种方式:</p>
+<ul>
+<li>使用sleep(long m) 方法,在毫秒值结束之后,线程睡醒进入到Runnable/Bolcked状态</li>
+<li>使用wait(long m)方法,wait方法如果在毫秒值结束之后,还没有被notify唤醒,就会自动醒来,线程睡醒进入到Runnable/Blocked状态</li>
+</ul>
+<h2 id="唤醒的方法"><a href="#唤醒的方法" class="headerlink" title="唤醒的方法"></a>唤醒的方法</h2><ul>
+<li>void notify() : 唤醒在此对象监视器上等待的单个线程</li>
+<li>void notifyAll() : 唤醒在此对象监视器上等待的所有线程</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoWaitandNotify</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建锁对象，保证唯一</span></span><br><span class="line">        Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">        <span class="comment">//创建顾客</span></span><br><span class="line">        <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">// 保证等待和唤醒的线程只能有一个，所以需要使用同步机制</span></span><br><span class="line">                <span class="keyword">synchronized</span> (obj)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"告知包子的种类和数量"</span>);</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        obj.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//唤醒之后执行的代码</span></span><br><span class="line">                    System.out.println(<span class="string">"包子做好了，开吃"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建老板</span></span><br><span class="line">        <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">//5s 做包子</span></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (obj)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"老板5s之后做好包子，告知顾客"</span>);</span><br><span class="line">                    obj.notify();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java_线程池</title>
+    <url>/2020/05/24/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</url>
+    <content><![CDATA[<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>如果并发的线程数量很多,并且每个线程都是执行一个很短的时间的任务就结束了,这样频繁创建线程就会大大降低系统的频率,因为频繁创建线程和销毁线程都需要时间</p>
+<p>因此需要一种办法,让线程可以复用,在执行完一个任务之后不被销毁,继续执行其他的任务</p>
+<p>可以理解为一个容器—&gt;(ArrayList,HashSet,LinkedList<Thread>,HashMap),步骤如下:</Thread></p>
+<ul>
+<li>当程序第一次启动的时候,创建多个线程,保存到一个集合中,当我们想要使用线程的时候,就可以从集合中取出一个线程使用</li>
+<li>Thread t = list.remove(0);</li>
+<li>Thread t = linked.removeFirst();</li>
+<li>当我们使用完毕线程,需要把线程归还给线程池</li>
+<li>list.add(t);</li>
+<li>linked.addLast(t);</li>
+<li>在JDK1.5之后,JDK内置了线程池,可以直接使用</li>
+</ul>
+<h2 id="Java-util-concurrent-Executors"><a href="#Java-util-concurrent-Executors" class="headerlink" title="Java.util.concurrent.Executors"></a>Java.util.concurrent.Executors</h2><p>线程池的工厂类,用来生产线程池</p>
+<p>Executors类中的静态方法:</p>
+<ul>
+<li>static ExecutorService new FixedThreadPool(int nThread) 创建一个可重用固定线程数的线程池</li>
+<li>参数:  int nThread: 创建线程池中包含的线程数量</li>
+<li>返回值: ExecutorService接口,返回的是ExecutorService接口的实现类对象,我们可以使用ExecutorService接口接收(面向接口编程)</li>
+</ul>
+<h2 id="java-util-concurrent-ExecutorService-线程池接口"><a href="#java-util-concurrent-ExecutorService-线程池接口" class="headerlink" title="java.util.concurrent.ExecutorService : 线程池接口"></a>java.util.concurrent.ExecutorService : 线程池接口</h2><p>用来从线程池中获取线程,调用start方法,执行线程任务</p>
+<p>submit(Runnable task) 提交一个Runnable任务用于执行</p>
+<p>关闭/销毁线程池的方法</p>
+<p>void shutdown();</p>
+<p>线程池的使用步骤:</p>
+<ol>
+<li>创建线程池的工厂类Executors里面提供的静态方法newFixedThreadPool生产一个指定数量的线程池</li>
+<li>创建一个类,实现Runnable接口,重写run()方法,设置线程任务</li>
+<li>调用ExecutorService中的方法submit,传递线程任务(实现类),开启线程,执行run方法</li>
+<li>调用ExecutorService中的方法shutdown()销毁线程池(不建议执行)</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableImpl</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//2. 创建一个类,实现Runnable接口,重写run()方法,设置线程任务</span></span><br><span class="line"></span><br><span class="line">        System.out.println(Thread.currentThread().getName()+<span class="string">"创建了一个新的线程"</span> );</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01ThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//1.生产一个指定数量的线程池</span></span><br><span class="line">        ExecutorService es = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.调用ExecutorService中的方法submit,传递线程任务(实现类),开启线程,执行run方法</span></span><br><span class="line"></span><br><span class="line">        es.submit(<span class="keyword">new</span> RunnableImpl());<span class="comment">//pool-1-thread-1创建了一个新的线程</span></span><br><span class="line">        es.submit(<span class="keyword">new</span> RunnableImpl());<span class="comment">//pool-1-thread-2创建了一个新的线程</span></span><br><span class="line">        es.submit(<span class="keyword">new</span> RunnableImpl());<span class="comment">//pool-1-thread-1创建了一个新的线程</span></span><br><span class="line"><span class="comment">// 线程池会一直开启，使用完了线程，会自动把线程归还给线程池，线程可以继续使用</span></span><br><span class="line"><span class="comment">// 4. 调用ExecutorService中的方法shutdown()销毁线程池(不建议执行)</span></span><br><span class="line">        es.shutdown(); <span class="comment">//程序结束，之后不能再分配任务</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">2</span>创建了一个新的线程</span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">1</span>创建了一个新的线程</span><br><span class="line">pool-<span class="number">1</span>-thread-<span class="number">1</span>创建了一个新的线程</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java_线程间通信</title>
+    <url>/2020/05/13/%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</url>
+    <content><![CDATA[<p>概念</p>
+<p>多个线程在使用统一资源,但是处理的动作(线程的任务)不同</p>
+<p>在处理统一资源的时候就存在线程通信问题</p>
+<p>多个线程并发执行的时候,在默认条件下CPU是随机切换线程的,当我们需要多个线程来处理统一任务,并且希望他们有规律的执行,那么多线程之间需要一些协调通信,以此来帮助我们达到多线程共同操作同一份数据</p>
+<p>多个线程在操作同一份数据时,为了避免对同一共享变量的争夺,我们需要通过&lt;等待唤醒机制&gt;来使各个线程能有效的使用资源</p>
+<h2 id="等待唤醒机制-线程之间的通信"><a href="#等待唤醒机制-线程之间的通信" class="headerlink" title="等待唤醒机制: 线程之间的通信"></a>等待唤醒机制: 线程之间的通信</h2><p>重点: 有效的利用资源(吃一个,做一个,吃一个,做一个)</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/551e0db2-47c3-4a95-9b0f-05be87d3db5a/Untitled.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/551e0db2-47c3-4a95-9b0f-05be87d3db5a/Untitled.png"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Baozi</span> </span>&#123;</span><br><span class="line">    String pi;</span><br><span class="line">    String xian;</span><br><span class="line">    <span class="comment">//包子的状态： true 有 false 没有</span></span><br><span class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> 线程间通信;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">chihuo</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Baozi bz;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">chihuo</span><span class="params">(Baozi bz)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.bz = bz;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 线程任务： 吃包子</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 使用循环，让吃货一直吃包子</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (bz)&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(bz.flag == <span class="keyword">false</span>)&#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        bz.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 线程被唤醒之后的操作， 吃包子</span></span><br><span class="line">                System.out.println(<span class="string">"吃货正在吃"</span>+bz.pi+bz.xian+<span class="string">"的包子"</span>);</span><br><span class="line">                bz.flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="comment">// 唤醒包子铺，继续生产</span></span><br><span class="line">                bz.notify();</span><br><span class="line">                System.out.println(<span class="string">"吃货吃完了"</span>+bz.pi+bz.xian+<span class="string">"的包子，包子铺开始生产了"</span>);</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">"=================================="</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">package</span> 线程间通信;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Baozipu</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123; <span class="comment">// 继承线程方法</span></span><br><span class="line">    <span class="comment">//需要在成员位置创建一个包子变量</span></span><br><span class="line">    <span class="keyword">private</span> Baozi bz;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    使用带参构造方法为包子赋值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Baozipu</span><span class="params">(Baozi bz)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.bz = bz;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置线程任务（run） 生产包子</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (bz)&#123;</span><br><span class="line">                <span class="keyword">if</span>(bz.flag==<span class="keyword">true</span>)&#123; <span class="comment">// 对包子的状态进行判断</span></span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        bz.wait();<span class="comment">// 包子铺调用wait进入等待状态</span></span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 被唤醒之后执行，包子铺生产包子</span></span><br><span class="line">                <span class="comment">// 增加一些趣味性，交替生产两种包子</span></span><br><span class="line">                <span class="keyword">if</span>(count%<span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                    bz.pi = <span class="string">"薄皮"</span>;</span><br><span class="line">                    bz.xian = <span class="string">"三鲜"</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    bz.pi = <span class="string">"冰皮"</span>;</span><br><span class="line">                    bz.xian = <span class="string">"牛肉大葱"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                count ++ ;</span><br><span class="line">                System.out.println(<span class="string">"包子铺正在生产的是： "</span>+bz.pi+bz.xian+<span class="string">"包子"</span>);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//包子铺生产好了包子，修改包子的状态</span></span><br><span class="line">                bz.flag = <span class="keyword">true</span>;</span><br><span class="line">                <span class="comment">//唤醒吃货线程，让吃货线程吃包子</span></span><br><span class="line">                bz.notify();</span><br><span class="line">                System.out.println(<span class="string">"包子铺已经生产好： "</span>+bz.pi+bz.xian+<span class="string">"包子"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建包子对象</span></span><br><span class="line">        Baozi bz = <span class="keyword">new</span> Baozi();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Baozipu(bz).start();</span><br><span class="line">        <span class="keyword">new</span> chihuo(bz).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">out:</span><br><span class="line">包子铺正在生产的是： 薄皮三鲜包子</span><br><span class="line">包子铺已经生产好： 薄皮三鲜包子</span><br><span class="line">吃货正在吃薄皮三鲜的包子</span><br><span class="line">吃货吃完了薄皮三鲜的包子，包子铺开始生产了</span><br><span class="line">==================================</span><br><span class="line">包子铺正在生产的是： 冰皮牛肉大葱包子</span><br><span class="line">包子铺已经生产好： 冰皮牛肉大葱包子</span><br><span class="line">吃货正在吃冰皮牛肉大葱的包子</span><br><span class="line">吃货吃完了冰皮牛肉大葱的包子，包子铺开始生产了</span><br><span class="line">==================================</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>

@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java_</title>
-    <url>/2025/07/02/Java_/</url>
-    <content><![CDATA[<p>essayer?</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java_JVM-未完成</title>
     <url>/2020/06/30/Java_JVM/</url>
     <content><![CDATA[<p>JVM组成部分，每个组件的作用，各组件间的关系，案例，注意事项，面试问题</p>
@@ -1278,7 +1266,7 @@ array([False])<figure class="highlight python"><table><tr><td class="code"><pre>
   </entry>
   <entry>
     <title>个人博客介绍</title>
-    <url>/2020/05/13/%E4%B8%AA%E4%BA%BAhexo%E4%BB%8B%E7%BB%8D/</url>
+    <url>/2025/01/01/%E4%B8%AA%E4%BA%BAhexo%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<p>介绍</p>
 <p>整个博客被我分成了两个部分</p>
 <p>首先第一部分是Hexo,就是这个网站的本体,即esept.github.io,还有我个人的Notion</p>
